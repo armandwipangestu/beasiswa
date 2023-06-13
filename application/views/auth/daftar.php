@@ -7,7 +7,7 @@
                           <img src="<?= base_url() ?>/template/stisla/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
                       </div>
 
-                      <div class="card card-primary">
+                      <div class="card card-primary neu-brutalism">
                           <div class="card-header">
                               <h4>Daftar Akun Beasiswa STMIK</h4>
                           </div>
@@ -40,7 +40,7 @@
                                   </div>
 
                                   <div class="form-group">
-                                      <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                      <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
                                           Daftar
                                       </button>
                                   </div>

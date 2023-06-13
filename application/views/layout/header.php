@@ -19,6 +19,7 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= base_url(); ?>template/stisla/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>template/stisla/assets/css/my.css">
     <link rel="stylesheet" href="<?= base_url(); ?>template/stisla/assets/css/components.css">
 </head>
 
