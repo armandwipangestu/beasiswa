@@ -11,7 +11,7 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        // $this->_alreadyLogin();
+        $this->_sudahLogin();
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
             "required" => "Email tidak boleh kosong",
         ]);
@@ -40,7 +40,7 @@ class Auth extends CI_Controller
                     'email' => $user['email'],
                     'role_id' => $user['role_id']
                 ];
-                $this->sesion->set_userdata($data);
+                $this->session->set_userdata($data);
                 if ($user['role_id'] == 1) {
                     redirect('admin');
                 } else {
@@ -56,7 +56,7 @@ class Auth extends CI_Controller
         }
     }
 
-    private function _alreadyLogin()
+    private function _sudahLogin()
     {
         if ($this->session->userdata('role_id') == 1) {
             redirect('admin');
@@ -68,20 +68,20 @@ class Auth extends CI_Controller
 
     public function daftar()
     {
-        // $this->_alreadyLogin();
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', ['required' => 'Nama Tidak Boleh Kosong']);
+        $this->_sudahLogin();
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', ['required' => 'Tidak boleh kosong']);
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user_data.email]', [
-            'required' => 'Email tidak boleh kosong',
-            'is_unique' => 'Email sudah digunakan'
+            'required' => 'Tidak boleh kosong',
+            'is_unique' => 'Sudah digunakan'
         ]);
         $this->form_validation->set_rules('password', 'Kata Sandi', 'required|trim|min_length[3]|matches[password2]', [
-            'required' => 'Kata Sandi tidak boleh kosong',
+            'required' => 'Tidak boleh kosong',
             'matches' => '',
-            'min_length' => 'Kata Sandi terlalu pendek'
+            'min_length' => 'Terlalu pendek'
         ]);
         $this->form_validation->set_rules('password2', 'Konfirmasi Kata Sandi', 'required|trim|matches[password]', [
-            'required' => 'Konfirmasi Kata Sandi tidak boleh kosong',
-            'matches' => 'Konfirmasi Kata Sandi tidak sama',
+            'required' => 'Tidak boleh kosong',
+            'matches' => 'Tidak sama',
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -97,8 +97,17 @@ class Auth extends CI_Controller
             ];
 
             $this->db->insert('user_data', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4">Akun berhasil dibuat! Silahkan Masuk</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4 neu-brutalism">Akun berhasil dibuat! Silahkan Masuk</div>');
             redirect('auth');
         }
+    }
+
+    public function keluar()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4 neu-brutalism">Anda telah keluar!</div>');
+        redirect('auth');
     }
 }

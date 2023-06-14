@@ -35,7 +35,7 @@ $config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/beasiswa';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

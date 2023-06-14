@@ -16,24 +16,24 @@
                               <form method="POST" action="<?= base_url('auth/daftar'); ?>">
                                   <div class="form-group">
                                       <label for="nama">Nama</label>
-                                      <?= form_error('nama', '<br /><small class="text-danger">', '</small>') ?>
-                                      <input id="nama" type="nama" class="form-control" name="nama">
+                                      <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
+                                      <input id="nama" type="nama" class="form-control" name="nama" value="<?= set_value('nama') ?>">
                                   </div>
 
                                   <div class="form-group">
                                       <label for="email">Email</label>
-                                      <?= form_error('email', '<br /><small class="text-danger">', '</small>') ?>
-                                      <input id="email" type="email" class="form-control" name="email">
+                                      <?= form_error('email', '<small class="text-danger">', '</small>') ?>
+                                      <input id="email" type="email" class="form-control" name="email" value="<?= set_value('email') ?>">
                                   </div>
 
                                   <div class="row">
                                       <div class="form-group col-md-6">
-                                          <label for="password" class="d-block">Kata Sandi</label>
+                                          <label for="password" class="">Kata Sandi</label>
                                           <?= form_error('password', '<small class="text-danger">', '</small>') ?>
                                           <input id="password" type="password" class="form-control" name="password">
                                       </div>
                                       <div class="form-group col-md-6">
-                                          <label for="password2" class="d-block">Konfirmasi Kata Sandi</label>
+                                          <label for="password2" class="">Konfirmasi Kata Sandi</label>
                                           <?= form_error('password2', '<small class="text-danger">', '</small>') ?>
                                           <input id="password2" type="password" class="form-control" name="password2">
                                       </div>
