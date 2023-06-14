@@ -26,7 +26,7 @@
                             <td><?= $m['menu'] ?></td>
                             <td>
                                 <a href="#" onclick="edit('<?= $m['id'] ?>')" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
-                                <a class="btn btn-danger neu-brutalism" onclick="hapus('<?= $m['id'] ?>')"><i class="fas fa-trash"></i> Hapus</a>
+                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-menu="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -89,37 +89,25 @@
         }
     }
 
-    const hapus = (id) => {
-        Swal.fire({
-            title: "Apakah anda yakin ingin menhapus menu ini?",
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            cancleButtonText: "Batal",
-            confirmButtonText: "Ya",
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: `${baseUrl}/menu/hapus_menu/${id}`,
-                    dataType: "json",
-                    success: function(response) {
-                        console.log(response);
-                        var obj = response;
-                        Swal.fire("Berhasil!", obj.message, "success");
-                        window.location.href = `${baseUrl}/menu`;
-                    },
-                    error: function() {
-                        Swal.fire(
-                            "Peringatan!",
-                            "Mohon maaf sistem sedang dalam perbaikan, silakan hubungi admin terkait masalah ini",
-                            "error"
-                        );
-                    },
-                });
-            }
+    const hapusMenu = document.querySelectorAll('.hapus')
+    hapusMenu.forEach((hm) => {
+        hm.addEventListener('click', () => {
+            const dataId = hm.dataset.id
+            const dataUrl = hm.dataset.url
+            const dataMenu = hm.dataset.menu
+            Swal.fire({
+                icon: 'warning',
+                html: `Apakah anda yakin ingin menghapus <b>${dataMenu}</b>?`,
+                showCancelButton: true,
+                confirmButtonColor: '#5cb85c',
+                cancelButtonColor: '#d9534f',
+                confirmButtonText: `Tidak`,
+                cancelButtonText: `Ya`,
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    location.href = `${dataUrl}/${dataId}`
+                }
+            })
         })
-    }
+    })
 </script>

@@ -48,17 +48,14 @@ class Menu extends CI_Controller
         redirect('menu');
     }
 
-    public function hapus_menu($id)
+    public function hapus()
     {
-        $this->db->where('id', $id);
+        $menu_id = $this->uri->segment(3);
+        $menu_name = $this->db->get_where('user_menu', ['id' => $menu_id])->row_array()['menu'];
+        $this->db->where('id', $menu_id);
         $this->db->delete('user_menu');
-
-        $result = array(
-            'code'          => '200',
-            'message'       => 'Menu berhasil berhasil!',
-        );
-
-        echo json_encode($result);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Menu "<b>' . $menu_name . '</b>" berhasil dihapus!</div>');
+        redirect("menu");
     }
 
     public function get_menu($id)
