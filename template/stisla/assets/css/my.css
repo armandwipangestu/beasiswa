@@ -1,4 +1,9 @@
 .neu-brutalism {
-    border: 2px solid black;
-    box-shadow: 0.3rem 0.3rem 0 #222;
+    /* border-radius: 2px; */
+    border: 2px solid black !important;
+    box-shadow: 0.3rem 0.3rem 0 #222 !important;
+}
+
+.neu-brutalism-border {
+    border: 2px solid black !important;
 }

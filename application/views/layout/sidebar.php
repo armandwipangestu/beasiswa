@@ -1,4 +1,4 @@
-<div class="main-sidebar sidebar-style-2">
+<div class="main-sidebar sidebar-style-2" style="border-right: 2px solid black !important;">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="index.html">Beasiswa STMIK Bandung</a>
@@ -7,7 +7,50 @@
             <a href="index.html">BSB</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
+            <?php
+            $role_id = $this->session->userdata('role_id');
+
+            $queryMenu = "SELECT `user_menu`.`id`, `menu`
+            FROM `user_menu`
+            JOIN `user_access_menu` ON `user_menu`.`id` = `user_access_menu`.`menu_id`
+            WHERE `user_access_menu`.`role_id` = $role_id
+            ORDER BY `user_access_menu`.`menu_id` ASC";
+
+            $menu = $this->db->query($queryMenu)->result_array();
+            ?>
+
+            <?php
+            foreach ($menu as $m) :
+            ?>
+                <li class="menu-header">
+                    <?= $m['menu']; ?>
+                </li>
+
+                <?php
+                $menuId = $m['id'];
+                $querySubMenu = "SELECT * FROM
+                `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+                WHERE `user_sub_menu`.`menu_id` = $menuId";
+
+                $subMenu = $this->db->query($querySubMenu)->result_array();
+                ?>
+
+                <?php
+                foreach ($subMenu as $sm) :
+                ?>
+                    <?php if ($title == $sm['title']) : ?>
+                        <li class="active">
+                        <?php else : ?>
+                        <li>
+                        <?php endif; ?>
+                        <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                            <i class="<?= $sm['icon']; ?>"></i>
+                            <span><?= $sm['title']; ?></span>
+                        </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+                <!-- <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
@@ -15,6 +58,7 @@
                     <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
                 </ul>
             </li>
+              <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
             <li class="menu-header">Starter</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
@@ -24,7 +68,6 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
-            <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
                 <ul class="dropdown-menu">
@@ -32,13 +75,7 @@
                     <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
                     <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
-
-        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div>
     </aside>
 </div>
