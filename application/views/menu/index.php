@@ -7,7 +7,7 @@
 
         <?= $this->session->flashdata('message') ?>
 
-        <a href="#" data-toggle="modal" data-target="#menuManagementModal" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Menu Baru</a>
+        <a href="#" data-toggle="modal" onclick="edit('add')" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Menu Baru</a>
 
         <div class="table-responsive rounded">
             <table class="table table-hover table-bordered neu-brutalism-border">
@@ -25,7 +25,7 @@
                             <th scope="row"><?= $i ?></th>
                             <td><?= $m['menu'] ?></td>
                             <td>
-                                <a href="<?= base_url('menu/ubah/') . $m['id'] ?>" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
+                                <a href="#" onclick="edit('<?= $m['id'] ?>')" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
                                 <a class="btn btn-danger neu-brutalism" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-name="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
@@ -43,22 +43,49 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content neu-brutalism-border">
             <div class="modal-header">
-                <h5 class="modal-title" id="newMenuModalLabel">Tambah Menu Baru</h5>
+                <h5 class="modal-title" id="newMenuManagementModal"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="<?= base_url('menu') ?>" method="POST">
+                <input type="hidden" class="form-control" id="id" name="id"> 
+            
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukan Menu">
+                        <label for="menu" class="form-label">Nama Menu</label>
+                        <input type="text" class="form-control" id="menu" name="menu">
                     </div>
                 </div>
+                
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary neu-brutalism"><i class="fas fa-plus mr-1"></i> Tambahkan</button>
+                    <button type="submit" class="btn btn-primary neu-brutalism" id="submit"></button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    const baseUrl = `<?= base_url() ?>`
+
+    const edit = (id) => {
+        if(id == "add") {
+            $('.modal-title').text('Tambah Menu Baru')
+            $('#menu').val('');
+            $('#submit').text('Tambahkan');
+            $('#menuManagementModal').modal('show');
+        } else {
+            $.get(`${baseUrl}menu/get_menu/${id}`, (data) => {
+                const menu = $.parseJSON(data)
+                
+                $('.modal-title').text('Ubah Menu')
+                $('#id').val(menu.id);
+                $('#menu').val(menu.menu);
+                $('#submit').text('Ubah');
+                $('#menuManagementModal').modal('show');
+            })
+        }
+    }
+</script>

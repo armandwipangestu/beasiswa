@@ -31,4 +31,9 @@ class Menu extends CI_Controller
             redirect('menu');
         }
     }
+
+    public function get_menu($id) {
+        $menu = $this->db->query('SELECT * FROM user_menu where id = ' . $id . '')->row();
+        exit(json_encode((array)$menu));
+    }
 }
