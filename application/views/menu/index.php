@@ -25,8 +25,8 @@
                             <th scope="row"><?= $i ?></th>
                             <td><?= $m['menu'] ?></td>
                             <td>
-                                <a href="<?= base_url('menu/edit/') . $m['id'] ?>" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Edit</a>
-                                <a class="btn btn-danger neu-brutalism" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/delete') ?>" data-name="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="<?= base_url('menu/ubah/') . $m['id'] ?>" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
+                                <a class="btn btn-danger neu-brutalism" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-name="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
