@@ -1,4 +1,4 @@
-    <footer class="main-footer">
+    <footer class="main-footer text-dark" style="border-top: 2px solid black !important">
         <div class="footer-left">
             Copyright &copy; 2023 <div class="bullet">Developed By </div>Arman
         </div>
@@ -31,7 +31,7 @@
 
     <!-- Template JS File -->
     <script src="<?= base_url(); ?>template/stisla/assets/js/scripts.js"></script>
-    <script src="<?= base_url(); ?>assets/stisla/assets/js/custom.js"></script>
+    <script src="<?= base_url(); ?>template/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
     </body>

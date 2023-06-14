@@ -16,36 +16,52 @@ class Menu extends CI_Controller
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $this->load->view('layout/header', $data);
-        $this->load->view('layout/topbar', $data);
-        $this->load->view('layout/sidebar', $data);
-        $this->load->view('menu/index', $data);
-        $this->load->view('layout/footer');
+        $this->form_validation->set_rules('menu', "Menu", 'required', [
+            'required' => 'Nama Menu tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar', $data);
+            $this->load->view('layout/sidebar', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $menu = $this->input->post('menu');
+            $this->db->insert('user_menu', ['menu' => $menu]);
+            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Menu <b>' . $menu . '</b> berhasil ditambahkan!</div>');
+            redirect('menu');
+        }
     }
 
-    public function tambah()
+    public function ubah()
     {
-        // $this->form_validation->set_rules('menu', "Menu", 'required');
+        $data['title'] = 'Menu Management';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
 
-        $getData = $this->input->post();
-        $id = $getData['id'];
+        $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        if (!empty($id)) {
-            // Ubah
-            $menu = $getData['menu'];
+        $this->form_validation->set_rules('menu', "Menu", 'required', [
+            'required' => 'Nama Menu tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar', $data);
+            $this->load->view('layout/sidebar', $data);
+            $this->load->view('menu/index', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $id = $this->input->post('id');
+            $menu = $this->input->post('menu');
             $menuSebelum = $this->db->get_where('user_menu', ['id' => $id])->row_array();
 
             $this->db->where('id', $id);
             $this->db->update('user_menu', ['menu' => $menu]);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Menu "<b>' . $menuSebelum['menu'] . '</b>" berhasil diubah menjadi "<b>' . $menu . '</b>"!</div>');
-        } else {
-            // Tambah
-            $menu = $this->input->post('menu');
-            $this->db->insert('user_menu', ['menu' => $menu]);
-            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Menu "<b>' . $menu . '</b>" berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning neu-brutalism mb-4">Menu <b>' . $menuSebelum['menu'] . '</b> berhasil diubah menjadi <b>' . $menu . '</b>!</div>');
+            redirect('menu');
         }
-        redirect('menu');
     }
 
     public function hapus()
@@ -54,7 +70,7 @@ class Menu extends CI_Controller
         $menu_name = $this->db->get_where('user_menu', ['id' => $menu_id])->row_array()['menu'];
         $this->db->where('id', $menu_id);
         $this->db->delete('user_menu');
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Menu "<b>' . $menu_name . '</b>" berhasil dihapus!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">Menu <b>' . $menu_name . '</b> berhasil dihapus!</div>');
         redirect("menu");
     }
 

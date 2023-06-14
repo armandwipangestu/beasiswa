@@ -10,7 +10,7 @@
                 <img alt="image" src="<?= base_url(); ?>template/stisla/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, <?= $user['nama']; ?></div>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-right neu-brutalism-border">
                 <!-- <a href="features-profile.html" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
