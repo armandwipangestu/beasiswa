@@ -26,7 +26,7 @@
                             <td><?= $m['menu'] ?></td>
                             <td>
                                 <a href="#" onclick="edit('<?= $m['id'] ?>')" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
-                                <a class="btn btn-danger neu-brutalism" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-name="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
+                                <a class="btn btn-danger neu-brutalism" onclick="hapus('<?= $m['id'] ?>')"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -48,16 +48,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu') ?>" method="POST">
-                <input type="hidden" class="form-control" id="id" name="id"> 
-            
+            <form action="<?= base_url('menu/tambah') ?>" method="POST">
+                <input type="hidden" class="form-control" id="id" name="id">
+
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="menu" class="form-label">Nama Menu</label>
                         <input type="text" class="form-control" id="menu" name="menu">
                     </div>
                 </div>
-                
+
 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary neu-brutalism" id="submit"></button>
@@ -71,7 +71,7 @@
     const baseUrl = `<?= base_url() ?>`
 
     const edit = (id) => {
-        if(id == "add") {
+        if (id == "add") {
             $('.modal-title').text('Tambah Menu Baru')
             $('#menu').val('');
             $('#submit').text('Tambahkan');
@@ -79,7 +79,7 @@
         } else {
             $.get(`${baseUrl}menu/get_menu/${id}`, (data) => {
                 const menu = $.parseJSON(data)
-                
+
                 $('.modal-title').text('Ubah Menu')
                 $('#id').val(menu.id);
                 $('#menu').val(menu.menu);
@@ -87,5 +87,39 @@
                 $('#menuManagementModal').modal('show');
             })
         }
+    }
+
+    const hapus = (id) => {
+        Swal.fire({
+            title: "Apakah anda yakin ingin menhapus menu ini?",
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancleButtonText: "Batal",
+            confirmButtonText: "Ya",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: `${baseUrl}/menu/hapus_menu/${id}`,
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                        var obj = response;
+                        Swal.fire("Berhasil!", obj.message, "success");
+                        window.location.href = `${baseUrl}/menu`;
+                    },
+                    error: function() {
+                        Swal.fire(
+                            "Peringatan!",
+                            "Mohon maaf sistem sedang dalam perbaikan, silakan hubungi admin terkait masalah ini",
+                            "error"
+                        );
+                    },
+                });
+            }
+        })
     }
 </script>

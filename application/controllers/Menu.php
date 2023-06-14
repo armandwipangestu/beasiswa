@@ -16,23 +16,53 @@ class Menu extends CI_Controller
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $this->form_validation->set_rules('menu', "Menu", 'required');
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/topbar', $data);
+        $this->load->view('layout/sidebar', $data);
+        $this->load->view('menu/index', $data);
+        $this->load->view('layout/footer');
+    }
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('layout/header', $data);
-            $this->load->view('layout/topbar', $data);
-            $this->load->view('layout/sidebar', $data);
-            $this->load->view('menu/index', $data);
-            $this->load->view('layout/footer');
+    public function tambah()
+    {
+        // $this->form_validation->set_rules('menu', "Menu", 'required');
+
+        $getData = $this->input->post();
+        $id = $getData['id'];
+
+        if (!empty($id)) {
+            // Ubah
+            $menu = $getData['menu'];
+            $menuSebelum = $this->db->get_where('user_menu', ['id' => $id])->row_array();
+
+            $this->db->where('id', $id);
+            $this->db->update('user_menu', ['menu' => $menu]);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Menu "<b>' . $menuSebelum['menu'] . '</b>" berhasil diubah menjadi "<b>' . $menu . '</b>"!</div>');
         } else {
+            // Tambah
             $menu = $this->input->post('menu');
             $this->db->insert('user_menu', ['menu' => $menu]);
             $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Menu "<b>' . $menu . '</b>" berhasil ditambahkan!</div>');
-            redirect('menu');
         }
+        redirect('menu');
     }
 
-    public function get_menu($id) {
+    public function hapus_menu($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_menu');
+
+        $result = array(
+            'code'          => '200',
+            'message'       => 'Menu berhasil berhasil!',
+        );
+
+        echo json_encode($result);
+    }
+
+    public function get_menu($id)
+    {
         $menu = $this->db->query('SELECT * FROM user_menu where id = ' . $id . '')->row();
         exit(json_encode((array)$menu));
     }

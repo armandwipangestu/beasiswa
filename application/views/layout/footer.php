@@ -19,6 +19,7 @@
     <script src="<?= base_url(); ?>template/stisla/assets/js/stisla.js"></script> -->
 
     <!-- OFFLINE -->
+    <script src="<?= base_url(); ?>assets/js/sweetalert/sweetalert.js"></script>
     <script src="<?= base_url(); ?>template/stisla/node_modules/jquery/dist/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
     <script src="<?= base_url(); ?>template/stisla/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
