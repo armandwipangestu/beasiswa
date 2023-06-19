@@ -61,6 +61,10 @@ class Admin extends CI_Controller
         $this->db->where('id !=', 1);
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
+        // URL
+        // $currentURI = $this->uri->uri_string();
+        // $data['segments'] = explode('/', $currentURI);
+
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');

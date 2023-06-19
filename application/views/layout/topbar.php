@@ -7,17 +7,16 @@
     </form>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="<?= base_url(); ?>template/stisla/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                <img alt="image" src="<?= base_url(); ?>assets/img/profile/<?= $user['image'] ?>" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, <?= $user['nama']; ?></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right neu-brutalism-border">
-                <!-- <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <a href="<?= base_url('user'); ?>" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profil Saya
                 </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
+                <a href="<?= base_url('user/ubah'); ?>" class="dropdown-item has-icon">
+                    <i class="fas fa-user-edit"></i> Ubah Profil
                 </a>
-                <div class="dropdown-divider"></div> -->
                 <a href="#" data-url="<?= base_url('auth/keluar'); ?>" class="dropdown-item has-icon text-danger" id="keluar">
                     <i class="fas fa-sign-out-alt"></i> Keluar
                 </a>
