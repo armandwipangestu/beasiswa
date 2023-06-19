@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2023 at 06:36 PM
+-- Generation Time: Jun 19, 2023 at 11:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -39,10 +39,13 @@ CREATE TABLE `user_access_menu` (
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
 (4, 2, 2),
-(5, 1, 4);
+(10, 1, 3),
+(11, 1, 2),
+(15, 1, 4),
+(16, 9, 2),
+(17, 9, 3),
+(18, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -54,20 +57,19 @@ CREATE TABLE `user_data` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `image` varchar(128) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_data`
 --
 
-INSERT INTO `user_data` (`id`, `nama`, `email`, `password`, `role_id`) VALUES
-(1, 'Arman Dwi Pangestu', 'armandwi.pangestu7@gmail.com', '$2y$10$p2X5B7A/CoKZBQcewt7PQOXufUrRtu9pDQ93JciKxddk8QjKFpNue', 1),
-(2, 'Android', 'android@gmail.com', '$2y$10$w48ZyIoONchvbHk8NnnDy.23Rdu3OeiiSraMCmbF6ZmjefffRHEyS', 2),
-(3, 'Testing', 'testing@gmail.com', '$2y$10$sFgCcsw7fu384iCq4sraweo61IshoLJ51Pm.GclQCI5pa56JsFH42', 2),
-(5, 'Administrator', 'admin@admin.com', '$2y$10$q22CpLHtZtQV.hJ.E/bcIel6re35BTyc26HiTgrmPzBRetWbtR/Pe', 1),
-(6, 'User', 'user@user.com', '$2y$10$ryz44OvKKSDk7M1AwJEc5Opm5DA1Pvw3HsNPI0yLmP6Fiqq.9WVs2', 2);
+INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
+(7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
+(8, 'User', 'user@user.com', 'default.png', '$2y$10$iINm/8wigFz6vk2u7dahWOTC/RJoqU2R620I91VTqYHcmvxQvxAnK', 2, 1687161885);
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,10 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
 (1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-fire'),
 (3, 2, 'Profil Saya', 'user', 'fas fa-fw fa-user'),
 (4, 3, 'Menu Management', 'menu', 'fas fa-fw fa-folder'),
-(5, 4, 'Submenu Management', 'submenu', 'fas fa-fw fa-folder-open');
+(5, 4, 'Submenu Management', 'submenu', 'fas fa-fw fa-folder-open'),
+(9, 1, 'Role Akses', 'admin/role', 'fas fa-fw fa-user-tie'),
+(10, 2, 'Ubah Profil', 'user/ubah', 'fas fa-fw fa-user-edit'),
+(11, 2, 'Ganti Kata Sandi', 'user/ganti_kata_sandi', 'fas fa-fw fa-key');
 
 --
 -- Indexes for dumped tables
@@ -175,31 +180,31 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
