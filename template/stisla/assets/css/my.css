@@ -8,6 +8,11 @@
     border: 2px solid black !important;
 }
 
+.neu-brutalism-divider {
+    border: 2px;
+    border-top: 2px solid black !important;
+}
+
 body.sidebar-mini .main-sidebar:after {
     border-right: 2px solid black !important;
 }

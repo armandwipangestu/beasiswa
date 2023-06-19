@@ -34,6 +34,43 @@
     <script src="<?= base_url(); ?>template/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+    <script>
+        const keluar = document.querySelector('#keluar');
+        keluar.addEventListener('click', function() {
+            const dataUrl = keluar.dataset.url;
+            Swal.fire({
+                icon: 'warning',
+                html: `Apakah anda yakin ingin keluar?`,
+                showCancelButton: true,
+                confirmButtonColor: '#5cb85c',
+                cancelButtonColor: '#d9534f',
+                confirmButtonText: `Tidak`,
+                cancelButtonText: `Ya`,
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    location.href = `${dataUrl}`
+                }
+            })
+        });
+    </script>
+    <script>
+        $('.form-check-input').on('click', function() {
+            const menuId = $(this).data('menu');
+            const roleId = $(this).data('role');
+
+            $.ajax({
+                url: "<?= base_url('admin/ubah_akses'); ?>",
+                type: "POST",
+                data: {
+                    menuId,
+                    roleId
+                },
+                success: function() {
+                    document.location.href = "<?= base_url('admin/role_akses/') ?>" + roleId;
+                }
+            })
+        })
+    </script>
     </body>
 
     </html>

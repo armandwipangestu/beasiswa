@@ -18,7 +18,7 @@
                     <i class="fas fa-cog"></i> Settings
                 </a>
                 <div class="dropdown-divider"></div> -->
-                <a href="<?= base_url('auth/keluar'); ?>" class="dropdown-item has-icon text-danger">
+                <a href="#" data-url="<?= base_url('auth/keluar'); ?>" class="dropdown-item has-icon text-danger" id="keluar">
                     <i class="fas fa-sign-out-alt"></i> Keluar
                 </a>
             </div>

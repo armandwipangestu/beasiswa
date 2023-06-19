@@ -16,8 +16,9 @@ class Menu extends CI_Controller
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $this->form_validation->set_rules('menu', "Menu", 'required', [
+        $this->form_validation->set_rules('menu', "Menu", 'required|is_unique[user_menu.menu]', [
             'required' => 'Nama Menu tidak boleh kosong',
+            'is_unique' => 'Menu ' . $this->input->post('menu') .  ' sudah ada!'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -41,8 +42,9 @@ class Menu extends CI_Controller
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $this->form_validation->set_rules('menu', "Menu", 'required', [
+        $this->form_validation->set_rules('menu', "Menu", 'required|is_unique[user_menu.menu]', [
             'required' => 'Nama Menu tidak boleh kosong',
+            'is_unique' => 'Menu ' . $this->input->post('menu') .  ' sudah ada!'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
