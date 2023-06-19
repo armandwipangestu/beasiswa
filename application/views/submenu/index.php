@@ -38,7 +38,7 @@
                             <td><?= $sm['icon'] ?></td>
                             <td>
                                 <a href="#" onclick="ubah('<?= $sm['id'] ?>')" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
-                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $sm['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-menu="<?= $sm['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
+                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $sm['id'] ?>" data-url="<?= base_url('submenu/hapus') ?>" data-submenu="<?= $sm['title'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -99,22 +99,39 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalMenuUbah" tabindex="-1" role="dialog" aria-labelledby="modalMenuUbahLabel" aria-hidden="true">
+<div class="modal fade" id="modalSubmenuUbah" tabindex="-1" role="dialog" aria-labelledby="modalSubmenuUbahLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content neu-brutalism-border">
             <div class="modal-header">
-                <h5 class="modal-title modal-ubah text-dark" id="newModalMenuUbah">Ubah Menu</h5>
+                <h5 class="modal-title modal-ubah text-dark" id="newModalSubmenuUbah">Ubah Menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/ubah') ?>" method="POST">
+            <form action="<?= base_url('submenu/ubah') ?>" method="POST">
                 <input type="hidden" class="form-control" id="idUbah" name="id">
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="menu" class="form-label">Nama Menu</label>
-                        <input type="text" class="form-control" id="menuUbah" name="menu">
+                        <label for="title" class="form-label">Nama Submenu</label>
+                        <input type="text" class="form-control" id="titleUbah" name="title" value="<?= set_value('title') ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="menu" class="form-label">Menu</label>
+                        <select name="menu_id" id="menu_id_ubah" class="form-control">
+                            <option id="pilih_menu" value=""></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url" class="form-label">Alamat Url</label>
+                        <input type="text" class="form-control" id="urlUbah" name="url" value="<?= set_value('url') ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="icon" class="form-label">Nama Icon</label>
+                        <input type="text" class="form-control" id="iconUbah" name="icon" value="<?= set_value('icon') ?>">
                     </div>
                 </div>
 
@@ -131,13 +148,39 @@
     const baseUrl = `<?= base_url() ?>`
 
     const ubah = (id) => {
-        $.get(`${baseUrl}menu/get_menu/${id}`, (data) => {
-            const menu = $.parseJSON(data)
+        $.get(`${baseUrl}submenu/get_submenu/${id}`, (data) => {
+            const menu = $.parseJSON(data);
+            console.log(menu)
 
-            $('.modal-ubah').text('Ubah Menu')
+            $('.modal-ubah').text('Ubah Menu');
             $('#idUbah').val(menu.id);
+            $('#titleUbah').val(menu.title);
+            $('#pilih_menu').val(menu.menu_id);
+            $('#pilih_menu').text(menu.menu);
+            $('#urlUbah').val(menu.url);
+            $('#iconUbah').val(menu.icon);
             $('#menuUbah').val(menu.menu);
-            $('#modalMenuUbah').modal('show');
+
+            const menuIdUbah = document.querySelector('#menu_id_ubah');
+
+            // Menghapus opsi sebelum menambahkan yang baru
+            const options = Array.from(menuIdUbah.options);
+            options.forEach((option) => {
+                if (option.id !== 'pilih_menu') {
+                    menuIdUbah.removeChild(option);
+                }
+            });
+
+            menu.menus.map((m) => {
+                if (menu.menu_id !== m.id) {
+                    const opt = document.createElement('option')
+                    opt.value = m.id
+                    opt.innerHTML = m.menu
+                    menuIdUbah.appendChild(opt)
+                }
+            })
+
+            $('#modalSubmenuUbah').modal('show');
         })
     }
 
@@ -146,10 +189,10 @@
         hm.addEventListener('click', () => {
             const dataId = hm.dataset.id
             const dataUrl = hm.dataset.url
-            const dataMenu = hm.dataset.menu
+            const dataSubmenu = hm.dataset.submenu
             Swal.fire({
                 icon: 'warning',
-                html: `Apakah anda yakin ingin menghapus <b>${dataMenu}</b>?`,
+                html: `Apakah anda yakin ingin menghapus <b>${dataSubmenu}</b>?`,
                 showCancelButton: true,
                 confirmButtonColor: '#5cb85c',
                 cancelButtonColor: '#d9534f',

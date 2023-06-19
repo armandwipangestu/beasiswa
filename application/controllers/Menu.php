@@ -76,7 +76,7 @@ class Menu extends CI_Controller
 
     public function get_menu($id)
     {
-        $menu = $this->db->query('SELECT * FROM user_menu where id = ' . $id . '')->row();
+        $menu = $this->db->query('SELECT * FROM user_menu WHERE id = ' . $id . '')->row();
         exit(json_encode((array)$menu));
     }
 }
