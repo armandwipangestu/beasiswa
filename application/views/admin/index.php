@@ -12,10 +12,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Admin</h4>
+                            <h4>Total User</h4>
                         </div>
                         <div class="card-body">
-                            10
+                            <?= $total_user; ?>
                         </div>
                     </div>
                 </div>
@@ -27,10 +27,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>News</h4>
+                            <h4>Total Role</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            <?= $total_role; ?>
                         </div>
                     </div>
                 </div>
@@ -42,10 +42,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Reports</h4>
+                            <h4>Total Menu</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            <?= $total_menu; ?>
                         </div>
                     </div>
                 </div>
@@ -57,10 +57,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Online Users</h4>
+                            <h4>Total Submenu</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            <?= $total_sub_menu; ?>
                         </div>
                     </div>
                 </div>

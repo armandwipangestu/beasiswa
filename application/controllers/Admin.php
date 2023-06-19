@@ -14,6 +14,11 @@ class Admin extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
 
+        $data['total_user'] = $this->db->from('user_data')->count_all_results();
+        $data['total_role'] = $this->db->from('user_role')->count_all_results();
+        $data['total_menu'] = $this->db->from('user_menu')->count_all_results();
+        $data['total_sub_menu'] = $this->db->from('user_sub_menu')->count_all_results();
+
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');
