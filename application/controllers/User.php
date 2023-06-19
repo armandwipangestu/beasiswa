@@ -76,4 +76,59 @@ class User extends CI_Controller
             redirect('user');
         }
     }
+
+    public function ganti_kata_sandi()
+    {
+        $data['title'] = 'Ganti Kata Sandi';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->form_validation->set_rules('current_password', 'Kata Sandi', 'required|trim', [
+            'required' => 'Tidak boleh kosong',
+            'min_length' => 'Terlalu pendek'
+        ]);
+
+        $this->form_validation->set_rules('password1', 'Kata Sandi Baru', 'required|trim|min_length[3]|matches[password2]', [
+            'required' => 'Tidak boleh kosong',
+            'matches' => '',
+            'min_length' => 'Terlalu pendek'
+        ]);
+
+        $this->form_validation->set_rules('password2', 'Konfirmasi Kata Sandi Baru', 'required|trim|matches[password1]', [
+            'required' => 'Tidak boleh kosong',
+            'matches' => 'Tidak sama',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('user/ganti_kata_sandi', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('password1');
+            if (!password_verify($current_password, $data['user']['password'])) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism">Kata sandi yang anda masukan salah!</div>');
+                redirect('user/ganti_kata_sandi');
+            } else {
+                if ($current_password == $new_password) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-warning neu-brutalism">Kata sandi baru tidak bisa boleh sama dengan kata sandi saat ini!</div>');
+                    redirect('user/ganti_kata_sandi');
+                } else {
+                    // password sudah ok
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    $this->db->set('password', $password_hash);
+                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->update('user_data');
+
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success neu-brutalism">Kata sandi berhasil diubah!</div>'
+                    );
+                    redirect('user/ganti_kata_sandi');
+                }
+            }
+        }
+    }
 }
