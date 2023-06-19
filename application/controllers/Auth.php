@@ -110,4 +110,18 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4 neu-brutalism">Anda telah keluar!</div>');
         redirect('auth');
     }
+
+    public function blocked()
+    {
+        $data['title'] = 'ERROR';
+        $data['error_code'] = "403";
+        $data['error_message'] = "Access Fobidden";
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/topbar', $data);
+        $this->load->view('layout/sidebar', $data);
+        $this->load->view('auth/blocked', $data);
+        $this->load->view('layout/footer');
+    }
 }
