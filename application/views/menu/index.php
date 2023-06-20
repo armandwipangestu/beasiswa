@@ -11,7 +11,7 @@
         <a href="#" data-toggle="modal" data-target="#modalMenuBaru" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Menu Baru</a>
 
         <div class="table-responsive rounded">
-            <table class="table table-hover table-bordered neu-brutalism-border">
+            <table class="table table-hover table-bordered neu-brutalism-border display" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col" class="text-dark">#</th>

@@ -31,9 +31,15 @@
 
     <!-- Template JS File -->
     <script src="<?= base_url(); ?>template/stisla/assets/js/scripts.js"></script>
+    <script src="<?= base_url(); ?>assets/js/datatables/datatables.js"></script>
     <script src="<?= base_url(); ?>template/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
     <script>
         const keluar = document.querySelector('#keluar');
         keluar.addEventListener('click', function() {

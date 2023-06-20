@@ -15,7 +15,7 @@
         <a href="#" data-toggle="modal" data-target="#modalSubmenuBaru" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Submenu Baru</a>
 
         <div class="table-responsive rounded">
-            <table class="table table-hover table-bordered neu-brutalism-border">
+            <table class="table table-hover table-bordered neu-brutalism-border display" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col" class="text-dark">#</th>
@@ -150,7 +150,6 @@
     const ubah = (id) => {
         $.get(`${baseUrl}submenu/get_submenu/${id}`, (data) => {
             const menu = $.parseJSON(data);
-            console.log(menu)
 
             $('.modal-ubah').text('Ubah Menu');
             $('#idUbah').val(menu.id);
