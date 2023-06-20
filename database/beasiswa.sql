@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2023 at 11:38 AM
+-- Generation Time: Jun 20, 2023 at 06:20 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -69,7 +69,8 @@ CREATE TABLE `user_data` (
 
 INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
 (7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
-(8, 'User', 'user@user.com', 'default.png', '$2y$10$iINm/8wigFz6vk2u7dahWOTC/RJoqU2R620I91VTqYHcmvxQvxAnK', 2, 1687161885);
+(8, 'User', 'user@user.com', 'default.png', '$2y$10$iINm/8wigFz6vk2u7dahWOTC/RJoqU2R620I91VTqYHcmvxQvxAnK', 2, 1687161885),
+(9, 'Member', 'member@member.com', 'default.png', '$2y$10$5LV081k1MVQawsz7rwj5pOcIhHhC6Eda9lowLeBt17Ksg7ndTD5g2', 2, 1687234677);
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
 (5, 4, 'Submenu Management', 'submenu', 'fas fa-fw fa-folder-open'),
 (9, 1, 'Role Akses', 'admin/role', 'fas fa-fw fa-user-tie'),
 (10, 2, 'Ubah Profil', 'user/ubah', 'fas fa-fw fa-user-edit'),
-(11, 2, 'Ganti Kata Sandi', 'user/ganti_kata_sandi', 'fas fa-fw fa-key');
+(11, 2, 'Ganti Kata Sandi', 'user/ganti_kata_sandi', 'fas fa-fw fa-key'),
+(12, 1, 'Role User', 'admin/role_user', 'fas fa-fw fa-users');
 
 --
 -- Indexes for dumped tables
@@ -186,13 +188,13 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -204,7 +206,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
