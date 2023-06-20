@@ -13,10 +13,20 @@
 git clone https://github.com/armandwipangestu/beasiswa.git
 ```
 
+-   Membuat file `.env.development`
+
+```sh
+cd beasiswa
+```
+
+```sh
+touch .env.development
+```
+
 -   Install dependencies template stisla
 
 ```sh
-cd beasiswa/template/stisla
+cd template/stisla
 ```
 
 ```sh
