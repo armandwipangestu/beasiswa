@@ -1,4 +1,4 @@
-<div class="navbar-bg"></div>
+<div class="navbar-bg" style="border-bottom: 2px solid black !important;"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -7,23 +7,18 @@
     </form>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="<?= base_url(); ?>template/stisla/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                <img alt="image" src="<?= base_url(); ?>assets/img/profile/<?= $user['image'] ?>" class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">Hi, <?= $user['nama']; ?></div>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+            <div class="dropdown-menu dropdown-menu-right neu-brutalism-border">
+                <a href="<?= base_url('user'); ?>" class="dropdown-item has-icon">
+                    <i class="far fa-user"></i> Profil Saya
                 </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> Activities
+                <a href="<?= base_url('user/ubah'); ?>" class="dropdown-item has-icon">
+                    <i class="fas fa-user-edit"></i> Ubah Profil
                 </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <a href="#" data-url="<?= base_url('auth/keluar'); ?>" class="dropdown-item has-icon text-danger" id="keluar">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
                 </a>
             </div>
         </li>
