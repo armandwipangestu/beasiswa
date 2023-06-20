@@ -139,4 +139,46 @@ class Admin extends CI_Controller
         $menu = $this->db->query('SELECT * FROM user_role WHERE id = ' . $id . '')->row();
         exit(json_encode((array)$menu));
     }
+
+    public function role_user()
+    {
+        $data['title'] = 'Role User';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->model('User_model', 'user');
+        $data['users'] = $this->user->getAllUserRole();
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/topbar');
+        $this->load->view('layout/sidebar');
+        $this->load->view('admin/role_user', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function role_user_ubah()
+    {
+        $this->load->model('User_model', 'user');
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+        $role_id = $this->input->post('role_id');
+
+        $this->db->where('id', $id);
+        $this->db->update('user_data', ['role_id' => $role_id]);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success neu-brutalism mb-4">User <b>' . $nama . '</b> berhasil diubah rolenya menjadi <b>' . $this->user->getRoleName($role_id)->role . '</b>!</div>'
+        );
+        redirect("admin/role_user");
+    }
+
+    public function get_user_role($id)
+    {
+        $this->load->model('User_model', 'user');
+        $user = $this->user->getUserRole($id);
+
+        $roles = $this->db->query('SELECT id, role FROM user_role')->result();
+
+        $user->roles = $roles;
+        exit(json_encode((array)$user));
+    }
 }

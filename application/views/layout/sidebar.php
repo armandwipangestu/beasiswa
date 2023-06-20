@@ -12,7 +12,14 @@
 
         <ul class="sidebar-menu">
             <?php
-            $role_id = $this->session->userdata('role_id');
+            // use role_id based on database
+            $email = $this->session->userdata('email');
+            $role_id_data = $this->db->query("SELECT `user_data`.`role_id` FROM `user_data` WHERE `user_data`.`email` = '$email'")->row_array();
+            $role_id = $role_id_data['role_id'];
+
+            // use role_id based on session
+            // $role_id = $this->session->userdata('role_id');
+
 
             $queryMenu = "SELECT `user_menu`.`id`, `menu`
             FROM `user_menu`
