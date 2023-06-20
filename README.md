@@ -13,7 +13,7 @@
 git clone https://github.com/armandwipangestu/beasiswa.git
 ```
 
--   Membuat file `.env.development`
+-   Membuat file `.env.development` dan foler `img/profile`
 
 ```sh
 cd beasiswa
@@ -21,6 +21,10 @@ cd beasiswa
 
 ```sh
 cp .env.example .env.development
+```
+
+```sh
+mkdir assets/img/profile
 ```
 
 > **NOTE**:
