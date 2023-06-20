@@ -36,8 +36,7 @@
                 </tbody>
             </table>
         </div>
-</div>
-</section>
+    </section>
 </div>
 
 <!-- Modal -->
