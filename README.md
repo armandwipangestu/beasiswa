@@ -20,8 +20,11 @@ cd beasiswa
 ```
 
 ```sh
-touch .env.development
+cp .env.example .env.development
 ```
+
+> **NOTE**:
+> Sesuaikan isian .env.development dengan konfigurasi anda (seperti nama database dll)
 
 -   Install dependencies template stisla
 
