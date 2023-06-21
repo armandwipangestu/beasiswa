@@ -8,4 +8,10 @@ class Beasiswa_model extends CI_Model
         $query = $this->db->query('SELECT * FROM mahasiswa_biodata WHERE id_user = ' . $id_user . '')->row_array();
         return $query;
     }
+
+    public function deleteMahasiswaBiodataById($id_user)
+    {
+        $this->db->where('id_user', $id_user);
+        $this->db->delete('mahasiswa_biodata');
+    }
 }

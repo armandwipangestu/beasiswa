@@ -5,7 +5,7 @@ class User_model extends CI_Model
 {
     public function getAllUserRole()
     {
-        $query = "SELECT `user_data`.`id`, `user_data`.`nama`, `email`, `user_role`.`role`
+        $query = "SELECT `user_data`.`id`, `user_data`.`nama`, `email`, `image`, `user_role`.`role`
         FROM `user_data` JOIN `user_role` ON `user_data`.`role_id` = `user_role`.`id`";
 
         return $this->db->query($query)->result_array();

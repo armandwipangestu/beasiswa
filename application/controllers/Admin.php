@@ -181,4 +181,33 @@ class Admin extends CI_Controller
         $user->roles = $roles;
         exit(json_encode((array)$user));
     }
+
+    public function user_data_hapus()
+    {
+        $this->load->model('Beasiswa_model', 'beasiswa');
+        $user_id = $this->uri->segment(3);
+        $user_nama = $this->db->get_where('user_data', ['id' => $user_id])->row_array()['nama'];
+
+        // Delete stuff (biodata, image profile, etc)
+
+        // - biodata
+        $biodata = $this->beasiswa->getMahasiswaBiodata($user_id);
+
+        if ($biodata != null) {
+            $this->beasiswa->deleteMahasiswaBiodataById($user_id);
+        }
+
+        // - image profile / avatar
+        $gambar_path = "assets/img/profile/";
+        $gambar = $this->db->get_where('user_data', ['id' => $user_id])->row_array()['image'];
+
+        unlink(FCPATH . $gambar_path . $gambar);
+
+
+        $this->db->where('id', $user_id);
+        $this->db->delete('user_data');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">User <b>' . $user_nama . '</b> berhasil dihapus!</div>');
+        redirect("admin/user_data");
+    }
 }

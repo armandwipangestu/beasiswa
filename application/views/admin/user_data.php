@@ -16,6 +16,7 @@
                         <th scope="col" class="text-dark">Nama</th>
                         <th scope="col" class="text-dark">Email</th>
                         <th scope="col" class="text-dark">Role</th>
+                        <th scope="col" class="text-dark">Gambar</th>
                         <th scope="col" class="text-dark">Aksi</th>
                     </tr>
                 </thead>
@@ -27,8 +28,10 @@
                             <td><?= $user['nama'] ?></td>
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['role'] ?></td>
+                            <td><img src="<?= base_url('assets/img/profile/' . $user['image']); ?>" class="img-fluid img-thumbnail" style="width: 100px;"></td>
                             <td>
                                 <a href="#" onclick="ubah(<?= $user['id'] ?>)" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
+                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $user['id'] ?>" data-url="<?= base_url('admin/user_data_hapus') ?>" data-user="<?= $user['nama'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -116,4 +119,26 @@
             $('#modalRoleUserUbah').modal('show');
         })
     }
+
+    const hapusUser = document.querySelectorAll('.hapus')
+    hapusUser.forEach((hu) => {
+        hu.addEventListener('click', () => {
+            const dataId = hu.dataset.id
+            const dataUrl = hu.dataset.url
+            const dataUser = hu.dataset.user
+            Swal.fire({
+                icon: 'warning',
+                html: `Apakah anda yakin ingin menghapus user <b>${dataUser}</b>?`,
+                showCancelButton: true,
+                confirmButtonColor: '#d9534f',
+                cancelButtonColor: '#5cb85c',
+                confirmButtonText: `Ya`,
+                cancelButtonText: `Tidak`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = `${dataUrl}/${dataId}`
+                }
+            })
+        })
+    })
 </script>
