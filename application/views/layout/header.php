@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>template/stisla/assets/css/my.css">
     <link rel="stylesheet" href="<?= base_url(); ?>template/stisla/assets/css/components.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/datatables/datatables.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/datepicker/datepicker.standalone.min.css">
 </head>
 
 <body>

@@ -32,12 +32,17 @@
     <!-- Template JS File -->
     <script src="<?= base_url(); ?>template/stisla/assets/js/scripts.js"></script>
     <script src="<?= base_url(); ?>assets/js/datatables/datatables.js"></script>
+    <script src="<?= base_url(); ?>assets/js/datepicker/datepicker.min.js"></script>
     <script src="<?= base_url(); ?>template/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
+        });
+        $.fn.datepicker.defaults.format = "yyyy/mm/dd";
+        $('.datepicker').datepicker({
+            format: 'yyyy/mm/dd',
         });
     </script>
     <script>

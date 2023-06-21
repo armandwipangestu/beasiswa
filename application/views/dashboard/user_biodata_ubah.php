@@ -23,11 +23,27 @@
                         <input type="text" class="form-control" name="tempat_lahir" value="<?= $biodata['tempat_lahir'] ? $biodata['tempat_lahir'] : "" ?>">
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Tanggal Lahir</label>
                         <?= form_error('tanggal_lahir', '<small class="text-danger">', '</small>') ?>
                         <input type="text" class="form-control" name="tanggal_lahir" value="<?= $biodata['tanggal_lahir'] ? $biodata['tanggal_lahir'] : "" ?>">
+                    </div> -->
+
+                    <div class="form-group row">
+                        <div class="col-sm-2 col-md">
+                            <label class=" col-form-label">Tanggal Lahir</label>
+                            <?= form_error('tanggal_lahir', '<small class="text-danger">', '</small>') ?>
+                        </div>
+                        <div class="col-sm-10 col-md-12">
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control" data-date-format="yyyy/mm/dd" name="tanggal_lahir" value="<?= $biodata['tanggal_lahir'] ? $biodata['tanggal_lahir'] : "" ?>">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
 
                     <div class="form-group">
                         <label>Alamat</label>
