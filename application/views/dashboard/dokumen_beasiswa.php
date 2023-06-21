@@ -5,6 +5,8 @@
             <h1><?= $title; ?></h1>
         </div>
 
+        <?= $this->session->flashdata('message') ?>
+
         <div class="d-flex flex-row-reverse mb-3">
             <div>
                 <button type="submit" class="btn btn-success btn-block neu-brutalism">
@@ -25,8 +27,6 @@
                 </div>
             </div>
 
-            <?= $this->session->flashdata('message') ?>
-
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-5">
@@ -45,42 +45,42 @@
 
                         <div class="form-group">
                             <label>Tempat Lahir</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['tempat_lahir'] ? $biodata['tempat_lahir'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Tanggal Lahir</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['tanggal_lahir'] ? $biodata['tanggal_lahir'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>No Telepon</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['no_telepon'] ? $biodata['no_telepon'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['jenis_kelamin'] ? $biodata['jenis_kelamin'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Jurusan</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['id_jurusan'] ? $jurusan_user['jurusan'] : $biodata['id_jurusan'] ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Semester</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['semester'] ? $biodata['semester'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Kelas Program</label>
-                            <input type="text" class="form-control" disabled>
+                            <input type="text" class="form-control" disabled value="<?= $biodata['id_kelas_program'] ? $kelas_program_user['kelas_program'] : $biodata['id_kelas_program'] ?>">
                         </div>
 
                     </div>
