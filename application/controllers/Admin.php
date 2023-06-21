@@ -140,9 +140,9 @@ class Admin extends CI_Controller
         exit(json_encode((array)$menu));
     }
 
-    public function role_user()
+    public function user_data()
     {
-        $data['title'] = 'Role User';
+        $data['title'] = 'User Data';
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->model('User_model', 'user');
@@ -151,11 +151,11 @@ class Admin extends CI_Controller
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');
-        $this->load->view('admin/role_user', $data);
+        $this->load->view('admin/user_data', $data);
         $this->load->view('layout/footer');
     }
 
-    public function role_user_ubah()
+    public function user_data_ubah()
     {
         $this->load->model('User_model', 'user');
         $id = $this->input->post('id');
@@ -168,10 +168,10 @@ class Admin extends CI_Controller
             'message',
             '<div class="alert alert-success neu-brutalism mb-4">User <b>' . $nama . '</b> berhasil diubah rolenya menjadi <b>' . $this->user->getRoleName($role_id)->role . '</b>!</div>'
         );
-        redirect("admin/role_user");
+        redirect("admin/user_data");
     }
 
-    public function get_user_role($id)
+    public function get_user_data_role($id)
     {
         $this->load->model('User_model', 'user');
         $user = $this->user->getUserRole($id);

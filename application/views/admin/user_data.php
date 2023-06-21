@@ -28,7 +28,7 @@
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['role'] ?></td>
                             <td>
-                                <a href="#" onclick="ubah(<?= $user['id'] ?>)" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah Role</a>
+                                <a href="#" onclick="ubah(<?= $user['id'] ?>)" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -49,7 +49,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/role_user_ubah') ?>" method="POST">
+            <form action="<?= base_url('admin/user_data_ubah') ?>" method="POST">
                 <input type="hidden" class="form-control" id="id" name="id">
 
                 <div class="modal-body">
@@ -83,11 +83,11 @@
     const baseUrl = `<?= base_url() ?>`
 
     const ubah = (id) => {
-        $.get(`${baseUrl}admin/get_user_role/${id}`, (data) => {
+        $.get(`${baseUrl}admin/get_user_data_role/${id}`, (data) => {
             const userRole = $.parseJSON(data)
             console.log(userRole);
 
-            $('.modal-ubah').text('Ubah Role User')
+            $('.modal-ubah').text('Ubah User Data')
             $('#id').val(userRole.id);
             $('#nama').val(userRole.nama);
             $('#email').val(userRole.email);
