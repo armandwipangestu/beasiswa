@@ -120,12 +120,12 @@
                 icon: 'warning',
                 html: `Apakah anda yakin ingin menghapus <b>${dataMenu}</b>?`,
                 showCancelButton: true,
-                confirmButtonColor: '#5cb85c',
-                cancelButtonColor: '#d9534f',
-                confirmButtonText: `Tidak`,
-                cancelButtonText: `Ya`,
+                confirmButtonColor: '#d9534f',
+                cancelButtonColor: '#5cb85c',
+                confirmButtonText: `Ya`,
+                cancelButtonText: `Tidak`,
             }).then((result) => {
-                if (!result.isConfirmed) {
+                if (result.isConfirmed) {
                     location.href = `${dataUrl}/${dataId}`
                 }
             })
