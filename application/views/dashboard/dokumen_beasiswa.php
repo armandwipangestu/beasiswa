@@ -5,8 +5,6 @@
             <h1><?= $title; ?></h1>
         </div>
 
-        <?= $this->session->flashdata('message') ?>
-
         <div class="d-flex flex-row-reverse mb-3">
             <div>
                 <button type="submit" class="btn btn-success btn-block neu-brutalism">
@@ -16,12 +14,15 @@
         </div>
 
         <div class="card card-primary neu-brutalism">
+            <div class="pl-3 pr-3 pt-3">
+                <?= $this->session->flashdata('message') ?>
+            </div>
             <div class="card-header d-flex">
                 <div class="">
                     <h4>Biodata <?= $user['nama']; ?></h4>
                 </div>
-                <div class="ml-auto p-2">
-                    <a href="<?= base_url('/dashboard/user_biodata_ubah'); ?>" class="btn btn-warning btn-lg btn-block neu-brutalism" tabindex="4">
+                <div class="ml-auto">
+                    <a href="<?= base_url('/dashboard/user_biodata_ubah'); ?>" class="btn btn-warning btn-block neu-brutalism" tabindex="4">
                         <i class="fas fa-fw fa-edit mr-1"></i>Perbarui
                     </a>
                 </div>
@@ -33,54 +34,54 @@
                         <div class="form-group row">
                             <div class="col-sm-4">Gambar</div>
                             <div class="col-sm-11">
-                                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail img-preview">
+                                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail img-preview neu-brutalism">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
                             <label>Nama Mahasiswa</label>
-                            <input type="text" class="form-control" value="<?= $user['nama']; ?>" disabled>
+                            <input type="text" class="form-control neu-brutalism-border" value="<?= $user['nama']; ?>" disabled>
                         </div>
 
                         <div class="form-group">
                             <label>Tempat Lahir</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['tempat_lahir'] ? $biodata['tempat_lahir'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['tempat_lahir'] ? $biodata['tempat_lahir'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Tanggal Lahir</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['tanggal_lahir'] ? $biodata['tanggal_lahir'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['tanggal_lahir'] ? $biodata['tanggal_lahir'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>No Telepon</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['no_telepon'] ? $biodata['no_telepon'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['no_telepon'] ? $biodata['no_telepon'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['jenis_kelamin'] ? $biodata['jenis_kelamin'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['jenis_kelamin'] ? $biodata['jenis_kelamin'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Jurusan</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['id_jurusan'] ? $jurusan_user['jurusan'] : $biodata['id_jurusan'] ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['id_jurusan'] ? $jurusan_user['jurusan'] : $biodata['id_jurusan'] ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Semester</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['semester'] ? $biodata['semester'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['semester'] ? $biodata['semester'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Kelas Program</label>
-                            <input type="text" class="form-control" disabled value="<?= $biodata['id_kelas_program'] ? $kelas_program_user['kelas_program'] : $biodata['id_kelas_program'] ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['id_kelas_program'] ? $kelas_program_user['kelas_program'] : $biodata['id_kelas_program'] ?>">
                         </div>
 
                     </div>
