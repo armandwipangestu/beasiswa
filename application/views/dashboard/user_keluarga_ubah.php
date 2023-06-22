@@ -12,9 +12,9 @@
 
             <div class="card-body">
                 <?= form_open_multipart('dashboard/user_keluarga_ubah'); ?>
-                <div class="card-body">
+                <div class="card-body p-2">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0 p-md-3">
                             <div class="card card-dark neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Ayah</h4>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0 p-md-3">
                             <div class="card card-dark neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Ibu</h4>
@@ -260,7 +260,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0 p-md-3">
                             <div class="card card-dark neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Jumlah Tanggungan Orang Tua</h4>
@@ -281,7 +281,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 p-0 p-md-3">
                             <div class="card card-dark neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Data Keluarga</h4>

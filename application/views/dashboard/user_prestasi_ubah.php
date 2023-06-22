@@ -14,7 +14,7 @@
                 <?= form_open_multipart('dashboard/user_prestasi_ubah'); ?>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-7 p-0 p-md-3">
 
                             <div class="form-group">
                                 <label>Nama Kegiatan</label>
@@ -114,7 +114,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 p-0 p-md-3">
                             <div class="form-group row">
                                 <div class="col-sm-4">Sertifikat</div>
                                 <div class="col-sm-11">
