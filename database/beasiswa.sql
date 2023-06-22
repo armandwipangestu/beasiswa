@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 04:59 PM
+-- Generation Time: Jun 22, 2023 at 06:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -84,7 +84,32 @@ CREATE TABLE `mahasiswa_biodata` (
 --
 
 INSERT INTO `mahasiswa_biodata` (`id`, `id_user`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telepon`, `jenis_kelamin`, `id_jurusan`, `semester`, `id_kelas_program`) VALUES
-(38, 12, 'Bandung', '2002-12-15', 'Jl. Jakarta, Kelurahan Kebonwaru, Kecamatan Batununggal, Kota Bandung 40272', '089637369606', 'Laki-laki', 1, 5, 3);
+(38, 12, 'Bandung', '2002-12-15', 'Jl. Jakarta, Kelurahan Kebonwaru, Kecamatan Batununggal, Kota Bandung 40272', '089637369606', 'Laki-laki', 1, 5, 3),
+(39, 13, 'Jakarta', '2011-03-01', 'Jl. Purwakarta, Kelurahan Antapani Tengah, Kecamatan Antapani, Kota Bandung', '081239876543', 'Perempuan', 2, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_prestasi`
+--
+
+CREATE TABLE `mahasiswa_prestasi` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_kegiatan` varchar(255) DEFAULT NULL,
+  `jenis_kegiatan` varchar(128) DEFAULT NULL,
+  `tingkat` varchar(128) DEFAULT NULL,
+  `tahun` varchar(10) DEFAULT NULL,
+  `pencapaian` varchar(128) DEFAULT NULL,
+  `scan_sertifikat` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_prestasi`
+--
+
+INSERT INTO `mahasiswa_prestasi` (`id`, `id_user`, `nama_kegiatan`, `jenis_kegiatan`, `tingkat`, `tahun`, `pencapaian`, `scan_sertifikat`) VALUES
+(2, 13, 'Praktek Kerja Industri', 'Individual', 'Kabupaten/Kota', '2020', 'Juara 1', 'photo_2021-08-03_19-45-21.jpg');
 
 -- --------------------------------------------------------
 
@@ -137,7 +162,8 @@ CREATE TABLE `user_data` (
 
 INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
 (7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
-(12, 'Arman Dwi Pangestu', 'arman@gmail.com', 'photo_2021-04-15_00-04-40-modified.png', '$2y$10$QYWGnH6Tx9m8CH9hu1pLG.6Kh0l7WUgpbpbCoja1m3VOJi0nL1NYu', 2, 1687356267);
+(12, 'Arman Dwi Pangestu', 'arman@gmail.com', 'photo_2021-04-15_00-04-40-modified.png', '$2y$10$QYWGnH6Tx9m8CH9hu1pLG.6Kh0l7WUgpbpbCoja1m3VOJi0nL1NYu', 2, 1687356267),
+(13, 'User', 'user@user.com', 'IMG_20211110_200128.jpg', '$2y$10$h9tfIXfLLx8ZSpvY7KuQq.SMtbPF2hm1JDpeauTPq1orGJtNVTvYO', 2, 1687402958);
 
 -- --------------------------------------------------------
 
@@ -237,6 +263,12 @@ ALTER TABLE `mahasiswa_biodata`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mahasiswa_prestasi`
+--
+ALTER TABLE `mahasiswa_prestasi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
@@ -286,7 +318,13 @@ ALTER TABLE `kampus_kelas_program`
 -- AUTO_INCREMENT for table `mahasiswa_biodata`
 --
 ALTER TABLE `mahasiswa_biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_prestasi`
+--
+ALTER TABLE `mahasiswa_prestasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -298,7 +336,7 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
