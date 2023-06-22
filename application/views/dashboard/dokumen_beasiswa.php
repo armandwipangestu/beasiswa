@@ -91,11 +91,11 @@
         <div class="card card-primary neu-brutalism">
             <div class="card-header d-flex">
                 <div class="">
-                    <h4>Prestasi</h4>
+                    <h4>Data Prestasi</h4>
                 </div>
                 <div class="ml-auto">
                     <a href="<?= base_url('/dashboard/user_prestasi_ubah'); ?>" class="btn btn-warning btn-block neu-brutalism" tabindex="4">
-                        <i class="fas fa-fw fa-edit mr-1"></i>Perbarui Prestasi
+                        <i class="fas fa-fw fa-edit mr-1"></i>Perbarui Data Prestasi
                     </a>
                 </div>
             </div>
@@ -145,11 +145,11 @@
         <div class="card card-primary neu-brutalism">
             <div class="card-header d-flex">
                 <div class="">
-                    <h4>Keluarga</h4>
+                    <h4>Data Keluarga</h4>
                 </div>
                 <div class="ml-auto">
                     <a href="<?= base_url('/dashboard/user_keluarga_ubah'); ?>" class="btn btn-warning btn-block neu-brutalism" tabindex="4">
-                        <i class="fas fa-fw fa-edit mr-1"></i>Perbarui Keluarga
+                        <i class="fas fa-fw fa-edit mr-1"></i>Perbarui Data Keluarga
                     </a>
                 </div>
             </div>
