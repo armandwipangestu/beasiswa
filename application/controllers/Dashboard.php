@@ -240,7 +240,7 @@ class Dashboard extends CI_Controller
             $this->db->update('mahasiswa_prestasi', $data);
             $this->session->set_flashdata(
                 'message',
-                '<div class="alert alert-success neu-brutalism mb-4">Prestasi berhasil diperbarui!</div>'
+                '<div class="alert alert-success neu-brutalism mb-4">Data prestasi berhasil diperbarui!</div>'
             );
             redirect("dashboard");
         }
@@ -364,7 +364,7 @@ class Dashboard extends CI_Controller
             $this->db->update('mahasiswa_keluarga', $data);
             $this->session->set_flashdata(
                 'message',
-                '<div class="alert alert-success neu-brutalism mb-4">Keluarga berhasil diperbarui!</div>'
+                '<div class="alert alert-success neu-brutalism mb-4">Data keluarga berhasil diperbarui!</div>'
             );
             redirect("dashboard");
         }
