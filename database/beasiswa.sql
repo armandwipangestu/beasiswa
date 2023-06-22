@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2023 at 06:51 AM
+-- Generation Time: Jun 22, 2023 at 11:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -90,6 +90,38 @@ INSERT INTO `mahasiswa_biodata` (`id`, `id_user`, `tempat_lahir`, `tanggal_lahir
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mahasiswa_keluarga`
+--
+
+CREATE TABLE `mahasiswa_keluarga` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_ayah` varchar(100) DEFAULT NULL,
+  `status_ayah` varchar(50) DEFAULT NULL,
+  `status_hubungan_ayah` varchar(50) DEFAULT NULL,
+  `pendidikan_ayah` varchar(100) DEFAULT NULL,
+  `pekerjaan_ayah` varchar(100) DEFAULT NULL,
+  `detail_ayah` varchar(255) DEFAULT NULL,
+  `nama_ibu` varchar(100) DEFAULT NULL,
+  `status_ibu` varchar(50) DEFAULT NULL,
+  `pendidikan_ibu` varchar(100) DEFAULT NULL,
+  `pekerjaan_ibu` varchar(100) DEFAULT NULL,
+  `detail_ibu` varchar(255) DEFAULT NULL,
+  `jumlah_tanggungan` varchar(20) DEFAULT NULL,
+  `no_telepon_orang_tua` varchar(25) DEFAULT NULL,
+  `foto_bersama_keluarga` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_keluarga`
+--
+
+INSERT INTO `mahasiswa_keluarga` (`id`, `id_user`, `nama_ayah`, `status_ayah`, `status_hubungan_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `detail_ayah`, `nama_ibu`, `status_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `detail_ibu`, `jumlah_tanggungan`, `no_telepon_orang_tua`, `foto_bersama_keluarga`) VALUES
+(2, 13, 'Sukasno', 'Masih Hidup', 'Ayah Kandung', 'SMP / MTs / Sederajat', 'Wirausaha', 'Test 1', 'Atmi', 'Masih Hidup', 'SD/ MI / Sederajat', 'Wirausaha', 'Test 2', 'Tidak ada', '089637369606', 'photo_2021-08-03_19-45-21.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mahasiswa_prestasi`
 --
 
@@ -138,7 +170,8 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (18, 9, 4),
 (19, 1, 20),
 (20, 2, 21),
-(21, 1, 22);
+(21, 1, 22),
+(22, 1, 24);
 
 -- --------------------------------------------------------
 
@@ -263,6 +296,12 @@ ALTER TABLE `mahasiswa_biodata`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mahasiswa_keluarga`
+--
+ALTER TABLE `mahasiswa_keluarga`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `mahasiswa_prestasi`
 --
 ALTER TABLE `mahasiswa_prestasi`
@@ -321,6 +360,12 @@ ALTER TABLE `mahasiswa_biodata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
+-- AUTO_INCREMENT for table `mahasiswa_keluarga`
+--
+ALTER TABLE `mahasiswa_keluarga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `mahasiswa_prestasi`
 --
 ALTER TABLE `mahasiswa_prestasi`
@@ -330,7 +375,7 @@ ALTER TABLE `mahasiswa_prestasi`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_data`
@@ -342,7 +387,7 @@ ALTER TABLE `user_data`
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `user_role`
