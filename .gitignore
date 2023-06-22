@@ -13,6 +13,8 @@ assets/img/profile/*
 
 assets/img/sertifikat/*
 !assets/img/sertifikat/default.png
+assets/img/foto_bersama_keluarga/*
+!assets/img/foto_bersama_keluarga/default.png
 
 composer.lock
 tests/mocks/database/ci_test.sqlite

@@ -17,6 +17,7 @@ class Dashboard extends CI_Controller
         $this->load->model('KelasProgram_model', 'kelas_program');
         $this->load->model('Beasiswa_model', 'beasiswa');
         $this->load->model('Prestasi_model', 'prestasi');
+        $this->load->model('Keluarga_model', 'keluarga');
 
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -52,6 +53,29 @@ class Dashboard extends CI_Controller
             $this->db->insert('mahasiswa_prestasi', $init_prestasi);
         }
 
+        $init_keluarga = [
+            'id_user' => $this->session->userdata('id_user'),
+            "nama_ayah" => null,
+            "status_ayah" => null,
+            "status_hubungan_ayah" => null,
+            "pendidikan_ayah" => null,
+            "pekerjaan_ayah" => null,
+            "detail_ayah" => null,
+            "nama_ibu" => null,
+            "status_ibu" => null,
+            "pendidikan_ibu" => null,
+            "pekerjaan_ibu" => null,
+            "detail_ibu" => null,
+            "jumlah_tanggungan" => null,
+            "no_telepon_orang_tua" => null,
+            "foto_bersama_keluarga" => "default.png"
+        ];
+
+        $check_keluarga = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
+        if (!$check_keluarga) {
+            $this->db->insert('mahasiswa_keluarga', $init_keluarga);
+        }
+
         $data['biodata'] = $this->beasiswa->getMahasiswaBiodata($this->session->userdata('id_user'));
         if ($data['biodata'] != null) {
             $data['jurusan_user'] = $this->jurusan->getJurusanById($data['biodata']['id_jurusan']);
@@ -59,6 +83,7 @@ class Dashboard extends CI_Controller
         }
 
         $data['prestasi'] = $this->prestasi->getMahasiswaPrestasi($this->session->userdata('id_user'));
+        $data['keluarga'] = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
@@ -216,6 +241,130 @@ class Dashboard extends CI_Controller
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success neu-brutalism mb-4">Prestasi berhasil diperbarui!</div>'
+            );
+            redirect("dashboard");
+        }
+    }
+
+    public function user_keluarga_ubah()
+    {
+        $data['title'] = 'Perbarui Keluarga';
+        $this->load->model('Keluarga_model', 'keluarga');
+
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['keluarga'] = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
+
+        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('status_ayah', 'Status Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('status_hubungan_ayah', 'Status Hubungan Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('detail_ayah', 'Detail Ayah', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        // ======
+
+        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('status_ibu', 'Status Ibu', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('pendidikan_ibu', 'Pendidikan Ibu', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('detail_ibu', 'Detail Ibu', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        // =====
+
+        $this->form_validation->set_rules('jumlah_tanggungan', 'Jumlah Tanggungan', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        $this->form_validation->set_rules('no_telepon_orang_tua', 'No Telepon Orang Tua', 'required', [
+            'required' => "tidak boleh kosong"
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('dashboard/user_keluarga_ubah');
+            $this->load->view('layout/footer');
+        } else {
+
+            $data = [
+
+                'id_user' => $this->session->userdata('id_user'),
+                "nama_ayah" => $this->input->post('nama_ayah'),
+                "status_ayah" => $this->input->post('status_ayah'),
+                "status_hubungan_ayah" => $this->input->post('status_hubungan_ayah'),
+                "pendidikan_ayah" => $this->input->post('pendidikan_ayah'),
+                "pekerjaan_ayah" => $this->input->post('pekerjaan_ayah'),
+                "detail_ayah" => $this->input->post('detail_ayah'),
+                "nama_ibu" => $this->input->post('nama_ibu'),
+                "status_ibu" => $this->input->post('status_ibu'),
+                "pendidikan_ibu" => $this->input->post('pendidikan_ibu'),
+                "pekerjaan_ibu" => $this->input->post('pekerjaan_ibu'),
+                "detail_ibu" => $this->input->post('detail_ibu'),
+                "jumlah_tanggungan" => $this->input->post('jumlah_tanggungan'),
+                "no_telepon_orang_tua" => $this->input->post('no_telepon_orang_tua')
+            ];
+
+            // cek jika ada gambar yang akan diupload
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                // $path_file = base_url('assets/img/profile/') . $data['user']['image'];
+                // unlink($path_file);
+                $config['allowed_types'] = 'gif|jpg|png|svg';
+                $config['max_size'] = '2048';
+                $config['upload_path'] = './assets/img/foto_bersama_keluarga/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $gambar_lama = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'))['foto_bersama_keluarga'];
+                    if ($gambar_lama != "default.png") {
+                        unlink(FCPATH . 'assets/img/foto_bersama_keluarga/' . $gambar_lama);
+                    }
+                    $gambar_baru = $this->upload->data('file_name');
+                    $this->db->set('foto_bersama_keluarga', $gambar_baru);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $this->db->where('id_user', $this->session->userdata('id_user'));
+            $this->db->update('mahasiswa_keluarga', $data);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success neu-brutalism mb-4">Keluarga berhasil diperbarui!</div>'
             );
             redirect("dashboard");
         }

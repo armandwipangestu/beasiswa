@@ -31,8 +31,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group row">
-                            <div class="col-sm-4">Gambar</div>
-                            <div class="col-sm-11">
+                            <div class="col-sm">Gambar</div>
+                            <div class="col-sm-12">
                                 <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail img-preview neu-brutalism">
                             </div>
                         </div>
@@ -104,8 +104,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group row">
-                            <div class="col-sm-4">Sertifikat</div>
-                            <div class="col-sm-11">
+                            <div class="col-sm">Sertifikat</div>
+                            <div class="col-sm-12">
                                 <img src="<?= base_url('assets/img/sertifikat/') . $prestasi['scan_sertifikat']; ?>" class="img-thumbnail img-preview neu-brutalism w-100">
                             </div>
                         </div>
@@ -140,6 +140,193 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="card card-primary neu-brutalism">
+            <div class="card-header d-flex">
+                <div class="">
+                    <h4>Keluarga</h4>
+                </div>
+                <div class="ml-auto">
+                    <a href="<?= base_url('/dashboard/user_keluarga_ubah'); ?>" class="btn btn-warning btn-block neu-brutalism" tabindex="4">
+                        <i class="fas fa-fw fa-edit mr-1"></i>Perbarui Keluarga
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group row">
+                            <div class="col-sm">Foto Bersama Keluarga</div>
+                            <div class="col-sm-12">
+                                <img src="<?= base_url('assets/img/foto_bersama_keluarga/') . $keluarga['foto_bersama_keluarga']; ?>" class="img-thumbnail img-preview neu-brutalism w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+
+                        <div class="form-group">
+                            <label>Nama Ayah</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['nama_ayah'] ? $keluarga['nama_ayah'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Ayah</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ayah'] ? $keluarga['status_ayah'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Hubungan Ayah</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_hubungan_ayah'] ? $keluarga['status_hubungan_ayah'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pendidikan Ayah</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ayah'] ? $keluarga['pendidikan_ayah'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Detail Ayah</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nama Ibu</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['nama_ibu'] ? $keluarga['nama_ibu'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Ibu</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ibu'] ? $keluarga['status_ibu'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pendidikan Ibu</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ibu'] ? $keluarga['pendidikan_ibu'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pekerjaan_ibu'] ? $keluarga['pekerjaan_ibu'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Detail Ibu</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jumlah Tanggungan</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['jumlah_tanggungan'] ? $keluarga['jumlah_tanggungan'] : "" ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>No Telepon Orang Tua</label>
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['no_telepon_orang_tua'] ? $keluarga['no_telepon_orang_tua'] : "" ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-dark neu-brutalism">
+                            <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                <h4 class="text-dark">Informasi Ayah</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Nama Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['nama_ayah'] ? $keluarga['nama_ayah'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ayah'] ? $keluarga['status_ayah'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status Hubungan Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_hubungan_ayah'] ? $keluarga['status_hubungan_ayah'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pendidikan Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ayah'] ? $keluarga['pendidikan_ayah'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pekerjaan Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pekerjaan_ayah'] ? $keluarga['pekerjaan_ayah'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Detail Ayah</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-dark neu-brutalism">
+                            <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                <h4 class="text-dark">Informasi Ibu</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Nama Ibu</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['nama_ibu'] ? $keluarga['nama_ibu'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status Ibu</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ibu'] ? $keluarga['status_ibu'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pendidikan Ibu</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ibu'] ? $keluarga['pendidikan_ibu'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pekerjaan Ibu</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pekerjaan_ibu'] ? $keluarga['pekerjaan_ibu'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Detail Ibu</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-dark neu-brutalism">
+                            <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                <h4 class="text-dark">Informasi Jumlah Tanggungan Orang Tua</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Jumlah Tanggungan</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['jumlah_tanggungan'] ? $keluarga['jumlah_tanggungan'] : "" ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>No Telepon Orang Tua</label>
+                                    <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['no_telepon_orang_tua'] ? $keluarga['no_telepon_orang_tua'] : "" ?>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
 
     </section>
