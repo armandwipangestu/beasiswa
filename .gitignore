@@ -7,7 +7,12 @@ application/logs/*
 !application/logs/index.html
 
 !application/*/.htaccess
+
 assets/img/profile/*
+!assets/img/profile/default.png
+
+assets/img/sertifikat/*
+!assets/img/sertifikat/default.png
 
 composer.lock
 tests/mocks/database/ci_test.sqlite
