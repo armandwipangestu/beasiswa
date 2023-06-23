@@ -218,4 +218,74 @@ class Status extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">Status Pendidikan <b>' . $status_pendidikan . '</b> berhasil dihapus!</div>');
         redirect('status/pendidikan');
     }
+
+    public function pekerjaan()
+    {
+        $data['title'] = 'Status Pekerjaan';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['status_pekerjaan'] = $this->db->get('status_pekerjaan')->result_array();
+
+        $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan', 'required|is_unique[status_pekerjaan.status_pekerjaan]', [
+            'required' => 'Nama Status Pekerjaan tidak boleh kosong',
+            'is_unique' => 'Status Pekerjaan ' . $this->input->post('status_pekerjaan') .  ' sudah ada!'
+        ]);
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('status/status_pekerjaan', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $status_pekerjaan = $this->input->post('status_pekerjaan');
+            $this->db->insert('status_pekerjaan', ['status_pekerjaan' => $status_pekerjaan]);
+            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Status Pekerjaan <b>' . $status_pekerjaan . '</b> berhasil ditambahkan!</div>');
+            redirect('status/pekerjaan');
+        }
+    }
+
+    public function ubah_status_pekerjaan()
+    {
+        $data['title'] = 'Status Pekerjaan';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['status_pekerjaan'] = $this->db->get('status_pekerjaan')->result_array();
+
+        $this->form_validation->set_rules('status_pekerjaan', 'Status Pekerjaan', 'required|is_unique[status_pekerjaan.status_pekerjaan]', [
+            'required' => 'Nama Status Pekerjaan tidak boleh kosong',
+            'is_unique' => 'Status Pekerjaan ' . $this->input->post('status_pekerjaan') .  ' sudah ada!'
+        ]);
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('status/status_pekerjaan', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $id = $this->input->post('id');
+            $status_pekerjaan = $this->input->post('status_pekerjaan');
+            $status_pekerjaan_sebelum = $this->db->get_where('status_pekerjaan', ['id' => $id])->row_array()['status_pekerjaan'];
+
+            $this->db->where('id', $id);
+            $this->db->update('status_pekerjaan', ['status_pekerjaan' => $status_pekerjaan]);
+            $this->session->set_flashdata('message', '<div class="alert alert-warning neu-brutalism mb-4">Status Pekerjaan <b>' . $status_pekerjaan_sebelum . '</b> berhasil diubah menjadi <b>' . $status_pekerjaan . '</b>!</div>');
+            redirect('status/pekerjaan');
+        }
+    }
+
+    public function get_status_pekerjaan($id)
+    {
+        $status_pekerjaan = $this->db->query('SELECT * FROM status_pekerjaan WHERE id = ' . $id . '')->row();
+        exit(json_encode((array)$status_pekerjaan));
+    }
+
+    public function hapus_status_pekerjaan()
+    {
+        $id_status_pekerjaan = $this->uri->segment(3);
+        $status_pekerjaan = $this->db->get_where('status_pekerjaan', ['id' => $id_status_pekerjaan])->row_array()['status_pekerjaan'];
+        $this->db->where('id', $id_status_pekerjaan);
+        $this->db->delete('status_pekerjaan');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">Status Pekerjaan <b>' . $status_pekerjaan . '</b> berhasil dihapus!</div>');
+        redirect('status/pekerjaan');
+    }
 }
