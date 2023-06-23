@@ -148,4 +148,74 @@ class Status extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">Status Hubungan <b>' . $status_hubungan . '</b> berhasil dihapus!</div>');
         redirect('status/hubungan');
     }
+
+    public function pendidikan()
+    {
+        $data['title'] = 'Status Pendidikan';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['status_pendidikan'] = $this->db->get('status_pendidikan')->result_array();
+
+        $this->form_validation->set_rules('status_pendidikan', 'Status Pendidikan', 'required|is_unique[status_pendidikan.status_pendidikan]', [
+            'required' => 'Nama Status Pendidikan tidak boleh kosong',
+            'is_unique' => 'Status Pendidikan ' . $this->input->post('status_pendidikan') .  ' sudah ada!'
+        ]);
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('status/status_pendidikan', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $status_pendidikan = $this->input->post('status_pendidikan');
+            $this->db->insert('status_pendidikan', ['status_pendidikan' => $status_pendidikan]);
+            $this->session->set_flashdata('message', '<div class="alert alert-success neu-brutalism mb-4">Status Pendidikan <b>' . $status_pendidikan . '</b> berhasil ditambahkan!</div>');
+            redirect('status/pendidikan');
+        }
+    }
+
+    public function ubah_status_pendidikan()
+    {
+        $data['title'] = 'Status Pendidikan';
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['status_pendidikan'] = $this->db->get('status_pendidikan')->result_array();
+
+        $this->form_validation->set_rules('status_pendidikan', 'Status Pendidikan', 'required|is_unique[status_pendidikan.status_pendidikan]', [
+            'required' => 'Nama Status Pendidikan tidak boleh kosong',
+            'is_unique' => 'Status Pendidikan ' . $this->input->post('status_pendidikan') .  ' sudah ada!'
+        ]);
+
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('layout/topbar');
+            $this->load->view('layout/sidebar');
+            $this->load->view('status/status_pendidikan', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $id = $this->input->post('id');
+            $status_pendidikan = $this->input->post('status_pendidikan');
+            $status_pendidikan_sebelum = $this->db->get_where('status_pendidikan', ['id' => $id])->row_array()['status_pendidikan'];
+
+            $this->db->where('id', $id);
+            $this->db->update('status_pendidikan', ['status_pendidikan' => $status_pendidikan]);
+            $this->session->set_flashdata('message', '<div class="alert alert-warning neu-brutalism mb-4">Status Pendidikan <b>' . $status_pendidikan_sebelum . '</b> berhasil diubah menjadi <b>' . $status_pendidikan . '</b>!</div>');
+            redirect('status/pendidikan');
+        }
+    }
+
+    public function get_status_pendidikan($id)
+    {
+        $status_pendidikan = $this->db->query('SELECT * FROM status_pendidikan WHERE id = ' . $id . '')->row();
+        exit(json_encode((array)$status_pendidikan));
+    }
+
+    public function hapus_status_pendidikan()
+    {
+        $id_status_pendidikan = $this->uri->segment(3);
+        $status_pendidikan = $this->db->get_where('status_pendidikan', ['id' => $id_status_pendidikan])->row_array()['status_pendidikan'];
+        $this->db->where('id', $id_status_pendidikan);
+        $this->db->delete('status_pendidikan');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">Status Pendidikan <b>' . $status_pendidikan . '</b> berhasil dihapus!</div>');
+        redirect('status/pendidikan');
+    }
 }
