@@ -8,11 +8,15 @@ application/logs/*
 
 !application/*/.htaccess
 
+# Asset Profile
 assets/img/profile/*
 !assets/img/profile/default.png
 
+# Asset Sertifikat
 assets/img/sertifikat/*
 !assets/img/sertifikat/default.png
+
+# Asset Foto Bersama Keluarga
 assets/img/foto_bersama_keluarga/*
 !assets/img/foto_bersama_keluarga/default.png
 
