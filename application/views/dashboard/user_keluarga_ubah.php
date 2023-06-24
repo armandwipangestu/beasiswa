@@ -110,12 +110,12 @@
                                     <div class="form-group">
                                         <label>Detail Ayah</label>
                                         <?= form_error('detail_ayah', '<small class="text-danger">', '</small>') ?>
-                                        <input type="text" name="detail_ayah" class="form-control neu-brutalism-border" value="<?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?>">
+                                        <textarea name="detail_ayah" class="form-control neu-brutalism-border" style="height: 72px !important;"><?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 p-0 p-md-3">
+                        <div class=" col-md-6 p-0 p-md-3">
                             <div class="card card-dark neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Ibu</h4>
@@ -196,7 +196,7 @@
                                     <div class="form-group">
                                         <label>Detail Ibu</label>
                                         <?= form_error('detail_ibu', '<small class="text-danger">', '</small>') ?>
-                                        <input type="text" name="detail_ibu" class="form-control neu-brutalism-border" value="<?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?>">
+                                        <textarea name="detail_ibu" class="form-control neu-brutalism-border" style="height: 72px !important;"><?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?></textarea>
                                     </div>
                                 </div>
                             </div>

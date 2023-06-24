@@ -51,7 +51,7 @@
                         <div class="form-group col-md-6">
                             <label>No Telepon</label>
                             <?= form_error('no_telepon', '<small class="text-danger">', '</small>') ?>
-                            <input type="number" class="form-control neu-brutalism-border" name="no_telepon" value="<?= $biodata['no_telepon'] ? $biodata['no_telepon'] : "" ?>">
+                            <input type="number" class="form-control neu-brutalism-border number" name="no_telepon" value="<?= $biodata['no_telepon'] ? $biodata['no_telepon'] : "" ?>">
                         </div>
                     </div>
 

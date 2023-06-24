@@ -37,6 +37,7 @@
 
     <!-- Page Specific JS File -->
     <script>
+        // Preview the image uploaded
         function previewImage() {
             const gambar = document.querySelector(".gambar-preview");
             const imgPreview = document.querySelector(".img-preview");
@@ -50,6 +51,13 @@
             };
 
         }
+
+        // Disable 'e' at input text as number
+        document.querySelector(".number").addEventListener("keypress", function(evt) {
+            if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
     </script>
 
     <script>

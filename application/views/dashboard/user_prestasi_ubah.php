@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 <label>Tahun</label>
                                 <?= form_error('tahun', '<small class="text-danger">', '</small>') ?>
-                                <input type="number" name="tahun" class="form-control neu-brutalism-border" value="<?= $prestasi['tahun'] ? $prestasi['tahun'] : "" ?>">
+                                <input type="number" name="tahun" class="form-control neu-brutalism-border number" value="<?= $prestasi['tahun'] ? $prestasi['tahun'] : "" ?>">
                             </div>
 
                             <div class="form-group">
