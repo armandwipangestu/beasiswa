@@ -173,7 +173,7 @@
 
                         <div class="form-group">
                             <label>Status Ayah</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ayah'] ? $keluarga['status_ayah'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_hidup_ayah'] ? $keluarga['status_hidup_ayah'] : "" ?>">
                         </div>
 
                         <div class="form-group">
@@ -183,7 +183,7 @@
 
                         <div class="form-group">
                             <label>Pendidikan Ayah</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ayah'] ? $keluarga['pendidikan_ayah'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_pendidikan_ayah'] ? $keluarga['status_pendidikan_ayah'] : "" ?>">
                         </div>
 
                         <div class="form-group">
@@ -198,17 +198,17 @@
 
                         <div class="form-group">
                             <label>Status Ibu</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_ibu'] ? $keluarga['status_ibu'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_hidup_ibu'] ? $keluarga['status_hidup_ibu'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Pendidikan Ibu</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pendidikan_ibu'] ? $keluarga['pendidikan_ibu'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_pendidikan_ibu'] ? $keluarga['status_pendidikan_ibu'] : "" ?>">
                         </div>
 
                         <div class="form-group">
                             <label>Pekerjaan Ibu</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['pekerjaan_ibu'] ? $keluarga['pekerjaan_ibu'] : "" ?>">
+                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['status_pekerjaan_ibu'] ? $keluarga['status_pekerjaan_ibu'] : "" ?>">
                         </div>
 
                         <div class="form-group">

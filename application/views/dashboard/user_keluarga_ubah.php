@@ -29,26 +29,19 @@
 
                                     <div class="form-group">
                                         <label>Status Ayah</label>
-                                        <?= form_error('status_ayah', '<small class="text-danger">', '</small>') ?>
-
-                                        <select name="status_ayah" id="status_ayah" class="form-control neu-brutalism-border">
-                                            <?php $status_ayah = [
-                                                "Masih Hidup",
-                                                "Wafat",
-                                                "Bercerai",
-                                            ] ?>
-                                            <?php if ($keluarga['status_ayah']) : ?>
-                                                <option value="<?= ucfirst($keluarga['status_ayah']) ?>"><?= ucfirst($keluarga['status_ayah']) ?></option>
-                                                <?php foreach ($status_ayah as $sa) : ?>
-                                                    <?php if (ucfirst($keluarga['status_ayah']) != $sa) : ?>
-                                                        <option value="<?= $sa ?>"><?= $sa; ?></option>
+                                        <?= form_error('status_hidup_ayah', '<small class="text-danger">', '</small>') ?>
+                                        <select name="status_hidup_ayah" id="status_hidup_ayah" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_hidup_ayah']) : ?>
+                                                <option value="<?= $keluarga['id_status_hidup_ayah'] ?>"><?= $keluarga['status_hidup_ayah'] ?></option>
+                                                <?php foreach ($status_hidup as $sh) : ?>
+                                                    <?php if ($keluarga['status_hidup_ayah'] != $sh['status_hidup']) : ?>
+                                                        <option value="<?= $sh['id'] ?>"><?= $sh['status_hidup']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Status Ayah</option>
-                                                <?php foreach ($status_ayah as $sa) : ?>
-                                                    <option value="<?= $sa ?>"><?= $sa; ?></option>
-
+                                                <?php foreach ($status_hidup as $sh) : ?>
+                                                    <option value="<?= $sh['id'] ?>"><?= $sh['status_hidup']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -58,22 +51,17 @@
                                         <label>Status Hubungan Ayah</label>
                                         <?= form_error('status_hubungan_ayah', '<small class="text-danger">', '</small>') ?>
                                         <select name="status_hubungan_ayah" id="status_hubungan_ayah" class="form-control neu-brutalism-border">
-                                            <?php $status_hubungan_ayah = [
-                                                "Ayah Kandung",
-                                                "Ayah Tiri",
-                                                "Wali",
-                                            ] ?>
                                             <?php if ($keluarga['status_hubungan_ayah']) : ?>
-                                                <option value="<?= ucfirst($keluarga['status_hubungan_ayah']) ?>"><?= ucfirst($keluarga['status_hubungan_ayah']) ?></option>
-                                                <?php foreach ($status_hubungan_ayah as $sha) : ?>
-                                                    <?php if (ucfirst($keluarga['status_hubungan_ayah']) != $sha) : ?>
-                                                        <option value="<?= $sha ?>"><?= $sha; ?></option>
+                                                <option value="<?= $keluarga['id_status_hubungan_ayah'] ?>"><?= $keluarga['status_hubungan_ayah'] ?></option>
+                                                <?php foreach ($status_hubungan as $sh) : ?>
+                                                    <?php if ($keluarga['status_hubungan_ayah'] != $sh['status_hubungan']) : ?>
+                                                        <option value="<?= $sh['id'] ?>"><?= $sh['status_hubungan']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Status Hubungan Ayah</option>
-                                                <?php foreach ($status_hubungan_ayah as $sha) : ?>
-                                                    <option value="<?= $sha ?>"><?= $sha; ?></option>
+                                                <?php foreach ($status_hubungan as $sh) : ?>
+                                                    <option value="<?= $sh['id'] ?>"><?= $sh['status_hubungan']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -81,31 +69,19 @@
 
                                     <div class="form-group">
                                         <label>Pendidikan Ayah</label>
-                                        <?= form_error('pendidikan_ayah', '<small class="text-danger">', '</small>') ?>
-                                        <select name="pendidikan_ayah" id="pendidikan_ayah" class="form-control neu-brutalism-border">
-                                            <?php $pendidikan_ayah = [
-                                                "Tidak Sekolah",
-                                                "SD/ MI / Sederajat",
-                                                "SMP / MTs / Sederajat",
-                                                "SMA / MA / Sederajat",
-                                                "D1 / Sederajat",
-                                                "D2 / Sederajat",
-                                                "D3 / Sederajat",
-                                                "D4 / S1 / Sederajat",
-                                                "S2 / Sp1 / Sederajat",
-                                                "S3 / Sp2 / Sederajat",
-                                            ] ?>
-                                            <?php if ($keluarga['pendidikan_ayah']) : ?>
-                                                <option value="<?= ucfirst($keluarga['pendidikan_ayah']) ?>"><?= ucfirst($keluarga['pendidikan_ayah']) ?></option>
-                                                <?php foreach ($pendidikan_ayah as $pa) : ?>
-                                                    <?php if (ucfirst($keluarga['pendidikan_ayah']) != $pa) : ?>
-                                                        <option value="<?= $pa ?>"><?= $pa; ?></option>
+                                        <?= form_error('status_pendidikan_ayah', '<small class="text-danger">', '</small>') ?>
+                                        <select name="status_pendidikan_ayah" id="status_pendidikan_ayah" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_pendidikan_ayah']) : ?>
+                                                <option value="<?= $keluarga['id_status_pendidikan_ayah'] ?>"><?= $keluarga['status_pendidikan_ayah'] ?></option>
+                                                <?php foreach ($status_pendidikan as $sp) : ?>
+                                                    <?php if ($keluarga['status_pendidikan_ayah'] != $sp['status_pendidikan']) : ?>
+                                                        <option value="<?= $sp['id'] ?>"><?= $sp['status_pendidikan']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Pendidikan Ayah</option>
-                                                <?php foreach ($pendidikan_ayah as $pa) : ?>
-                                                    <option value="<?= $pa ?>"><?= $pa; ?></option>
+                                                <?php foreach ($status_pendidikan as $sp) : ?>
+                                                    <option value="<?= $sp['id'] ?>"><?= $sp['status_pendidikan']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -113,28 +89,19 @@
 
                                     <div class="form-group">
                                         <label>Pekerjaan Ayah</label>
-                                        <?= form_error('pekerjaan_ayah', '<small class="text-danger">', '</small>') ?>
-                                        <select name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-control neu-brutalism-border">
-                                            <?php $pekerjaan_ayah = [
-                                                "PNS",
-                                                "Pegawai Swasta",
-                                                "Wirausaha",
-                                                "TNI / Polri",
-                                                "Petani",
-                                                "Nelayan",
-                                                "Tidak Bekerja",
-                                            ] ?>
-                                            <?php if ($keluarga['pekerjaan_ayah']) : ?>
-                                                <option value="<?= ucfirst($keluarga['pekerjaan_ayah']) ?>"><?= ucfirst($keluarga['pekerjaan_ayah']) ?></option>
-                                                <?php foreach ($pekerjaan_ayah as $pa) : ?>
-                                                    <?php if (ucfirst($keluarga['pekerjaan_ayah']) != $pa) : ?>
-                                                        <option value="<?= $pa ?>"><?= $pa; ?></option>
+                                        <?= form_error('status_pekerjaan_ayah', '<small class="text-danger">', '</small>') ?>
+                                        <select name="status_pekerjaan_ayah" id="status_pekerjaan_ayah" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_pekerjaan_ayah']) : ?>
+                                                <option value="<?= $keluarga['id_status_pekerjaan_ayah'] ?>"><?= $keluarga['status_pekerjaan_ayah'] ?></option>
+                                                <?php foreach ($status_pekerjaan as $sp) : ?>
+                                                    <?php if ($keluarga['status_pekerjaan_ayah'] != $sp['status_pekerjaan']) : ?>
+                                                        <option value="<?= $sp['id'] ?>"><?= $sp['status_pekerjaan']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Pekerjaan Ayah</option>
-                                                <?php foreach ($pekerjaan_ayah as $pa) : ?>
-                                                    <option value="<?= $pa ?>"><?= $pa; ?></option>
+                                                <?php foreach ($status_pekerjaan as $sp) : ?>
+                                                    <option value="<?= $sp['id'] ?>"><?= $sp['status_pekerjaan']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -163,25 +130,22 @@
 
                                     <div class="form-group">
                                         <label>Status Ibu</label>
-                                        <?= form_error('status_ibu', '<small class="text-danger">', '</small>') ?>
+                                        <?= form_error('status_hidup_ibu', '<small class="text-danger">', '</small>') ?>
 
-                                        <select name="status_ibu" id="status_ibu" class="form-control neu-brutalism-border">
-                                            <?php $status_ibu = [
-                                                "Masih Hidup",
-                                                "Wafat",
-                                            ] ?>
-                                            <?php if ($keluarga['status_ibu']) : ?>
-                                                <option value="<?= ucfirst($keluarga['status_ibu']) ?>"><?= ucfirst($keluarga['status_ibu']) ?></option>
-                                                <?php foreach ($status_ibu as $si) : ?>
-                                                    <?php if (ucfirst($keluarga['status_ibu']) != $si) : ?>
-                                                        <option value="<?= $si ?>"><?= $si; ?></option>
+                                        <select name="status_hidup_ibu" id="status_hidup_ibu" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_hidup_ibu']) : ?>
+                                                <option value="<?= $keluarga['id_status_hidup_ibu'] ?>"><?= $keluarga['status_hidup_ibu'] ?></option>
+                                                <?php foreach ($status_hidup as $sh) : ?>
+                                                    <?php if ($keluarga['status_hidup_ibu'] != $sh['status_hidup'] && $sh['status_hidup'] != "Bercerai") : ?>
+                                                        <option value="<?= $sh['id'] ?>"><?= $sh['status_hidup']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Status Ibu</option>
-                                                <?php foreach ($status_ibu as $si) : ?>
-                                                    <option value="<?= $si ?>"><?= $si; ?></option>
-
+                                                <?php foreach ($status_hidup as $sh) : ?>
+                                                    <?php if ($sh['status_hidup'] != "Bercerai") : ?>
+                                                        <option value="<?= $sh['id'] ?>"><?= $sh['status_hidup']; ?></option>
+                                                    <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -189,32 +153,20 @@
 
                                     <div class="form-group">
                                         <label>Pendidikan Ibu</label>
-                                        <?= form_error('pendidikan_ibu', '<small class="text-danger">', '</small>') ?>
+                                        <?= form_error('status_pendidikan_ibu', '<small class="text-danger">', '</small>') ?>
 
-                                        <select name="pendidikan_ibu" id="pendidikan_ibu" class="form-control neu-brutalism-border">
-                                            <?php $pendidikan_ibu = [
-                                                "Tidak Sekolah",
-                                                "SD/ MI / Sederajat",
-                                                "SMP / MTs / Sederajat",
-                                                "SMA / MA / Sederajat",
-                                                "D1 / Sederajat",
-                                                "D2 / Sederajat",
-                                                "D3 / Sederajat",
-                                                "D4 / S1 / Sederajat",
-                                                "S2 / Sp1 / Sederajat",
-                                                "S3 / Sp2 / Sederajat",
-                                            ] ?>
-                                            <?php if ($keluarga['pendidikan_ibu']) : ?>
-                                                <option value="<?= ucfirst($keluarga['pendidikan_ibu']) ?>"><?= ucfirst($keluarga['pendidikan_ibu']) ?></option>
-                                                <?php foreach ($pendidikan_ibu as $pi) : ?>
-                                                    <?php if (ucfirst($keluarga['pendidikan_ibu']) != $pi) : ?>
-                                                        <option value="<?= $pi ?>"><?= $pi; ?></option>
+                                        <select name="status_pendidikan_ibu" id="status_pendidikan_ibu" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_pendidikan_ibu']) : ?>
+                                                <option value="<?= $keluarga['id_status_pendidikan_ibu'] ?>"><?= $keluarga['status_pendidikan_ibu'] ?></option>
+                                                <?php foreach ($status_pendidikan as $sp) : ?>
+                                                    <?php if ($keluarga['status_pendidikan_ibu'] != $sp['status_pendidikan']) : ?>
+                                                        <option value="<?= $sp['id'] ?>"><?= $sp['status_pendidikan']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Pendidikan Ibu</option>
-                                                <?php foreach ($pendidikan_ibu as $pi) : ?>
-                                                    <option value="<?= $pi ?>"><?= $pi; ?></option>
+                                                <?php foreach ($status_pendidikan as $sp) : ?>
+                                                    <option value="<?= $sp['id'] ?>"><?= $sp['status_pendidikan']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
@@ -222,29 +174,20 @@
 
                                     <div class="form-group">
                                         <label>Pekerjaan Ibu</label>
-                                        <?= form_error('pekerjaan_ibu', '<small class="text-danger">', '</small>') ?>
+                                        <?= form_error('status_pekerjaan_ibu', '<small class="text-danger">', '</small>') ?>
 
-                                        <select name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-control neu-brutalism-border">
-                                            <?php $pekerjaan_ibu = [
-                                                "PNS",
-                                                "Pegawai Swasta",
-                                                "Wirausaha",
-                                                "TNI / Polri",
-                                                "Petani",
-                                                "Nelayan",
-                                                "Tidak Bekerja",
-                                            ] ?>
-                                            <?php if ($keluarga['pekerjaan_ibu']) : ?>
-                                                <option value="<?= ucfirst($keluarga['pekerjaan_ibu']) ?>"><?= ucfirst($keluarga['pekerjaan_ibu']) ?></option>
-                                                <?php foreach ($pekerjaan_ibu as $pi) : ?>
-                                                    <?php if (ucfirst($keluarga['pekerjaan_ibu']) != $pi) : ?>
-                                                        <option value="<?= $pi ?>"><?= $pi; ?></option>
+                                        <select name="status_pekerjaan_ibu" id="status_pekerjaan_ibu" class="form-control neu-brutalism-border">
+                                            <?php if ($keluarga['status_pekerjaan_ibu']) : ?>
+                                                <option value="<?= $keluarga['id_status_pekerjaan_ibu'] ?>"><?= $keluarga['status_pekerjaan_ibu'] ?></option>
+                                                <?php foreach ($status_pekerjaan as $sp) : ?>
+                                                    <?php if ($keluarga['status_pekerjaan_ibu'] != $sp['status_pekerjaan']) : ?>
+                                                        <option value="<?= $sp['id'] ?>"><?= $sp['status_pekerjaan']; ?></option>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <option value="">Pilih Pekerjaan Ibu</option>
-                                                <?php foreach ($pekerjaan_ibu as $pi) : ?>
-                                                    <option value="<?= $pi ?>"><?= $pi; ?></option>
+                                                <?php foreach ($status_pekerjaan as $sp) : ?>
+                                                    <option value="<?= $sp['id'] ?>"><?= $sp['status_pekerjaan']; ?></option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>

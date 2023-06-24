@@ -55,17 +55,8 @@ class Dashboard extends CI_Controller
 
         $init_keluarga = [
             'id_user' => $this->session->userdata('id_user'),
-            "nama_ayah" => null,
-            "status_ayah" => null,
-            "status_hubungan_ayah" => null,
-            "pendidikan_ayah" => null,
-            "pekerjaan_ayah" => null,
-            "detail_ayah" => null,
-            "nama_ibu" => null,
-            "status_ibu" => null,
-            "pendidikan_ibu" => null,
-            "pekerjaan_ibu" => null,
-            "detail_ibu" => null,
+            'id_ayah' => null,
+            'id_ibu' => null,
             "jumlah_tanggungan" => null,
             "no_telepon_orang_tua" => null,
             "foto_bersama_keluarga" => "default.png"
@@ -74,6 +65,35 @@ class Dashboard extends CI_Controller
         $check_keluarga = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
         if (!$check_keluarga) {
             $this->db->insert('mahasiswa_keluarga', $init_keluarga);
+        }
+
+        $init_mahasiswa_ayah = [
+            'id_user' => $this->session->userdata('id_user'),
+            'nama_ayah' => null,
+            'id_status_hidup' => null,
+            'id_status_hubungan' => null,
+            'id_status_pendidikan' => null,
+            'id_status_pekerjaan' => null,
+            'detail_ayah' => null
+        ];
+
+        $check_mahasiswa_ayah = $this->keluarga->getMahasiswaAyahById($this->session->userdata('id_user'));
+        if (!$check_mahasiswa_ayah) {
+            $this->db->insert('mahasiswa_ayah', $init_mahasiswa_ayah);
+        }
+
+        $init_mahasiswa_ibu = [
+            'id_user' => $this->session->userdata('id_user'),
+            'nama_ibu' => null,
+            'id_status_hidup' => null,
+            'id_status_pendidikan' => null,
+            'id_status_pekerjaan' => null,
+            'detail_ibu' => null
+        ];
+
+        $check_mahasiswa_ibu = $this->keluarga->getMahasiswaIbuById($this->session->userdata('id_user'));
+        if (!$check_mahasiswa_ibu) {
+            $this->db->insert('mahasiswa_ibu', $init_mahasiswa_ibu);
         }
 
         $data['biodata'] = $this->beasiswa->getMahasiswaBiodata($this->session->userdata('id_user'));
@@ -253,12 +273,16 @@ class Dashboard extends CI_Controller
 
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
         $data['keluarga'] = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
+        $data['status_hidup'] = $this->db->get('status_hidup')->result_array();
+        $data['status_hubungan'] = $this->db->get('status_hubungan')->result_array();
+        $data['status_pendidikan'] = $this->db->get('status_pendidikan')->result_array();
+        $data['status_pekerjaan'] = $this->db->get('status_pekerjaan')->result_array();
 
         $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('status_ayah', 'Status Ayah', 'required', [
+        $this->form_validation->set_rules('status_hidup_ayah', 'Status Ayah', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
@@ -266,11 +290,11 @@ class Dashboard extends CI_Controller
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan Ayah', 'required', [
+        $this->form_validation->set_rules('status_pendidikan_ayah', 'Pendidikan Ayah', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required', [
+        $this->form_validation->set_rules('status_pekerjaan_ayah', 'Pekerjaan Ayah', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
@@ -284,15 +308,15 @@ class Dashboard extends CI_Controller
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('status_ibu', 'Status Ibu', 'required', [
+        $this->form_validation->set_rules('status_hidup_ibu', 'Status Ibu', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('pendidikan_ibu', 'Pendidikan Ibu', 'required', [
+        $this->form_validation->set_rules('status_pendidikan_ibu', 'Pendidikan Ibu', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
-        $this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required', [
+        $this->form_validation->set_rules('status_pekerjaan_ibu', 'Pekerjaan Ibu', 'required', [
             'required' => "tidak boleh kosong"
         ]);
 
@@ -314,27 +338,59 @@ class Dashboard extends CI_Controller
             $this->load->view('layout/header', $data);
             $this->load->view('layout/topbar');
             $this->load->view('layout/sidebar');
-            $this->load->view('dashboard/user_keluarga_ubah');
+            $this->load->view('dashboard/user_keluarga_ubah', $data);
             $this->load->view('layout/footer');
         } else {
 
-            $data = [
+            // $data = [
 
+            //     'id_user' => $this->session->userdata('id_user'),
+            //     "nama_ayah" => $this->input->post('nama_ayah'),
+            //     "status_ayah" => $this->input->post('status_ayah'),
+            //     "status_hubungan_ayah" => $this->input->post('status_hubungan_ayah'),
+            //     "pendidikan_ayah" => $this->input->post('pendidikan_ayah'),
+            //     "pekerjaan_ayah" => $this->input->post('pekerjaan_ayah'),
+            //     "detail_ayah" => $this->input->post('detail_ayah'),
+            //     "nama_ibu" => $this->input->post('nama_ibu'),
+            //     "status_ibu" => $this->input->post('status_ibu'),
+            //     "pendidikan_ibu" => $this->input->post('pendidikan_ibu'),
+            //     "pekerjaan_ibu" => $this->input->post('pekerjaan_ibu'),
+            //     "detail_ibu" => $this->input->post('detail_ibu'),
+            //     "jumlah_tanggungan" => $this->input->post('jumlah_tanggungan'),
+            //     "no_telepon_orang_tua" => $this->input->post('no_telepon_orang_tua')
+            // ];
+
+            $data_mahasiswa_keluarga = [
                 'id_user' => $this->session->userdata('id_user'),
-                "nama_ayah" => $this->input->post('nama_ayah'),
-                "status_ayah" => $this->input->post('status_ayah'),
-                "status_hubungan_ayah" => $this->input->post('status_hubungan_ayah'),
-                "pendidikan_ayah" => $this->input->post('pendidikan_ayah'),
-                "pekerjaan_ayah" => $this->input->post('pekerjaan_ayah'),
-                "detail_ayah" => $this->input->post('detail_ayah'),
-                "nama_ibu" => $this->input->post('nama_ibu'),
-                "status_ibu" => $this->input->post('status_ibu'),
-                "pendidikan_ibu" => $this->input->post('pendidikan_ibu'),
-                "pekerjaan_ibu" => $this->input->post('pekerjaan_ibu'),
-                "detail_ibu" => $this->input->post('detail_ibu'),
-                "jumlah_tanggungan" => $this->input->post('jumlah_tanggungan'),
-                "no_telepon_orang_tua" => $this->input->post('no_telepon_orang_tua')
+                'id_ayah' => $this->keluarga->getMahasiswaAyahById($this->session->userdata('id_user'))['id'],
+                'id_ibu' => $this->keluarga->getMahasiswaIbuById($this->session->userdata('id_user'))['id'],
+                'jumlah_tanggungan' => $this->input->post('jumlah_tanggungan'),
+                'no_telepon_orang_tua' => $this->input->post('no_telepon_orang_tua')
             ];
+
+            $data_mahasiswa_ayah = [
+                'id_user' => $this->session->userdata('id_user'),
+                'nama_ayah' => $this->input->post('nama_ayah'),
+                'id_status_hidup' => $this->input->post('status_hidup_ayah'),
+                'id_status_hubungan' => $this->input->post('status_hubungan_ayah'),
+                'id_status_pendidikan' => $this->input->post('status_pendidikan_ayah'),
+                'id_status_pekerjaan' => $this->input->post('status_pekerjaan_ayah'),
+                'detail_ayah' => $this->input->post('detail_ayah')
+            ];
+
+            $data_mahasiswa_ibu = [
+                'id_user' => $this->session->userdata('id_user'),
+                'nama_ibu' => $this->input->post('nama_ibu'),
+                'id_status_hidup' => $this->input->post('status_hidup_ibu'),
+                'id_status_pendidikan' => $this->input->post('status_pendidikan_ibu'),
+                'id_status_pekerjaan' => $this->input->post('status_pekerjaan_ibu'),
+                'detail_ibu' => $this->input->post('detail_ibu')
+            ];
+
+            // var_dump($data_mahasiswa_ayah);
+            // var_dump($data_mahasiswa_ibu);
+            // var_dump($data_mahasiswa_keluarga);
+            // die;
 
             // cek jika ada gambar yang akan diupload
             $upload_image = $_FILES['image']['name'];
@@ -360,8 +416,18 @@ class Dashboard extends CI_Controller
                 }
             }
 
+            // $this->db->where('id_user', $this->session->userdata('id_user'));
+            // $this->db->update('mahasiswa_keluarga', $data);
+
             $this->db->where('id_user', $this->session->userdata('id_user'));
-            $this->db->update('mahasiswa_keluarga', $data);
+            $this->db->update('mahasiswa_keluarga', $data_mahasiswa_keluarga);
+
+            $this->db->where('id_user', $this->session->userdata('id_user'));
+            $this->db->update('mahasiswa_ayah', $data_mahasiswa_ayah);
+
+            $this->db->where('id_user', $this->session->userdata('id_user'));
+            $this->db->update('mahasiswa_ibu', $data_mahasiswa_ibu);
+
             $this->session->set_flashdata(
                 'message',
                 '<div class="alert alert-success neu-brutalism mb-4">Data keluarga berhasil diperbarui!</div>'
