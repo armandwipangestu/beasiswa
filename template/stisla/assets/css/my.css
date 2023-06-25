@@ -43,6 +43,14 @@ body.sidebar-mini .main-sidebar:after {
     box-shadow: 0.3rem 0.3rem 0 #222 !important;
 }
 
+.card-header {
+    border-bottom-color: #000 !important;
+}
+
+.badge {
+    border-radius: 0.25rem !important;
+}
+
 .card .card-header .btn:not(.note-btn) {
     border-radius: 0.25rem !important;
 }

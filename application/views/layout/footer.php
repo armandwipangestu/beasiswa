@@ -53,11 +53,14 @@
         }
 
         // Disable 'e' at input text as number
-        document.querySelector(".number").addEventListener("keypress", function(evt) {
-            if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
-                evt.preventDefault();
-            }
-        });
+        const inputNumber = document.querySelector(".number")
+        if (inputNumber) {
+            inputNumber.addEventListener("keypress", function(evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            });
+        }
     </script>
 
     <script>

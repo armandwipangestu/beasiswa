@@ -15,11 +15,69 @@ class Dashboard extends CI_Controller
 
         $this->load->model('Jurusan_model', 'jurusan');
         $this->load->model('KelasProgram_model', 'kelas_program');
-        $this->load->model('Beasiswa_model', 'beasiswa');
+        $this->load->model('Biodata_model', 'biodata');
         $this->load->model('Prestasi_model', 'prestasi');
         $this->load->model('Keluarga_model', 'keluarga');
 
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['check_berkas_biodata'] = $this->biodata->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_prestasi'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_keluarga'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['status_kelengkapan_berkas'] = "<span class='badge badge-success neu-brutalism'>Sudah Lengkap</span>";
+        $data['list_berkas'] = [];
+
+        if ($data['check_berkas_biodata'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Biodata",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Biodata",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        if ($data['check_berkas_prestasi'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Prestasi",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Prestasi",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        if ($data['check_berkas_keluarga'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Keluarga",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Keluarga",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        // Periksa status kelengkapan berkas
+        $incomplete = false;
+        foreach ($data['list_berkas'] as $berkas) {
+            if ($berkas['status'] == "<i class='far fa-times-circle text-danger'></i>") {
+                $incomplete = true;
+                break;
+            }
+        }
+
+        if ($incomplete) {
+            $data['status_kelengkapan_berkas'] = "<span class='badge badge-warning neu-brutalism'>Belum Lengkap</span>";
+        }
+
+        // var_dump($data['status_kelengkapan_berkas']);
+        // var_dump($data['list_berkas']);
+        // die;
 
         $init_biodata = [
             "id_user" => $this->session->userdata('id_user'),
@@ -33,7 +91,7 @@ class Dashboard extends CI_Controller
             "id_kelas_program" => null
         ];
 
-        $check_biodata = $this->beasiswa->getMahasiswaBiodata($this->session->userdata('id_user'));
+        $check_biodata = $this->biodata->getMahasiswaBiodata($this->session->userdata('id_user'));
         if (!$check_biodata) {
             $this->db->insert('mahasiswa_biodata', $init_biodata);
         }
@@ -96,7 +154,7 @@ class Dashboard extends CI_Controller
             $this->db->insert('mahasiswa_ibu', $init_mahasiswa_ibu);
         }
 
-        $data['biodata'] = $this->beasiswa->getMahasiswaBiodata($this->session->userdata('id_user'));
+        $data['biodata'] = $this->biodata->getMahasiswaBiodata($this->session->userdata('id_user'));
         if ($data['biodata'] != null) {
             $data['jurusan_user'] = $this->jurusan->getJurusanById($data['biodata']['id_jurusan']);
             $data['kelas_program_user'] = $this->kelas_program->getKelasProgramById($data['biodata']['id_kelas_program']);
@@ -118,10 +176,10 @@ class Dashboard extends CI_Controller
 
         $this->load->model('Jurusan_model', 'jurusan');
         $this->load->model('KelasProgram_model', 'kelas_program');
-        $this->load->model('Beasiswa_model', 'beasiswa');
+        $this->load->model('Biodata_model', 'biodata');
 
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
-        $data['biodata'] = $this->beasiswa->getMahasiswaBiodata($this->session->userdata('id_user'));
+        $data['biodata'] = $this->biodata->getMahasiswaBiodata($this->session->userdata('id_user'));
         $data['jurusan'] = $this->db->get('kampus_jurusan')->result_array();
         $data['kelas_program'] = $this->db->get('kampus_kelas_program')->result_array();
 

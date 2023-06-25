@@ -219,7 +219,7 @@
                                     <div class="form-group">
                                         <label>No Telepon Orang Tua</label>
                                         <?= form_error('no_telepon_orang_tua', '<small class="text-danger">', '</small>') ?>
-                                        <input type="text" name="no_telepon_orang_tua" class="form-control neu-brutalism-border" value="<?= $keluarga['no_telepon_orang_tua'] ? $keluarga['no_telepon_orang_tua'] : "" ?>">
+                                        <input type="number" name="no_telepon_orang_tua" class="form-control neu-brutalism-border number" value="<?= $keluarga['no_telepon_orang_tua'] ? $keluarga['no_telepon_orang_tua'] : "" ?>">
                                     </div>
                                 </div>
                             </div>

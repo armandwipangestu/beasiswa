@@ -7,11 +7,60 @@
 
         <?= $this->session->flashdata('message') ?>
 
-        <div class="d-flex flex-row-reverse mb-3">
+        <!-- <div class="d-flex flex-row-reverse mb-3">
             <div>
                 <button type="submit" class="btn btn-success btn-block neu-brutalism">
                     <i class="fas fa-fw fa-upload mr-1"></i>Ajukan Beasiswa
                 </button>
+            </div>
+        </div> -->
+
+        <div class="card card-primary neu-brutalism">
+
+            <div class="card-header d-flex">
+                <div class="row">
+                    <div class="col-sm-6 col-md-8">
+                        <h4>Status Kelengkapan Berkas</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- <span class="badge badge-warning neu-brutalism">Belum Lengkap</span> -->
+                        <?= $status_kelengkapan_berkas ?>
+                    </div>
+                </div>
+                <div class="ml-auto">
+                    <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
+                        Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapseBerkas">
+                <div class="card card-body">
+                    <table class="table table-responsive table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-dark">Formulir</th>
+                                <th scope="col" class="text-dark">Sudah Lengkap?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($list_berkas as $lb) : ?>
+                                <tr>
+                                    <td><?= $lb['nama_berkas'] ?></td>
+                                    <td class="text-center">
+                                        <?= $lb['status'] ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <!-- <tr>
+                                <td>Biodata</td>
+                                <td class="text-center">
+                                    <i class="far fa-times-circle text-danger"></i>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
