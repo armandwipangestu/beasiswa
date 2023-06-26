@@ -32,12 +32,44 @@
     <!-- Template JS File -->
     <script src="<?= base_url(); ?>template/stisla/assets/js/scripts.js"></script>
     <script src="<?= base_url(); ?>assets/js/datatables/datatables.js"></script>
+    <script src="<?= base_url(); ?>assets/js/datepicker/datepicker.min.js"></script>
     <script src="<?= base_url(); ?>template/stisla/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
     <script>
+        // Preview the image uploaded
+        function previewImage() {
+            const gambar = document.querySelector(".gambar-preview");
+            const imgPreview = document.querySelector(".img-preview");
+            // console.log(imgPreview);
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(gambar.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            };
+
+        }
+
+        // Disable 'e' at input text as number
+        const inputNumber = document.querySelector(".number")
+        if (inputNumber) {
+            inputNumber.addEventListener("keypress", function(evt) {
+                if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            });
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
+        });
+        $.fn.datepicker.defaults.format = "yyyy/mm/dd";
+        $('.datepicker').datepicker({
+            format: 'yyyy/mm/dd',
         });
     </script>
     <script>
@@ -48,12 +80,12 @@
                 icon: 'warning',
                 html: `Apakah anda yakin ingin keluar?`,
                 showCancelButton: true,
-                confirmButtonColor: '#5cb85c',
-                cancelButtonColor: '#d9534f',
-                confirmButtonText: `Tidak`,
-                cancelButtonText: `Ya`,
+                confirmButtonColor: '#d9534f',
+                cancelButtonColor: '#5cb85c',
+                confirmButtonText: `Ya`,
+                cancelButtonText: `Tidak`,
             }).then((result) => {
-                if (!result.isConfirmed) {
+                if (result.isConfirmed) {
                     location.href = `${dataUrl}`
                 }
             })

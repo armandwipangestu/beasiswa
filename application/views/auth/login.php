@@ -12,7 +12,9 @@
                             <h4>Masuk Akun Beasiswa STMIK</h4>
                         </div>
 
-                        <?= $this->session->flashdata('message') ?>
+                        <div class="mt-3">
+                            <?= $this->session->flashdata('message') ?>
+                        </div>
 
                         <div class="card-body">
                             <form method="POST" action="<?= base_url('auth'); ?>" class="needs-validation">

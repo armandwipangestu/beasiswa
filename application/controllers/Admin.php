@@ -140,9 +140,9 @@ class Admin extends CI_Controller
         exit(json_encode((array)$menu));
     }
 
-    public function role_user()
+    public function user_data()
     {
-        $data['title'] = 'Role User';
+        $data['title'] = 'User Data';
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->model('User_model', 'user');
@@ -151,11 +151,11 @@ class Admin extends CI_Controller
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');
-        $this->load->view('admin/role_user', $data);
+        $this->load->view('admin/user_data', $data);
         $this->load->view('layout/footer');
     }
 
-    public function role_user_ubah()
+    public function user_data_ubah()
     {
         $this->load->model('User_model', 'user');
         $id = $this->input->post('id');
@@ -168,10 +168,10 @@ class Admin extends CI_Controller
             'message',
             '<div class="alert alert-success neu-brutalism mb-4">User <b>' . $nama . '</b> berhasil diubah rolenya menjadi <b>' . $this->user->getRoleName($role_id)->role . '</b>!</div>'
         );
-        redirect("admin/role_user");
+        redirect("admin/user_data");
     }
 
-    public function get_user_role($id)
+    public function get_user_data_role($id)
     {
         $this->load->model('User_model', 'user');
         $user = $this->user->getUserRole($id);
@@ -180,5 +180,34 @@ class Admin extends CI_Controller
 
         $user->roles = $roles;
         exit(json_encode((array)$user));
+    }
+
+    public function user_data_hapus()
+    {
+        $this->load->model('Beasiswa_model', 'beasiswa');
+        $user_id = $this->uri->segment(3);
+        $user_nama = $this->db->get_where('user_data', ['id' => $user_id])->row_array()['nama'];
+
+        // Delete stuff (biodata, image profile, etc)
+
+        // - biodata
+        $biodata = $this->beasiswa->getMahasiswaBiodata($user_id);
+
+        if ($biodata != null) {
+            $this->beasiswa->deleteMahasiswaBiodataById($user_id);
+        }
+
+        // - image profile / avatar
+        $gambar_path = "assets/img/profile/";
+        $gambar = $this->db->get_where('user_data', ['id' => $user_id])->row_array()['image'];
+
+        unlink(FCPATH . $gambar_path . $gambar);
+
+
+        $this->db->where('id', $user_id);
+        $this->db->delete('user_data');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger neu-brutalism mb-4">User <b>' . $user_nama . '</b> berhasil dihapus!</div>');
+        redirect("admin/user_data");
     }
 }

@@ -23,59 +23,45 @@
 
             <div class="card-body">
                 <?= form_open_multipart('user/ubah'); ?>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7 p-0 p-md-3">
 
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
-                    <input id="nama" type="nama" class="form-control" name="nama" value="<?= $user['nama']; ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" value="<?= $user['email']; ?>" readonly>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-1">Gambar</div>
-                    <div class="col-sm-11">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail img-preview">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
+                                <input id="nama" type="nama" class="form-control" name="nama" value="<?= $user['nama']; ?>">
                             </div>
-                            <div class="col-sm-6">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input gambar-preview" id="image" name="image" onchange="previewImage()">
-                                    <label for="image" class="custom-file-label">Pilih File</label>
-                                </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" class="form-control" name="email" value="<?= $user['email']; ?>" readonly>
                             </div>
                         </div>
+
+                        <div class="col-md-5 p-0 p-md-3">
+
+                            <div class="form-group row">
+                                <div class="col-sm-4">Gambar</div>
+                                <div class="col-sm-11">
+                                    <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="img-thumbnail img-preview">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input gambar-preview" id="image" name="image" onchange="previewImage()">
+                                        <label for="image" class="custom-file-label">Pilih File</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
+                            Ubah
+                        </button>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
-                        Ubah
-                    </button>
-                </div>
                 </form>
-
             </div>
         </div>
     </section>
 </div>
-
-<script>
-    function previewImage() {
-        const gambar = document.querySelector(".gambar-preview");
-        const imgPreview = document.querySelector(".img-preview");
-        // console.log(imgPreview);
-
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(gambar.files[0]);
-
-        oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
-        };
-
-    }
-</script>

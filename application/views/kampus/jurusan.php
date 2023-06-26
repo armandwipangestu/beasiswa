@@ -6,28 +6,28 @@
         </div>
 
         <?= $this->session->flashdata('message') ?>
-        <?= form_error('menu', '<div class="alert alert-danger neu-brutalism mb-4">', '</div>') ?>
+        <?= form_error('jurusan', '<div class="alert alert-danger neu-brutalism mb-4">', '</div>') ?>
 
-        <a href="#" data-toggle="modal" data-target="#modalMenuBaru" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Menu Baru</a>
+        <a href="#" data-toggle="modal" data-target="#modalJurusanBaru" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-plus"></i> Tambah Jurusan Baru</a>
 
         <div class="table-responsive rounded">
             <table class="table table-hover table-bordered neu-brutalism-border display" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col" class="text-dark">#</th>
-                        <th scope="col" class="text-dark">Menu</th>
+                        <th scope="col" class="text-dark">Jurusan</th>
                         <th scope="col" class="text-dark">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1 ?>
-                    <?php foreach ($menu as $m) : ?>
+                    <?php foreach ($jurusan as $j) : ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
-                            <td><?= $m['menu'] ?></td>
+                            <td><?= $j['jurusan']; ?></td>
                             <td>
-                                <a href="#" onclick="ubah('<?= $m['id'] ?>')" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
-                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $m['id'] ?>" data-url="<?= base_url('menu/hapus') ?>" data-menu="<?= $m['menu'] ?>"><i class="fas fa-trash"></i> Hapus</a>
+                                <a href="#" onclick="ubah(<?= $j['id'] ?>)" class="btn btn-warning mr-2 neu-brutalism"><i class="fas fa-edit"></i> Ubah</a>
+                                <a class="btn btn-danger neu-brutalism hapus" data-id="<?= $j['id'] ?>" data-url="<?= base_url('kampus/hapus_jurusan') ?>" data-jurusan="<?= $j['jurusan'] ?>"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -35,26 +35,26 @@
                 </tbody>
             </table>
         </div>
-</div>
-</section>
+
+    </section>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalMenuBaru" tabindex="-1" role="dialog" aria-labelledby="modalMenuBaruLabel" aria-hidden="true">
+<div class="modal fade" id="modalJurusanBaru" tabindex="-1" role="dialog" aria-labelledby="modalJurusanBaruLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content neu-brutalism-border">
             <div class="modal-header">
-                <h5 class="modal-title text-dark" id="newModalMenuBaru">Tambah Menu Baru</h5>
+                <h5 class="modal-title text-dark" id="newModalJurusanBaru">Tambah Jurusan Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu') ?>" method="POST">
+            <form action="<?= base_url('kampus/jurusan') ?>" method="POST">
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="menu" class="form-label">Nama Menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu">
+                        <label for="jurusan" class="form-label">Nama Jurusan</label>
+                        <input type="text" class="form-control" id="jurusan" name="jurusan">
                     </div>
                 </div>
 
@@ -68,22 +68,22 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalMenuUbah" tabindex="-1" role="dialog" aria-labelledby="modalMenuUbahLabel" aria-hidden="true">
+<div class="modal fade" id="modalJurusanUbah" tabindex="-1" role="dialog" aria-labelledby="modalJurusanUbahLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content neu-brutalism-border">
             <div class="modal-header">
-                <h5 class="modal-title modal-ubah text-dark" id="newModalMenuUbah">Ubah Menu</h5>
+                <h5 class="modal-title modal-ubah text-dark" id="newModalJurusanUbah"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/ubah') ?>" method="POST">
+            <form action="<?= base_url('kampus/ubah_jurusan') ?>" method="POST">
                 <input type="hidden" class="form-control" id="idUbah" name="id">
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="menu" class="form-label">Nama Menu</label>
-                        <input type="text" class="form-control" id="menuUbah" name="menu">
+                        <label for="jurusanUbah" class="form-label">Nama Jurusan</label>
+                        <input type="text" class="form-control" id="jurusanUbah" name="jurusan">
                     </div>
                 </div>
 
@@ -95,18 +95,18 @@
         </div>
     </div>
 </div>
-
 <script>
     const baseUrl = `<?= base_url() ?>`
 
     const ubah = (id) => {
-        $.get(`${baseUrl}menu/get_menu/${id}`, (data) => {
-            const menu = $.parseJSON(data)
+        $.get(`${baseUrl}kampus/get_jurusan/${id}`, (data) => {
+            const jurusan = $.parseJSON(data)
+            // console.log(jurusan)
 
-            $('.modal-ubah').text('Ubah Menu')
-            $('#idUbah').val(menu.id);
-            $('#menuUbah').val(menu.menu);
-            $('#modalMenuUbah').modal('show');
+            $('.modal-ubah').text('Ubah Jurusan')
+            $('#idUbah').val(jurusan.id);
+            $('#jurusanUbah').val(jurusan.jurusan);
+            $('#modalJurusanUbah').modal('show');
         })
     }
 
@@ -115,10 +115,10 @@
         hm.addEventListener('click', () => {
             const dataId = hm.dataset.id
             const dataUrl = hm.dataset.url
-            const dataMenu = hm.dataset.menu
+            const dataJurusan = hm.dataset.jurusan
             Swal.fire({
                 icon: 'warning',
-                html: `Apakah anda yakin ingin menghapus <b>${dataMenu}</b>?`,
+                html: `Apakah anda yakin ingin menghapus <b>${dataJurusan}</b>?`,
                 showCancelButton: true,
                 confirmButtonColor: '#d9534f',
                 cancelButtonColor: '#5cb85c',

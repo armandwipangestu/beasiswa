@@ -37,6 +37,7 @@ class Auth extends CI_Controller
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
+                    'id_user' => $user['id'],
                     'email' => $user['email'],
                     'role_id' => $user['role_id']
                 ];
@@ -106,6 +107,7 @@ class Auth extends CI_Controller
 
     public function keluar()
     {
+        $this->session->unset_userdata('id_user');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2023 at 06:20 AM
+-- Generation Time: Jun 26, 2023 at 01:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,281 @@ SET time_zone = "+00:00";
 --
 -- Database: `beasiswa`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kampus_jurusan`
+--
+
+CREATE TABLE `kampus_jurusan` (
+  `id` int(11) NOT NULL,
+  `jurusan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kampus_jurusan`
+--
+
+INSERT INTO `kampus_jurusan` (`id`, `jurusan`) VALUES
+(1, 'S1 Teknik Informatika'),
+(2, 'S1 Sistem Informasi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kampus_kelas_program`
+--
+
+CREATE TABLE `kampus_kelas_program` (
+  `id` int(11) NOT NULL,
+  `kelas_program` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kampus_kelas_program`
+--
+
+INSERT INTO `kampus_kelas_program` (`id`, `kelas_program`) VALUES
+(1, 'Reguler'),
+(2, 'Eksekutif'),
+(3, 'Karyawan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_ayah`
+--
+
+CREATE TABLE `mahasiswa_ayah` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_ayah` varchar(100) DEFAULT NULL,
+  `id_status_hidup` int(11) DEFAULT NULL,
+  `id_status_hubungan` int(11) DEFAULT NULL,
+  `id_status_pendidikan` int(11) DEFAULT NULL,
+  `id_status_pekerjaan` int(11) DEFAULT NULL,
+  `detail_ayah` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_ayah`
+--
+
+INSERT INTO `mahasiswa_ayah` (`id`, `id_user`, `nama_ayah`, `id_status_hidup`, `id_status_hubungan`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ayah`) VALUES
+(1, 13, 'Test Ayah', 1, 1, 4, 3, 'Test Detail Ayah'),
+(2, 12, 'Ayah Test 2', 2, 1, 5, 2, 'Ayah Test Detail'),
+(6, 14, 'test', 3, 3, 2, 1, 'asd'),
+(7, 16, 'Test 2 Ayah', 1, 1, 10, 3, 'Test 2 Untuk Detail Ayah'),
+(8, 17, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 19, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_biodata`
+--
+
+CREATE TABLE `mahasiswa_biodata` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tempat_lahir` varchar(255) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `no_telepon` varchar(20) DEFAULT NULL,
+  `jenis_kelamin` varchar(10) DEFAULT NULL,
+  `id_jurusan` int(11) DEFAULT NULL,
+  `semester` int(11) DEFAULT NULL,
+  `id_kelas_program` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_biodata`
+--
+
+INSERT INTO `mahasiswa_biodata` (`id`, `id_user`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telepon`, `jenis_kelamin`, `id_jurusan`, `semester`, `id_kelas_program`) VALUES
+(38, 12, 'Bandung', '2002-12-15', 'Jl. Jakarta, Kelurahan Kebonwaru, Kecamatan Batununggal, Kota Bandung 40272', '089637369606', 'Laki-laki', 1, 5, 3),
+(39, 13, 'Jakarta', '2011-03-01', 'Jl. Purwakarta, Kelurahan Antapani Tengah, Kecamatan Antapani, Kota Bandung', '081239876543', 'Perempuan', 2, 6, 1),
+(40, 14, 'Test Biodata', '2023-06-30', 'Jl. Biodata', '01234', 'Perempuan', 2, 1, 1),
+(41, 16, 'Bandung', '2023-06-30', 'Jl. Rajadesa', '0987654321', 'Laki-laki', 1, 3, 2),
+(42, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 19, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_ibu`
+--
+
+CREATE TABLE `mahasiswa_ibu` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_ibu` varchar(255) DEFAULT NULL,
+  `id_status_hidup` int(11) DEFAULT NULL,
+  `id_status_pendidikan` int(11) DEFAULT NULL,
+  `id_status_pekerjaan` int(11) DEFAULT NULL,
+  `detail_ibu` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_ibu`
+--
+
+INSERT INTO `mahasiswa_ibu` (`id`, `id_user`, `nama_ibu`, `id_status_hidup`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ibu`) VALUES
+(1, 13, 'Test Ibu', 1, 2, 3, 'Test Detail Ibu'),
+(2, 12, 'Ibu Test 2', 1, 4, 1, 'Test Ibu Detail'),
+(6, 14, 'aqwe', 1, 5, 1, 'ewq'),
+(7, 16, 'Test 2 Ibu', 1, 9, 2, 'Test 2 Untuk Detail Ibu'),
+(8, 17, NULL, NULL, NULL, NULL, NULL),
+(9, 19, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_keluarga`
+--
+
+CREATE TABLE `mahasiswa_keluarga` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_ayah` int(11) DEFAULT NULL,
+  `id_ibu` int(11) DEFAULT NULL,
+  `jumlah_tanggungan` varchar(15) DEFAULT NULL,
+  `no_telepon_orang_tua` varchar(25) DEFAULT NULL,
+  `foto_bersama_keluarga` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_keluarga`
+--
+
+INSERT INTO `mahasiswa_keluarga` (`id`, `id_user`, `id_ayah`, `id_ibu`, `jumlah_tanggungan`, `no_telepon_orang_tua`, `foto_bersama_keluarga`) VALUES
+(1, 13, 1, 1, 'Tidak ada', '08123456789', 'default.png'),
+(2, 12, 2, 2, '4', '0987654321', 'default.png'),
+(6, 14, 6, 6, '2', '098712345', 'photo_2021-04-15_00-04-43.jpg'),
+(7, 16, 7, 7, 'Tidak ada', '08123456789', 'default.png'),
+(8, 17, NULL, NULL, NULL, NULL, 'default.png'),
+(9, 19, NULL, NULL, NULL, NULL, 'default.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa_prestasi`
+--
+
+CREATE TABLE `mahasiswa_prestasi` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nama_kegiatan` varchar(255) DEFAULT NULL,
+  `jenis_kegiatan` varchar(128) DEFAULT NULL,
+  `tingkat` varchar(128) DEFAULT NULL,
+  `tahun` varchar(10) DEFAULT NULL,
+  `pencapaian` varchar(128) DEFAULT NULL,
+  `scan_sertifikat` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mahasiswa_prestasi`
+--
+
+INSERT INTO `mahasiswa_prestasi` (`id`, `id_user`, `nama_kegiatan`, `jenis_kegiatan`, `tingkat`, `tahun`, `pencapaian`, `scan_sertifikat`) VALUES
+(2, 13, 'Praktek Kerja Industri', 'Individual', 'Kabupaten/Kota', '2020', 'Juara 1', 'photo_2021-08-03_19-45-21.jpg'),
+(3, 14, 'Ini Test Ke 3', 'Kelompok/Tim', 'Nasional', '2023', 'Juara 1', 'photo_2021-04-15_00-04-40.jpg'),
+(4, 12, NULL, NULL, NULL, NULL, NULL, 'default.png'),
+(5, 16, 'Hackathon 2023', 'Kelompok/Tim', 'Internasional', '2023', 'Finalis', 'default.png'),
+(6, 17, NULL, NULL, NULL, NULL, NULL, 'default.png'),
+(7, 19, NULL, NULL, NULL, NULL, NULL, 'default.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_hidup`
+--
+
+CREATE TABLE `status_hidup` (
+  `id` int(11) NOT NULL,
+  `status_hidup` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status_hidup`
+--
+
+INSERT INTO `status_hidup` (`id`, `status_hidup`) VALUES
+(1, 'Masih Hidup'),
+(2, 'Wafat'),
+(3, 'Bercerai');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_hubungan`
+--
+
+CREATE TABLE `status_hubungan` (
+  `id` int(11) NOT NULL,
+  `status_hubungan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status_hubungan`
+--
+
+INSERT INTO `status_hubungan` (`id`, `status_hubungan`) VALUES
+(1, 'Ayah Kandung'),
+(2, 'Ayah Tiri'),
+(3, 'Wali');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_pekerjaan`
+--
+
+CREATE TABLE `status_pekerjaan` (
+  `id` int(11) NOT NULL,
+  `status_pekerjaan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status_pekerjaan`
+--
+
+INSERT INTO `status_pekerjaan` (`id`, `status_pekerjaan`) VALUES
+(1, 'PNS'),
+(2, 'Pegawai Swasta'),
+(3, 'Wirausaha'),
+(4, 'TNI / Polri'),
+(5, 'Petani'),
+(6, 'Nelayan'),
+(7, 'Tidak Bekerja');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_pendidikan`
+--
+
+CREATE TABLE `status_pendidikan` (
+  `id` int(11) NOT NULL,
+  `status_pendidikan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status_pendidikan`
+--
+
+INSERT INTO `status_pendidikan` (`id`, `status_pendidikan`) VALUES
+(1, 'Tidak Sekolah'),
+(2, 'SD / MI / Sederajat'),
+(3, 'SMP / MTs / Sederajat'),
+(4, 'SMA / MA / Sederajat'),
+(5, 'D1 / Sederajat'),
+(6, 'D2 / Sederajat'),
+(7, 'D3 / Sederajat'),
+(8, 'D4 / S1 / Sederajat'),
+(9, 'S2 / Sp1 / Sederajat'),
+(10, 'S3 / Sp2 / Sederajat');
 
 -- --------------------------------------------------------
 
@@ -45,7 +320,14 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (15, 1, 4),
 (16, 9, 2),
 (17, 9, 3),
-(18, 9, 4);
+(18, 9, 4),
+(19, 1, 20),
+(20, 2, 21),
+(21, 1, 22),
+(22, 1, 24),
+(23, 1, 25),
+(24, 3, 2),
+(25, 3, 26);
 
 -- --------------------------------------------------------
 
@@ -69,8 +351,13 @@ CREATE TABLE `user_data` (
 
 INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
 (7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
-(8, 'User', 'user@user.com', 'default.png', '$2y$10$iINm/8wigFz6vk2u7dahWOTC/RJoqU2R620I91VTqYHcmvxQvxAnK', 2, 1687161885),
-(9, 'Member', 'member@member.com', 'default.png', '$2y$10$5LV081k1MVQawsz7rwj5pOcIhHhC6Eda9lowLeBt17Ksg7ndTD5g2', 2, 1687234677);
+(12, 'Arman Dwi Pangestu', 'arman@gmail.com', 'photo_2021-04-15_00-04-40-modified.png', '$2y$10$QYWGnH6Tx9m8CH9hu1pLG.6Kh0l7WUgpbpbCoja1m3VOJi0nL1NYu', 2, 1687356267),
+(13, 'User', 'user@user.com', 'photo_2021-04-15_00-04-40-modified1.png', '$2y$10$h9tfIXfLLx8ZSpvY7KuQq.SMtbPF2hm1JDpeauTPq1orGJtNVTvYO', 2, 1687402958),
+(14, 'Test', 'test@test.com', 'default.png', '$2y$10$1a7/SbfjKD.lpnxxfu5Da.cJxkFUabVwIfYKcMr/0UDop5Pwx/msC', 2, 1687526388),
+(15, 'master', 'master@master.com', 'default.png', '$2y$10$Kp38OeTKTr6VZUHZIEKzRuz4YuMlT2UqodcHigPOiI0CYgqJAPioO', 3, 1687601987),
+(16, 'test2', 'test2@gmail.com', 'default.png', '$2y$10$Ud/9hz5pGWVm.5domEP59OofzdFDa8OYpbmEiA/3GMVjuWUt0AU4W', 2, 1687619232),
+(17, 'Android', 'android@android.com', 'default.png', '$2y$10$9wddmdD78B9lulczvMG36.Fc5hlLU4qWWvruxVkbiSnJxFk.3ldty', 2, 1687626529),
+(19, 'tast', 'tast@tast.com', 'default.png', '$2y$10$UKquQ3gBeWiH6QL9K5SWAezp3rOlyXsUaWWcW85um2.E49.WzOD6q', 2, 1687779311);
 
 -- --------------------------------------------------------
 
@@ -91,7 +378,12 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'User'),
 (3, 'Menu'),
-(4, 'Submenu');
+(4, 'Submenu'),
+(20, 'Beasiswa'),
+(21, 'Dashboard'),
+(22, 'Kampus'),
+(25, 'Status'),
+(26, 'master menu');
 
 -- --------------------------------------------------------
 
@@ -110,7 +402,8 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Administrator'),
-(2, 'Member');
+(2, 'Member'),
+(3, 'master');
 
 -- --------------------------------------------------------
 
@@ -138,11 +431,86 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
 (9, 1, 'Role Akses', 'admin/role', 'fas fa-fw fa-user-tie'),
 (10, 2, 'Ubah Profil', 'user/ubah', 'fas fa-fw fa-user-edit'),
 (11, 2, 'Ganti Kata Sandi', 'user/ganti_kata_sandi', 'fas fa-fw fa-key'),
-(12, 1, 'Role User', 'admin/role_user', 'fas fa-fw fa-users');
+(12, 1, 'User Data', 'admin/user_data', 'fas fa-fw fa-users'),
+(13, 20, 'Daftar Pemohon', 'beasiswa/pemohon', 'fas fa-fw fa-graduation-cap'),
+(14, 21, 'Dokumen Beasiswa', 'dashboard', 'fas fa-fw fa-graduation-cap'),
+(15, 22, 'Jurusan', 'kampus/jurusan', 'fas fa-fw fa-location-arrow'),
+(16, 22, 'Kelas Program', 'kampus/kelas_program', 'fas fa-fw fa-sitemap'),
+(18, 25, 'Status Hidup', 'status/hidup', 'fas fa-fw fa-heart'),
+(19, 25, 'Status Hubungan', 'status/hubungan', 'fas fa-fw fa-link'),
+(20, 25, 'Status Pendidikan', 'status/pendidikan', 'fas fa-fw fa-school'),
+(21, 25, 'Status Pekerjaan', 'status/pekerjaan', 'fas fa-fw fa-briefcase'),
+(22, 26, 'list pemohon', 'master', 'fas fa-fw fa-user-secret');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kampus_jurusan`
+--
+ALTER TABLE `kampus_jurusan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kampus_kelas_program`
+--
+ALTER TABLE `kampus_kelas_program`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa_ayah`
+--
+ALTER TABLE `mahasiswa_ayah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa_biodata`
+--
+ALTER TABLE `mahasiswa_biodata`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa_ibu`
+--
+ALTER TABLE `mahasiswa_ibu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa_keluarga`
+--
+ALTER TABLE `mahasiswa_keluarga`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mahasiswa_prestasi`
+--
+ALTER TABLE `mahasiswa_prestasi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_hidup`
+--
+ALTER TABLE `status_hidup`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_hubungan`
+--
+ALTER TABLE `status_hubungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_pekerjaan`
+--
+ALTER TABLE `status_pekerjaan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_pendidikan`
+--
+ALTER TABLE `status_pendidikan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_access_menu`
@@ -179,34 +547,100 @@ ALTER TABLE `user_sub_menu`
 --
 
 --
+-- AUTO_INCREMENT for table `kampus_jurusan`
+--
+ALTER TABLE `kampus_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `kampus_kelas_program`
+--
+ALTER TABLE `kampus_kelas_program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_ayah`
+--
+ALTER TABLE `mahasiswa_ayah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_biodata`
+--
+ALTER TABLE `mahasiswa_biodata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_ibu`
+--
+ALTER TABLE `mahasiswa_ibu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_keluarga`
+--
+ALTER TABLE `mahasiswa_keluarga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa_prestasi`
+--
+ALTER TABLE `mahasiswa_prestasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `status_hidup`
+--
+ALTER TABLE `status_hidup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `status_hubungan`
+--
+ALTER TABLE `status_hubungan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `status_pekerjaan`
+--
+ALTER TABLE `status_pekerjaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `status_pendidikan`
+--
+ALTER TABLE `status_pendidikan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
