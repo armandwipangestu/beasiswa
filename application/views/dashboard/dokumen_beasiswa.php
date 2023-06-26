@@ -33,7 +33,7 @@
                 </div>
                 <div class="ml-auto">
                     <?php if ($status_kelengkapan_berkas) : ?>
-                        <button class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></button>
+                        <a href = "<?= base_url('/dashboard/ajukan_beasiswa'); ?>" class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></a>
                     <?php else : ?>
                         <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
                             Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
