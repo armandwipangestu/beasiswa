@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2023 at 01:49 PM
+-- Generation Time: Jun 26, 2023 at 02:01 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -171,7 +171,7 @@ CREATE TABLE `mahasiswa_keluarga` (
 INSERT INTO `mahasiswa_keluarga` (`id`, `id_user`, `id_ayah`, `id_ibu`, `jumlah_tanggungan`, `no_telepon_orang_tua`, `foto_bersama_keluarga`) VALUES
 (1, 13, 1, 1, 'Tidak ada', '08123456789', 'default.png'),
 (2, 12, 2, 2, '4', '0987654321', 'default.png'),
-(6, 14, 6, 6, '2', '098712345', 'photo_2021-04-15_00-04-43.jpg'),
+(6, 14, 6, 6, '2', '098712345', 'default.png'),
 (7, 16, 7, 7, 'Tidak ada', '08123456789', 'default.png'),
 (8, 17, NULL, NULL, NULL, NULL, 'default.png'),
 (9, 19, NULL, NULL, NULL, NULL, 'default.png');
@@ -199,7 +199,7 @@ CREATE TABLE `mahasiswa_prestasi` (
 
 INSERT INTO `mahasiswa_prestasi` (`id`, `id_user`, `nama_kegiatan`, `jenis_kegiatan`, `tingkat`, `tahun`, `pencapaian`, `scan_sertifikat`) VALUES
 (2, 13, 'Praktek Kerja Industri', 'Individual', 'Kabupaten/Kota', '2020', 'Juara 1', 'photo_2021-08-03_19-45-21.jpg'),
-(3, 14, 'Ini Test Ke 3', 'Kelompok/Tim', 'Nasional', '2023', 'Juara 1', 'photo_2021-04-15_00-04-40.jpg'),
+(3, 14, 'Ini Test Ke 3', 'Kelompok/Tim', 'Nasional', '2023', 'Juara 1', 'default.png'),
 (4, 12, NULL, NULL, NULL, NULL, NULL, 'default.png'),
 (5, 16, 'Hackathon 2023', 'Kelompok/Tim', 'Internasional', '2023', 'Finalis', 'default.png'),
 (6, 17, NULL, NULL, NULL, NULL, NULL, 'default.png'),
