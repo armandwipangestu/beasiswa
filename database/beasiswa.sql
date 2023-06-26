@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jun 2023 pada 12.30
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.0.33
+-- Generation Time: Jun 26, 2023 at 01:49 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,16 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kampus_jurusan`
+-- Table structure for table `kampus_jurusan`
 --
 
 CREATE TABLE `kampus_jurusan` (
   `id` int(11) NOT NULL,
   `jurusan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `kampus_jurusan`
+-- Dumping data for table `kampus_jurusan`
 --
 
 INSERT INTO `kampus_jurusan` (`id`, `jurusan`) VALUES
@@ -44,16 +43,16 @@ INSERT INTO `kampus_jurusan` (`id`, `jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kampus_kelas_program`
+-- Table structure for table `kampus_kelas_program`
 --
 
 CREATE TABLE `kampus_kelas_program` (
   `id` int(11) NOT NULL,
   `kelas_program` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `kampus_kelas_program`
+-- Dumping data for table `kampus_kelas_program`
 --
 
 INSERT INTO `kampus_kelas_program` (`id`, `kelas_program`) VALUES
@@ -64,7 +63,7 @@ INSERT INTO `kampus_kelas_program` (`id`, `kelas_program`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa_ayah`
+-- Table structure for table `mahasiswa_ayah`
 --
 
 CREATE TABLE `mahasiswa_ayah` (
@@ -76,21 +75,24 @@ CREATE TABLE `mahasiswa_ayah` (
   `id_status_pendidikan` int(11) DEFAULT NULL,
   `id_status_pekerjaan` int(11) DEFAULT NULL,
   `detail_ayah` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mahasiswa_ayah`
+-- Dumping data for table `mahasiswa_ayah`
 --
 
 INSERT INTO `mahasiswa_ayah` (`id`, `id_user`, `nama_ayah`, `id_status_hidup`, `id_status_hubungan`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ayah`) VALUES
 (1, 13, 'Test Ayah', 1, 1, 4, 3, 'Test Detail Ayah'),
 (2, 12, 'Ayah Test 2', 2, 1, 5, 2, 'Ayah Test Detail'),
-(6, 14, 'test', 3, 3, 2, 1, 'asd');
+(6, 14, 'test', 3, 3, 2, 1, 'asd'),
+(7, 16, 'Test 2 Ayah', 1, 1, 10, 3, 'Test 2 Untuk Detail Ayah'),
+(8, 17, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 19, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa_biodata`
+-- Table structure for table `mahasiswa_biodata`
 --
 
 CREATE TABLE `mahasiswa_biodata` (
@@ -104,21 +106,24 @@ CREATE TABLE `mahasiswa_biodata` (
   `id_jurusan` int(11) DEFAULT NULL,
   `semester` int(11) DEFAULT NULL,
   `id_kelas_program` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mahasiswa_biodata`
+-- Dumping data for table `mahasiswa_biodata`
 --
 
 INSERT INTO `mahasiswa_biodata` (`id`, `id_user`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telepon`, `jenis_kelamin`, `id_jurusan`, `semester`, `id_kelas_program`) VALUES
 (38, 12, 'Bandung', '2002-12-15', 'Jl. Jakarta, Kelurahan Kebonwaru, Kecamatan Batununggal, Kota Bandung 40272', '089637369606', 'Laki-laki', 1, 5, 3),
 (39, 13, 'Jakarta', '2011-03-01', 'Jl. Purwakarta, Kelurahan Antapani Tengah, Kecamatan Antapani, Kota Bandung', '081239876543', 'Perempuan', 2, 6, 1),
-(40, 14, 'Test Biodata', '2023-06-30', 'Jl. Biodata', '01234', 'Perempuan', 2, 1, 1);
+(40, 14, 'Test Biodata', '2023-06-30', 'Jl. Biodata', '01234', 'Perempuan', 2, 1, 1),
+(41, 16, 'Bandung', '2023-06-30', 'Jl. Rajadesa', '0987654321', 'Laki-laki', 1, 3, 2),
+(42, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 19, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa_ibu`
+-- Table structure for table `mahasiswa_ibu`
 --
 
 CREATE TABLE `mahasiswa_ibu` (
@@ -129,21 +134,24 @@ CREATE TABLE `mahasiswa_ibu` (
   `id_status_pendidikan` int(11) DEFAULT NULL,
   `id_status_pekerjaan` int(11) DEFAULT NULL,
   `detail_ibu` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mahasiswa_ibu`
+-- Dumping data for table `mahasiswa_ibu`
 --
 
 INSERT INTO `mahasiswa_ibu` (`id`, `id_user`, `nama_ibu`, `id_status_hidup`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ibu`) VALUES
 (1, 13, 'Test Ibu', 1, 2, 3, 'Test Detail Ibu'),
 (2, 12, 'Ibu Test 2', 1, 4, 1, 'Test Ibu Detail'),
-(6, 14, 'aqwe', 1, 5, 1, 'ewq');
+(6, 14, 'aqwe', 1, 5, 1, 'ewq'),
+(7, 16, 'Test 2 Ibu', 1, 9, 2, 'Test 2 Untuk Detail Ibu'),
+(8, 17, NULL, NULL, NULL, NULL, NULL),
+(9, 19, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa_keluarga`
+-- Table structure for table `mahasiswa_keluarga`
 --
 
 CREATE TABLE `mahasiswa_keluarga` (
@@ -154,21 +162,24 @@ CREATE TABLE `mahasiswa_keluarga` (
   `jumlah_tanggungan` varchar(15) DEFAULT NULL,
   `no_telepon_orang_tua` varchar(25) DEFAULT NULL,
   `foto_bersama_keluarga` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mahasiswa_keluarga`
+-- Dumping data for table `mahasiswa_keluarga`
 --
 
 INSERT INTO `mahasiswa_keluarga` (`id`, `id_user`, `id_ayah`, `id_ibu`, `jumlah_tanggungan`, `no_telepon_orang_tua`, `foto_bersama_keluarga`) VALUES
 (1, 13, 1, 1, 'Tidak ada', '08123456789', 'default.png'),
 (2, 12, 2, 2, '4', '0987654321', 'default.png'),
-(6, 14, 6, 6, '2', '098712345', 'photo_2021-04-15_00-04-43.jpg');
+(6, 14, 6, 6, '2', '098712345', 'photo_2021-04-15_00-04-43.jpg'),
+(7, 16, 7, 7, 'Tidak ada', '08123456789', 'default.png'),
+(8, 17, NULL, NULL, NULL, NULL, 'default.png'),
+(9, 19, NULL, NULL, NULL, NULL, 'default.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa_prestasi`
+-- Table structure for table `mahasiswa_prestasi`
 --
 
 CREATE TABLE `mahasiswa_prestasi` (
@@ -180,30 +191,33 @@ CREATE TABLE `mahasiswa_prestasi` (
   `tahun` varchar(10) DEFAULT NULL,
   `pencapaian` varchar(128) DEFAULT NULL,
   `scan_sertifikat` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `mahasiswa_prestasi`
+-- Dumping data for table `mahasiswa_prestasi`
 --
 
 INSERT INTO `mahasiswa_prestasi` (`id`, `id_user`, `nama_kegiatan`, `jenis_kegiatan`, `tingkat`, `tahun`, `pencapaian`, `scan_sertifikat`) VALUES
 (2, 13, 'Praktek Kerja Industri', 'Individual', 'Kabupaten/Kota', '2020', 'Juara 1', 'photo_2021-08-03_19-45-21.jpg'),
 (3, 14, 'Ini Test Ke 3', 'Kelompok/Tim', 'Nasional', '2023', 'Juara 1', 'photo_2021-04-15_00-04-40.jpg'),
-(4, 12, NULL, NULL, NULL, NULL, NULL, 'default.png');
+(4, 12, NULL, NULL, NULL, NULL, NULL, 'default.png'),
+(5, 16, 'Hackathon 2023', 'Kelompok/Tim', 'Internasional', '2023', 'Finalis', 'default.png'),
+(6, 17, NULL, NULL, NULL, NULL, NULL, 'default.png'),
+(7, 19, NULL, NULL, NULL, NULL, NULL, 'default.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_hidup`
+-- Table structure for table `status_hidup`
 --
 
 CREATE TABLE `status_hidup` (
   `id` int(11) NOT NULL,
   `status_hidup` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `status_hidup`
+-- Dumping data for table `status_hidup`
 --
 
 INSERT INTO `status_hidup` (`id`, `status_hidup`) VALUES
@@ -214,16 +228,16 @@ INSERT INTO `status_hidup` (`id`, `status_hidup`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_hubungan`
+-- Table structure for table `status_hubungan`
 --
 
 CREATE TABLE `status_hubungan` (
   `id` int(11) NOT NULL,
   `status_hubungan` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `status_hubungan`
+-- Dumping data for table `status_hubungan`
 --
 
 INSERT INTO `status_hubungan` (`id`, `status_hubungan`) VALUES
@@ -234,16 +248,16 @@ INSERT INTO `status_hubungan` (`id`, `status_hubungan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_pekerjaan`
+-- Table structure for table `status_pekerjaan`
 --
 
 CREATE TABLE `status_pekerjaan` (
   `id` int(11) NOT NULL,
   `status_pekerjaan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `status_pekerjaan`
+-- Dumping data for table `status_pekerjaan`
 --
 
 INSERT INTO `status_pekerjaan` (`id`, `status_pekerjaan`) VALUES
@@ -258,16 +272,16 @@ INSERT INTO `status_pekerjaan` (`id`, `status_pekerjaan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_pendidikan`
+-- Table structure for table `status_pendidikan`
 --
 
 CREATE TABLE `status_pendidikan` (
   `id` int(11) NOT NULL,
   `status_pendidikan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `status_pendidikan`
+-- Dumping data for table `status_pendidikan`
 --
 
 INSERT INTO `status_pendidikan` (`id`, `status_pendidikan`) VALUES
@@ -285,17 +299,17 @@ INSERT INTO `status_pendidikan` (`id`, `status_pendidikan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_access_menu`
+-- Table structure for table `user_access_menu`
 --
 
 CREATE TABLE `user_access_menu` (
   `id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_access_menu`
+-- Dumping data for table `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
@@ -318,7 +332,7 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_data`
+-- Table structure for table `user_data`
 --
 
 CREATE TABLE `user_data` (
@@ -329,32 +343,35 @@ CREATE TABLE `user_data` (
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
   `date_created` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_data`
+-- Dumping data for table `user_data`
 --
 
 INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
 (7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
 (12, 'Arman Dwi Pangestu', 'arman@gmail.com', 'photo_2021-04-15_00-04-40-modified.png', '$2y$10$QYWGnH6Tx9m8CH9hu1pLG.6Kh0l7WUgpbpbCoja1m3VOJi0nL1NYu', 2, 1687356267),
-(13, 'jijan', 'user@user.com', '724925827.jpg', '$2y$10$h9tfIXfLLx8ZSpvY7KuQq.SMtbPF2hm1JDpeauTPq1orGJtNVTvYO', 2, 1687402958),
+(13, 'User', 'user@user.com', 'photo_2021-04-15_00-04-40-modified1.png', '$2y$10$h9tfIXfLLx8ZSpvY7KuQq.SMtbPF2hm1JDpeauTPq1orGJtNVTvYO', 2, 1687402958),
 (14, 'Test', 'test@test.com', 'default.png', '$2y$10$1a7/SbfjKD.lpnxxfu5Da.cJxkFUabVwIfYKcMr/0UDop5Pwx/msC', 2, 1687526388),
-(15, 'master', 'master@master.com', 'default.png', '$2y$10$Kp38OeTKTr6VZUHZIEKzRuz4YuMlT2UqodcHigPOiI0CYgqJAPioO', 3, 1687601987);
+(15, 'master', 'master@master.com', 'default.png', '$2y$10$Kp38OeTKTr6VZUHZIEKzRuz4YuMlT2UqodcHigPOiI0CYgqJAPioO', 3, 1687601987),
+(16, 'test2', 'test2@gmail.com', 'default.png', '$2y$10$Ud/9hz5pGWVm.5domEP59OofzdFDa8OYpbmEiA/3GMVjuWUt0AU4W', 2, 1687619232),
+(17, 'Android', 'android@android.com', 'default.png', '$2y$10$9wddmdD78B9lulczvMG36.Fc5hlLU4qWWvruxVkbiSnJxFk.3ldty', 2, 1687626529),
+(19, 'tast', 'tast@tast.com', 'default.png', '$2y$10$UKquQ3gBeWiH6QL9K5SWAezp3rOlyXsUaWWcW85um2.E49.WzOD6q', 2, 1687779311);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_menu`
+-- Table structure for table `user_menu`
 --
 
 CREATE TABLE `user_menu` (
   `id` int(11) NOT NULL,
   `menu` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_menu`
+-- Dumping data for table `user_menu`
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
@@ -371,16 +388,16 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
   `id` int(11) NOT NULL,
   `role` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
@@ -391,7 +408,7 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_sub_menu`
+-- Table structure for table `user_sub_menu`
 --
 
 CREATE TABLE `user_sub_menu` (
@@ -400,10 +417,10 @@ CREATE TABLE `user_sub_menu` (
   `title` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `icon` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_sub_menu`
+-- Dumping data for table `user_sub_menu`
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
@@ -430,197 +447,197 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
 --
 
 --
--- Indeks untuk tabel `kampus_jurusan`
+-- Indexes for table `kampus_jurusan`
 --
 ALTER TABLE `kampus_jurusan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kampus_kelas_program`
+-- Indexes for table `kampus_kelas_program`
 --
 ALTER TABLE `kampus_kelas_program`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mahasiswa_ayah`
+-- Indexes for table `mahasiswa_ayah`
 --
 ALTER TABLE `mahasiswa_ayah`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mahasiswa_biodata`
+-- Indexes for table `mahasiswa_biodata`
 --
 ALTER TABLE `mahasiswa_biodata`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mahasiswa_ibu`
+-- Indexes for table `mahasiswa_ibu`
 --
 ALTER TABLE `mahasiswa_ibu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mahasiswa_keluarga`
+-- Indexes for table `mahasiswa_keluarga`
 --
 ALTER TABLE `mahasiswa_keluarga`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mahasiswa_prestasi`
+-- Indexes for table `mahasiswa_prestasi`
 --
 ALTER TABLE `mahasiswa_prestasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `status_hidup`
+-- Indexes for table `status_hidup`
 --
 ALTER TABLE `status_hidup`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `status_hubungan`
+-- Indexes for table `status_hubungan`
 --
 ALTER TABLE `status_hubungan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `status_pekerjaan`
+-- Indexes for table `status_pekerjaan`
 --
 ALTER TABLE `status_pekerjaan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `status_pendidikan`
+-- Indexes for table `status_pendidikan`
 --
 ALTER TABLE `status_pendidikan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_access_menu`
+-- Indexes for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_data`
+-- Indexes for table `user_data`
 --
 ALTER TABLE `user_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_menu`
+-- Indexes for table `user_menu`
 --
 ALTER TABLE `user_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user_sub_menu`
+-- Indexes for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `kampus_jurusan`
+-- AUTO_INCREMENT for table `kampus_jurusan`
 --
 ALTER TABLE `kampus_jurusan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `kampus_kelas_program`
+-- AUTO_INCREMENT for table `kampus_kelas_program`
 --
 ALTER TABLE `kampus_kelas_program`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa_ayah`
+-- AUTO_INCREMENT for table `mahasiswa_ayah`
 --
 ALTER TABLE `mahasiswa_ayah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa_biodata`
+-- AUTO_INCREMENT for table `mahasiswa_biodata`
 --
 ALTER TABLE `mahasiswa_biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa_ibu`
+-- AUTO_INCREMENT for table `mahasiswa_ibu`
 --
 ALTER TABLE `mahasiswa_ibu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa_keluarga`
+-- AUTO_INCREMENT for table `mahasiswa_keluarga`
 --
 ALTER TABLE `mahasiswa_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa_prestasi`
+-- AUTO_INCREMENT for table `mahasiswa_prestasi`
 --
 ALTER TABLE `mahasiswa_prestasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `status_hidup`
+-- AUTO_INCREMENT for table `status_hidup`
 --
 ALTER TABLE `status_hidup`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `status_hubungan`
+-- AUTO_INCREMENT for table `status_hubungan`
 --
 ALTER TABLE `status_hubungan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `status_pekerjaan`
+-- AUTO_INCREMENT for table `status_pekerjaan`
 --
 ALTER TABLE `status_pekerjaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `status_pendidikan`
+-- AUTO_INCREMENT for table `status_pendidikan`
 --
 ALTER TABLE `status_pendidikan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `user_access_menu`
+-- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `user_data`
+-- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `user_menu`
+-- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT untuk tabel `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `user_sub_menu`
+-- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
