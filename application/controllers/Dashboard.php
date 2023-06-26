@@ -162,6 +162,10 @@ class Dashboard extends CI_Controller
             $data['status_kelengkapan_berkas'] = true;
         }
 
+        $data['pengajuan'] = $this->db->get_where('mahasiswa_pengajuan', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        // var_dump($data['status_pengajuan']);
+        // die;
+
         // var_dump($data['status_kelengkapan_berkas']);
         // var_dump($data['list_berkas']);
         // die;
@@ -474,5 +478,27 @@ class Dashboard extends CI_Controller
             );
             redirect("dashboard");
         }
+    }
+
+    public function ajukan_beasiswa()
+    {
+        // var_dump($this->session->userdata('id_user'));
+        // var_dump($this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array());
+        // die;
+
+        $data = [
+            "id_user" => $this->session->userdata('id_user'),
+            "id_mahasiswa_biodata" => $this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "id_mahasiswa_prestasi" => $this->db->query('SELECT id FROM mahasiswa_prestasi WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "id_mahasiswa_keluarga" => $this->db->query('SELECT id FROM mahasiswa_keluarga WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "status_pengajuan" => "Menunggu Pengecekan"
+        ];
+
+        $this->db->insert('mahasiswa_pengajuan', $data);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success neu-brutalism mb-4">Pengajuan beasiswa berhasil!</div>'
+        );
+        redirect("dashboard");
     }
 }

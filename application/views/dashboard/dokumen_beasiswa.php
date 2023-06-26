@@ -32,8 +32,10 @@
                     </div>
                 </div>
                 <div class="ml-auto">
-                    <?php if ($status_kelengkapan_berkas) : ?>
-                        <button class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></button>
+                    <?php if ($pengajuan != null) : ?>
+                        <a href="#" class="btn btn-warning btn-block neu-brutalism"><?= $pengajuan['status_pengajuan']; ?></a>
+                    <?php elseif ($status_kelengkapan_berkas) : ?>
+                        <a onclick="ajukan()" class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></a>
                     <?php else : ?>
                         <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
                             Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
@@ -382,3 +384,22 @@
 
     </section>
 </div>
+
+<script>
+    const ajukan = () => {
+        const baseUrl = `<?= base_url() ?>`
+        Swal.fire({
+            icon: 'warning',
+            html: `Apakah anda yakin ingin mengajukan beasiswa?`,
+            showCancelButton: true,
+            confirmButtonColor: '#d9534f',
+            cancelButtonColor: '#5cb85c',
+            confirmButtonText: `Ya`,
+            cancelButtonText: `Tidak`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = `${baseUrl}/dashboard/ajukan_beasiswa`
+            }
+        })
+    }
+</script>
