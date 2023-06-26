@@ -65,6 +65,9 @@ class Auth extends CI_Controller
         if ($this->session->userdata('role_id') == 2) {
             redirect('user');
         }
+        if ($this->session->userdata('role_id') == 3) {
+            redirect('master');
+        }
     }
 
     public function daftar()
