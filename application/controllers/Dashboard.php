@@ -20,64 +20,6 @@ class Dashboard extends CI_Controller
         $this->load->model('Keluarga_model', 'keluarga');
 
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
-        $data['check_berkas_biodata'] = $this->biodata->checkFieldsFilled($this->session->userdata('id_user'));
-        $data['check_berkas_prestasi'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
-        $data['check_berkas_keluarga'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
-        $data['status_kelengkapan_berkas'] = "<span class='badge badge-success neu-brutalism'>Sudah Lengkap</span>";
-        $data['list_berkas'] = [];
-
-        if ($data['check_berkas_biodata'] == false) {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Biodata",
-                "status" => "<i class='far fa-times-circle text-danger'></i>"
-            ]);
-        } else {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Biodata",
-                "status" => "<i class='far fa-check-circle text-success'></i>"
-            ]);
-        }
-
-        if ($data['check_berkas_prestasi'] == false) {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Prestasi",
-                "status" => "<i class='far fa-times-circle text-danger'></i>"
-            ]);
-        } else {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Prestasi",
-                "status" => "<i class='far fa-check-circle text-success'></i>"
-            ]);
-        }
-
-        if ($data['check_berkas_keluarga'] == false) {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Keluarga",
-                "status" => "<i class='far fa-times-circle text-danger'></i>"
-            ]);
-        } else {
-            array_push($data['list_berkas'], [
-                'nama_berkas' => "Keluarga",
-                "status" => "<i class='far fa-check-circle text-success'></i>"
-            ]);
-        }
-
-        // Periksa status kelengkapan berkas
-        $incomplete = false;
-        foreach ($data['list_berkas'] as $berkas) {
-            if ($berkas['status'] == "<i class='far fa-times-circle text-danger'></i>") {
-                $incomplete = true;
-                break;
-            }
-        }
-
-        if ($incomplete) {
-            $data['status_kelengkapan_berkas'] = "<span class='badge badge-warning neu-brutalism'>Belum Lengkap</span>";
-        }
-
-        // var_dump($data['status_kelengkapan_berkas']);
-        // var_dump($data['list_berkas']);
-        // die;
 
         $init_biodata = [
             "id_user" => $this->session->userdata('id_user'),
@@ -162,6 +104,67 @@ class Dashboard extends CI_Controller
 
         $data['prestasi'] = $this->prestasi->getMahasiswaPrestasi($this->session->userdata('id_user'));
         $data['keluarga'] = $this->keluarga->getMahasiswaKeluarga($this->session->userdata('id_user'));
+
+        $data['check_berkas_biodata'] = $this->biodata->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_prestasi'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_keluarga'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['status_kelengkapan_berkas'] = null;
+        $data['list_berkas'] = [];
+
+        if ($data['check_berkas_biodata'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Biodata",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Biodata",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        if ($data['check_berkas_prestasi'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Prestasi",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Prestasi",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        if ($data['check_berkas_keluarga'] == false) {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Keluarga",
+                "status" => "<i class='far fa-times-circle text-danger'></i>"
+            ]);
+        } else {
+            array_push($data['list_berkas'], [
+                'nama_berkas' => "Keluarga",
+                "status" => "<i class='far fa-check-circle text-success'></i>"
+            ]);
+        }
+
+        // Periksa status kelengkapan berkas
+        $incomplete = false;
+        foreach ($data['list_berkas'] as $berkas) {
+            if ($berkas['status'] == "<i class='far fa-times-circle text-danger'></i>") {
+                $incomplete = true;
+                break;
+            }
+        }
+
+        if ($incomplete) {
+            $data['status_kelengkapan_berkas'] = false;
+        } else {
+            $data['status_kelengkapan_berkas'] = true;
+        }
+
+        // var_dump($data['status_kelengkapan_berkas']);
+        // var_dump($data['list_berkas']);
+        // die;
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');

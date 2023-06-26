@@ -23,14 +23,22 @@
                         <h4>Status Kelengkapan Berkas</h4>
                     </div>
                     <div class="col-sm-4">
-                        <!-- <span class="badge badge-warning neu-brutalism">Belum Lengkap</span> -->
-                        <?= $status_kelengkapan_berkas ?>
+                        <?php if ($status_kelengkapan_berkas) : ?>
+                            <span class='badge badge-success neu-brutalism'>Sudah Lengkap</span>
+                        <?php else : ?>
+                            <span class='badge badge-warning neu-brutalism'>Belum Lengkap</span>
+                        <?php endif; ?>
+                        <!-- <?= $status_kelengkapan_berkas ?> -->
                     </div>
                 </div>
                 <div class="ml-auto">
-                    <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
-                        Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
-                    </a>
+                    <?php if ($status_kelengkapan_berkas) : ?>
+                        <button class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></button>
+                    <?php else : ?>
+                        <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
+                            Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -52,12 +60,6 @@
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                            <!-- <tr>
-                                <td>Biodata</td>
-                                <td class="text-center">
-                                    <i class="far fa-times-circle text-danger"></i>
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
