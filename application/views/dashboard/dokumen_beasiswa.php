@@ -33,7 +33,7 @@
                 </div>
                 <div class="ml-auto">
                     <?php if ($pengajuan != null) : ?>
-                        <a href="#" class="btn btn-warning btn-block neu-brutalism"><?= $pengajuan['status_pengajuan']; ?></a>
+                        <span class='badge badge-warning neu-brutalism'><?= $pengajuan['status_pengajuan']; ?></span>
                     <?php elseif ($status_kelengkapan_berkas) : ?>
                         <a onclick="ajukan()" class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></a>
                     <?php else : ?>

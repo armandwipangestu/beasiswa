@@ -26,7 +26,7 @@
                             <td><?= $np['nama'] ?></td>
                             <td><span class="badge badge-warning neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
                             <td>
-                                <a href="#" onclick="lihat('<?= $np['id'] ?>')" class="btn btn-primary neu-brutalism">
+                                <a href="#" onclick="lihat('<?= $np['id'] ?>', '<?= $np['id_user'] ?>')" class="btn btn-primary neu-brutalism">
                                     <i class="fas fa-fw fa-search mr-1"></i>
                                     Lihat
                                 </a>
@@ -55,13 +55,20 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-md-6 p-2 p-md-3">
+                        <div class="col-lg-6 p-2 p-lg-3">
                             <div class="card bg-warning neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Biodata</h4>
                                 </div>
 
                                 <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-sm">Foto Mahasiswa</div>
+                                        <div class="col-sm-12">
+                                            <img src="" class="img-thumbnail img-preview neu-brutalism image" style="width: 200px;">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label>Nama</label>
                                         <input type="text" class="form-control neu-brutalism-border nama" value="" disabled>
@@ -109,13 +116,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" col-md-6 p-0 p-md-3">
+                        <div class=" col-lg-6 p-2 p-lg-3">
                             <div class="card bg-success neu-brutalism">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Prestasi</h4>
                                 </div>
 
                                 <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-sm">Scan Sertifikat</div>
+                                        <div class="col-sm-12">
+                                            <img src="" class="img-thumbnail img-preview neu-brutalism w-100 scan_sertifikat">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label>Nama Kegiatan</label>
                                         <input type="text" class="form-control neu-brutalism-border nama_kegiatan" value="" disabled>
@@ -140,14 +154,122 @@
                                         <label>Pencapaian</label>
                                         <input type="text" class="form-control neu-brutalism-border pencapaian" value="" disabled>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-sm">Scan Sertifikat</div>
-                                        <div class="col-sm-12">
-                                            <img src="" class="img-thumbnail img-preview neu-brutalism w-100 scan_sertifikat">
-                                        </div>
+                    <div class="row">
+                        <div class="col-lg-6 p-2 p-lg-3">
+                            <div class="card bg-danger neu-brutalism my-3">
+                                <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                    <h4 class="text-dark">Informasi Ayah</h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Nama Ayah</label>
+                                        <input type="text" class="form-control neu-brutalism-border nama_ayah" value="" disabled>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Status Hidup</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_hidup_ayah" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Hubungan</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_hubungan_ayah" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Pendidikan</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_pendidikan_ayah" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Pekerjaan</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_pekerjaan_ayah" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Detail Ayah</label>
+                                        <input type="text" class="form-control neu-brutalism-border detail_ayah" value="" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 p-2 p-lg-3">
+                            <div class="card bg-primary neu-brutalism my-3">
+                                <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                    <h4 class="text-dark">Informasi Ibu</h4>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="form-group">
+                                        <label>Nama Ibu</label>
+                                        <input type="text" class="form-control neu-brutalism-border nama_ibu" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Hidup</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_hidup_ibu" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Pendidikan</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_pendidikan_ibu" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status Pekerjaan</label>
+                                        <input type="text" class="form-control neu-brutalism-border status_pekerjaan_ibu" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Detail Ibu</label>
+                                        <input type="text" class="form-control neu-brutalism-border detail_ibu" value="" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 p-2 p-lg-3">
+                            <div class="card bg-danger neu-brutalism my-3">
+                                <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                    <h4 class="text-dark">Informasi Jumlah Tanggungan Orang Tua</h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Jumlah Tanggungan</label>
+                                        <input type="text" class="form-control neu-brutalism-border jumlah_tanggungan" value="" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>No Telepon Orang Tua</label>
+                                        <input type="text" class="form-control neu-brutalism-border no_telepon_orang_tua" value="" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-lg-6 p-2 p-lg-3">
+                            <div class="card bg-primary neu-brutalism my-3">
+                                <div class="card-header d-flex" style="border-bottom-color: #000;">
+                                    <h4 class="text-dark">Data Keluarga</h4>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="form-group row">
+                                        <div class="col-sm">Foto Bersama Keluarga</div>
+                                        <div class="col-sm-12">
+                                            <img src="" class="img-thumbnail img-preview neu-brutalism w-100 foto_bersama_keluarga">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -166,13 +288,14 @@
 <script>
     const baseUrl = `<?= base_url() ?>`
 
-    const lihat = (id) => {
-        $.get(`${baseUrl}master/get_dokumen/${id}`, (data) => {
+    const lihat = (id, id_user) => {
+        $.get(`${baseUrl}master/get_dokumen/${id}/${id_user}`, (data) => {
             const dokumen = $.parseJSON(data)
             console.log(dokumen)
 
             // Biodata
             $('.modal-title').text(`Dokumen Pengajuan '${dokumen.nama}'`)
+            $('.image').attr("src", `${baseUrl}assets/img/profile/${dokumen.image}`)
             $('.nama').val(dokumen.nama)
             $('.tempat_lahir').val(dokumen.tempat_lahir)
             $('.tanggal_lahir').val(dokumen.tanggal_lahir)
@@ -184,12 +307,34 @@
             $('.kelas_program').val(dokumen.kelas_program)
 
             // Prestasi
+            $('.scan_sertifikat').attr("src", `${baseUrl}assets/img/sertifikat/${dokumen.scan_sertifikat}`)
             $('.nama_kegiatan').val(dokumen.nama_kegiatan)
             $('.jenis_kegiatan').val(dokumen.jenis_kegiatan)
             $('.tingkat').val(dokumen.tingkat)
             $('.tahun').val(dokumen.tahun)
             $('.pencapaian').val(dokumen.pencapaian)
-            $('.scan_sertifikat').attr("src", `${baseUrl}assets/img/sertifikat/${dokumen.scan_sertifikat}`)
+
+            // Ayah
+            $('.nama_ayah').val(dokumen.nama_ayah)
+            $('.status_hidup_ayah').val(dokumen.status_hidup_ayah)
+            $('.status_hubungan_ayah').val(dokumen.status_hubungan_ayah)
+            $('.status_pendidikan_ayah').val(dokumen.status_pendidikan_ayah)
+            $('.status_pekerjaan_ayah').val(dokumen.status_pekerjaan_ayah)
+            $('.detail_ayah').val(dokumen.detail_ayah)
+
+            // Ibu
+            $('.nama_ibu').val(dokumen.nama_ibu)
+            $('.status_hidup_ibu').val(dokumen.status_hidup_ibu)
+            $('.status_pendidikan_ibu').val(dokumen.status_pendidikan_ibu)
+            $('.status_pekerjaan_ibu').val(dokumen.status_pekerjaan_ibu)
+            $('.detail_ibu').val(dokumen.detail_ibu)
+
+            // Jumlah Tanggungan Orang Tua
+            $('.jumlah_tanggungan').val(dokumen.jumlah_tanggungan)
+            $('.no_telepon_orang_tua').val(dokumen.no_telepon_orang_tua)
+
+            // Data Keluarga
+            $('.foto_bersama_keluarga').attr("src", `${baseUrl}assets/img/foto_bersama_keluarga/${dokumen.foto_bersama_keluarga}`)
 
             $('#modalDetailDokumen').modal('show');
         })

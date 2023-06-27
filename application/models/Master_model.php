@@ -9,12 +9,19 @@ class Master_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getStatusPengajuanById($id_user)
+    {
+        $query = $this->db->query("SELECT id, status_pengajuan FROM mahasiswa_pengajuan WHERE id_user = '$id_user'");
+        return $query->row_array();
+    }
+
     public function getDokumenById($id_user)
     {
         $query = $this->db->query(
             'SELECT
                 mp.id,
                 ud.nama,
+                ud.image,
                 mb.tempat_lahir,
                 mb.tanggal_lahir,
                 mb.alamat,
@@ -30,14 +37,15 @@ class Master_model extends CI_Model
                 mpr.pencapaian,
                 mpr.scan_sertifikat,
                 ma.nama_ayah,
-                sh.status_hidup,
-                shb.status_hubungan,
-                spd.status_pendidikan,
-                spe.status_pekerjaan,
+                sh.status_hidup AS status_hidup_ayah,
+                shb.status_hubungan AS status_hubungan_ayah,
+                spd.status_pendidikan AS status_pendidikan_ayah,
+                spe.status_pekerjaan AS status_pekerjaan_ayah,
                 ma.detail_ayah,
-                sh_ibu.status_hidup,
-                spd_ibu.status_pendidikan,
-                spe_ibu.status_pekerjaan,
+                mi.nama_ibu,
+                sh_ibu.status_hidup AS status_hidup_ibu,
+                spd_ibu.status_pendidikan AS status_pendidikan_ibu,
+                spe_ibu.status_pekerjaan AS status_pekerjaan_ibu,
                 mi.detail_ibu,
                 mk.jumlah_tanggungan,
                 mk.no_telepon_orang_tua,

@@ -24,9 +24,14 @@ class Master extends CI_Controller
         $this->load->view('layout/footer');
     }
 
-    public function get_dokumen($id)
+    public function get_dokumen($id, $id_user)
     {
         $this->load->model('Master_model', 'master');
+        $status_pengajuan = $this->master->getStatusPengajuanById($id_user);
+        if ($status_pengajuan['status_pengajuan'] == "Menunggu Pengecekan") {
+            $this->db->where('id', $status_pengajuan['id']);
+            $this->db->update('mahasiswa_pengajuan', ['status_pengajuan' => "Dalam Pengecekan"]);
+        }
         $dokumen = $this->master->getDokumenById($id);
 
         exit(json_encode((array)$dokumen));
