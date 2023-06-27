@@ -163,6 +163,13 @@ class Dashboard extends CI_Controller
         }
 
         $data['pengajuan'] = $this->db->get_where('mahasiswa_pengajuan', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        if ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Menunggu Pengecekan") {
+            $data['state_pengajuan'] = "<span class='badge badge-danger neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+        } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dalam Pengecekan") {
+            $data['state_pengajuan'] = "<span class='badge badge-warning neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+        } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dokumen Diterima") {
+            $data['state_pengajuan'] = "<span class='badge badge-success neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+        }
         // var_dump($data['status_pengajuan']);
         // die;
 
