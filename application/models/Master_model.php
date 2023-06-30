@@ -20,6 +20,7 @@ class Master_model extends CI_Model
         $query = $this->db->query(
             'SELECT
                 mp.id,
+                mp.status_pengajuan,
                 ud.nama,
                 ud.image,
                 mb.tempat_lahir,

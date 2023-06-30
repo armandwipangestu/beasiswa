@@ -24,7 +24,13 @@
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $np['nama'] ?></td>
-                            <td><span class="badge badge-warning neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php if ($np['status_pengajuan'] == "Menunggu Pengecekan") : ?>
+                                <td><span class="badge badge-danger neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php elseif ($np['status_pengajuan'] == "Dalam Pengecekan") : ?>
+                                <td><span class="badge badge-warning neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php elseif ($np['status_pengajuan'] == "Dokumen Diterima") : ?>
+                                <td><span class="badge badge-success neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php endif; ?>
                             <td>
                                 <a href="#" onclick="lihat('<?= $np['id'] ?>', '<?= $np['id_user'] ?>')" class="btn btn-primary neu-brutalism">
                                     <i class="fas fa-fw fa-search mr-1"></i>
@@ -56,7 +62,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-warning neu-brutalism">
+                        <div class="card bg-warning neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Informasi Biodata</h4>
                             </div>
@@ -86,7 +92,7 @@
 
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <input type="text" class="form-control neu-brutalism-border alamat" value="" disabled>
+                                    <textarea type="text" class="form-control neu-brutalism-border alamat" style="height: 72px !important;" disabled></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -117,7 +123,7 @@
                         </div>
                     </div>
                     <div class=" col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-success neu-brutalism">
+                        <div class="card bg-success neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Informasi Prestasi</h4>
                             </div>
@@ -161,7 +167,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-danger neu-brutalism my-3">
+                        <div class="card bg-danger neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Informasi Ayah</h4>
                             </div>
@@ -194,13 +200,13 @@
 
                                 <div class="form-group">
                                     <label>Detail Ayah</label>
-                                    <input type="text" class="form-control neu-brutalism-border detail_ayah" value="" disabled>
+                                    <textarea type="text" class="form-control neu-brutalism-border detail_ayah" style="height: 72px !important;" disabled></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class=" col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-primary neu-brutalism my-3">
+                        <div class="card bg-primary neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Informasi Ibu</h4>
                             </div>
@@ -229,7 +235,7 @@
 
                                 <div class="form-group">
                                     <label>Detail Ibu</label>
-                                    <input type="text" class="form-control neu-brutalism-border detail_ibu" value="" disabled>
+                                    <textarea type="text" class="form-control neu-brutalism-border detail_ibu" style="height: 72px !important;" disabled></textarea>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +244,7 @@
 
                 <div class="row">
                     <div class="col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-danger neu-brutalism my-3">
+                        <div class="card bg-success neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Informasi Jumlah Tanggungan Orang Tua</h4>
                             </div>
@@ -257,7 +263,7 @@
                         </div>
                     </div>
                     <div class=" col-lg-6 p-2 p-lg-3">
-                        <div class="card bg-primary neu-brutalism my-3">
+                        <div class="card bg-warning neu-brutalism h-100">
                             <div class="card-header d-flex" style="border-bottom-color: #000;">
                                 <h4 class="text-dark">Data Keluarga</h4>
                             </div>

@@ -14,8 +14,8 @@
                 <?= form_open_multipart('dashboard/user_keluarga_ubah'); ?>
                 <div class="card-body p-2">
                     <div class="row">
-                        <div class="col-md-6 p-0 p-md-3">
-                            <div class="card card-dark neu-brutalism">
+                        <div class="col-md-6 p-2 pt-3 p-md-3">
+                            <div class="card card-dark bg-danger neu-brutalism h-100">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Ayah</h4>
                                 </div>
@@ -115,8 +115,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" col-md-6 p-0 p-md-3">
-                            <div class="card card-dark neu-brutalism">
+                        <div class=" col-md-6 p-2 pt-3 p-md-3">
+                            <div class="card card-dark bg-primary neu-brutalism h-100">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Ibu</h4>
                                 </div>
@@ -203,8 +203,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 p-0 p-md-3">
-                            <div class="card card-dark neu-brutalism">
+                        <div class="col-md-6 p-2 pt-3 p-md-3">
+                            <div class="card card-dark bg-warning neu-brutalism h-100">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Informasi Jumlah Tanggungan Orang Tua</h4>
                                 </div>
@@ -224,8 +224,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 p-0 p-md-3">
-                            <div class="card card-dark neu-brutalism">
+                        <div class="col-md-6 p-2 pt-3 p-md-3">
+                            <div class="card card-dark bg-success neu-brutalism h-100">
                                 <div class="card-header d-flex" style="border-bottom-color: #000;">
                                     <h4 class="text-dark">Data Keluarga</h4>
                                 </div>
@@ -245,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-5">
                         <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
                             Perbarui Data Keluarga
                         </button>

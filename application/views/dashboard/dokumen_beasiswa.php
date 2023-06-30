@@ -28,7 +28,6 @@
                         <?php else : ?>
                             <span class='badge badge-warning neu-brutalism'>Belum Lengkap</span>
                         <?php endif; ?>
-                        <!-- <?= $status_kelengkapan_berkas ?> -->
                     </div>
                 </div>
                 <div class="ml-auto">
