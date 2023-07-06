@@ -8,7 +8,7 @@
         <?= $this->session->flashdata('message') ?>
         <a href="<?= base_url('dashboard'); ?>" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-arrow-left"></i> Kembali</a>
 
-        <div class="card card-primary neu-brutalism">
+        <div class="card bg-warning neu-brutalism">
 
             <div class="card-body">
                 <form action="<?= base_url('dashboard/user_biodata_ubah'); ?>" method="POST">
@@ -45,7 +45,8 @@
                         <div class="form-group col-md-6">
                             <label>Alamat</label>
                             <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
-                            <input type="text" class="form-control neu-brutalism-border" name="alamat" value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
+                            <textarea name="alamat" class="form-control neu-brutalism-border" style="height: 72px !important;"><?= $biodata['alamat'] ? $biodata['alamat'] : "" ?></textarea>
+                            <!-- <input type="text" class="form-control neu-brutalism-border" name="alamat" value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>"> -->
                         </div>
 
                         <div class="form-group col-md-6">

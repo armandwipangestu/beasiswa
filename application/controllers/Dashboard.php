@@ -489,16 +489,14 @@ class Dashboard extends CI_Controller
 
     public function ajukan_beasiswa()
     {
-        // var_dump($this->session->userdata('id_user'));
-        // var_dump($this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array());
-        // die;
 
         $data = [
             "id_user" => $this->session->userdata('id_user'),
             "id_mahasiswa_biodata" => $this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
             "id_mahasiswa_prestasi" => $this->db->query('SELECT id FROM mahasiswa_prestasi WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
             "id_mahasiswa_keluarga" => $this->db->query('SELECT id FROM mahasiswa_keluarga WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
-            "status_pengajuan" => "Menunggu Pengecekan"
+            "status_pengajuan" => "Menunggu Pengecekan",
+            "tanggal_pengajuan" => time()
         ];
 
         $this->db->insert('mahasiswa_pengajuan', $data);

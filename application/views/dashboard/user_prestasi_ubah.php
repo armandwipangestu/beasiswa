@@ -8,7 +8,7 @@
         <?= $this->session->flashdata('message') ?>
         <a href="<?= base_url('dashboard'); ?>" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-arrow-left"></i> Kembali</a>
 
-        <div class="card card-primary neu-brutalism">
+        <div class="card bg-success neu-brutalism">
 
             <div class="card-body">
                 <?= form_open_multipart('dashboard/user_prestasi_ubah'); ?>
@@ -127,11 +127,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
-                            Perbarui Data Prestasi
-                        </button>
-                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block neu-brutalism">
+                        Perbarui Data Prestasi
+                    </button>
                 </div>
                 </form>
             </div>

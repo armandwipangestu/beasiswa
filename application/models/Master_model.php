@@ -5,7 +5,7 @@ class Master_model extends CI_Model
 {
     public function getAllNamaPengajuan()
     {
-        $query = $this->db->query("SELECT `ud`.`nama`, `mp`.`id`, `mp`.`id_user`, `mp`.`status_pengajuan` FROM mahasiswa_pengajuan AS mp JOIN user_data AS ud ON `ud`.`id` = `mp`.`id_user`");
+        $query = $this->db->query("SELECT `ud`.`nama`, `mp`.`id`, `mp`.`id_user`, `mp`.`status_pengajuan`, `mp`.`tanggal_pengajuan` FROM mahasiswa_pengajuan AS mp JOIN user_data AS ud ON `ud`.`id` = `mp`.`id_user`");
         return $query->result_array();
     }
 
@@ -22,6 +22,7 @@ class Master_model extends CI_Model
                 mp.id,
                 mp.status_pengajuan,
                 ud.nama,
+                mp.tanggal_pengajuan,
                 ud.image,
                 mb.tempat_lahir,
                 mb.tanggal_lahir,

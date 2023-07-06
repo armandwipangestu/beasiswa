@@ -14,6 +14,7 @@
                     <tr>
                         <th scope="col" class="text-dark">#</th>
                         <th scope="col" class="text-dark">Nama Mahasiswa</th>
+                        <th scope="col" class="text-dark">Tanggal Pengajuan</th>
                         <th scope="col" class="text-dark">Status</th>
                         <th scope="col" class="text-dark">Dokumen</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $np['nama'] ?></td>
+                            <td><?= hari_indonesia($np['tanggal_pengajuan']) ?></td>
                             <?php if ($np['status_pengajuan'] == "Menunggu Pengecekan") : ?>
                                 <td><span class="badge badge-danger neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
                             <?php elseif ($np['status_pengajuan'] == "Dalam Pengecekan") : ?>
@@ -51,7 +53,10 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content neu-brutalism-border">
             <div class="modal-header">
-                <h5 class="modal-title text-dark" id="newModalDetailDokumen"></h5>
+                <div class="flex flex-wrap">
+                    <h5 class="modal-title text-dark dokumen_user" id="newModalDetailDokumen"></h5>
+                    <h6 class="modal-title text-dark tanggal_pengajuan"></h6>
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -284,7 +289,8 @@
 
 
             <div class="modal-footer">
-                <button onclick="terima()" class="btn btn-primary neu-brutalism" id="terima">Terima</button>
+                <button onclick="tolak()" class="btn btn-danger neu-brutalism" id="tolak"><i class="fas fa-fw fa-times"></i> Tolak</button>
+                <button onclick="terima()" class="btn btn-success neu-brutalism" id="terima"><i class="fas fa-fw fa-check"></i> Terima</button>
             </div>
             <!-- </form> -->
         </div>
@@ -303,7 +309,11 @@
             console.log(dokumen)
 
             // Biodata
-            $('.modal-title').text(`Dokumen Pengajuan '${dokumen.nama}'`)
+            const timestamp = dokumen.tanggal_pengajuan
+            const d = new Date(timestamp * 1000)
+
+            $('.dokumen_user').text(`Dokumen Pengajuan '${dokumen.nama}'`)
+            $('.tanggal_pengajuan').text(`Tanggal Pengajuan: ${d.toLocaleDateString("id")}`)
             $('.image').attr("src", `${baseUrl}assets/img/profile/${dokumen.image}`)
             $('.nama').val(dokumen.nama)
             $('.tempat_lahir').val(dokumen.tempat_lahir)

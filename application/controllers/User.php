@@ -15,7 +15,8 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
         $timestamp = $data['user']['date_created'];
         $date = date('d F Y', $timestamp);
-        $data['tanggal_bergabung'] = $date;
+        // $data['tanggal_bergabung'] = $date;
+        $data['tanggal_bergabung'] = $data['user']['date_created'];
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/topbar');
