@@ -5,18 +5,6 @@
             <h1><?= $title; ?></h1>
         </div>
 
-        <!-- <form action="" method="" enctype=""> -->
-        <!-- <div class="row">
-            <div class="col-lg-8">
-                <?= form_open_multipart('user/ubah'); ?>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                </div>
-                </form>
-            </div>
-        </div> -->
-
         <div class="card card-primary neu-brutalism">
 
             <?= $this->session->flashdata('message') ?>
