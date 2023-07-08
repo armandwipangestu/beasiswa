@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jun 2023 pada 18.03
+-- Waktu pembuatan: 08 Jul 2023 pada 14.44
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.0.33
 
@@ -83,12 +83,7 @@ CREATE TABLE `mahasiswa_ayah` (
 --
 
 INSERT INTO `mahasiswa_ayah` (`id`, `id_user`, `nama_ayah`, `id_status_hidup`, `id_status_hubungan`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ayah`) VALUES
-(1, 13, 'Test Ayah', 1, 1, 4, 3, 'Test Detail Ayah'),
-(2, 12, 'Ayah Test 2', 2, 1, 5, 2, 'Ayah Test Detail'),
-(6, 14, 'test', 3, 3, 2, 1, 'asd'),
-(7, 16, 'Test 2 Ayah', 1, 1, 10, 3, 'Test 2 Untuk Detail Ayah'),
-(8, 17, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 19, NULL, NULL, NULL, NULL, NULL, NULL);
+(11, 22, 'juned', 1, 1, 8, 1, 'baik');
 
 -- --------------------------------------------------------
 
@@ -114,12 +109,7 @@ CREATE TABLE `mahasiswa_biodata` (
 --
 
 INSERT INTO `mahasiswa_biodata` (`id`, `id_user`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telepon`, `jenis_kelamin`, `id_jurusan`, `semester`, `id_kelas_program`) VALUES
-(38, 12, 'Bandung', '2002-12-15', 'Jl. Jakarta, Kelurahan Kebonwaru, Kecamatan Batununggal, Kota Bandung 40272', '089637369606', 'Laki-laki', 1, 5, 3),
-(39, 13, 'Jakarta', '2011-03-01', 'Jl. Purwakarta, Kelurahan Antapani Tengah, Kecamatan Antapani, Kota Bandung', '081239876543', 'Perempuan', 2, 6, 1),
-(40, 14, 'Test Biodata', '2023-06-30', 'Jl. Biodata', '01234', 'Perempuan', 2, 1, 1),
-(41, 16, 'Bandung', '2023-06-30', 'Jl. Rajadesa', '0987654321', 'Laki-laki', 1, 3, 2),
-(42, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(43, 19, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(45, 22, 'bali', '2023-07-12', 'moh toha', '08123456789', 'Laki-laki', 1, 9, 2);
 
 -- --------------------------------------------------------
 
@@ -142,12 +132,7 @@ CREATE TABLE `mahasiswa_ibu` (
 --
 
 INSERT INTO `mahasiswa_ibu` (`id`, `id_user`, `nama_ibu`, `id_status_hidup`, `id_status_pendidikan`, `id_status_pekerjaan`, `detail_ibu`) VALUES
-(1, 13, 'Test Ibu', 1, 2, 3, 'Test Detail Ibu'),
-(2, 12, 'Ibu Test 2', 1, 4, 1, 'Test Ibu Detail'),
-(6, 14, 'aqwe', 1, 5, 1, 'ewq'),
-(7, 16, 'Test 2 Ibu', 1, 9, 2, 'Test 2 Untuk Detail Ibu'),
-(8, 17, NULL, NULL, NULL, NULL, NULL),
-(9, 19, NULL, NULL, NULL, NULL, NULL);
+(11, 22, 'siti', 1, 4, 4, 'baik');
 
 -- --------------------------------------------------------
 
@@ -170,12 +155,7 @@ CREATE TABLE `mahasiswa_keluarga` (
 --
 
 INSERT INTO `mahasiswa_keluarga` (`id`, `id_user`, `id_ayah`, `id_ibu`, `jumlah_tanggungan`, `no_telepon_orang_tua`, `foto_bersama_keluarga`) VALUES
-(1, 13, 1, 1, 'Tidak ada', '08123456789', 'default.png'),
-(2, 12, 2, 2, '4', '0987654321', 'default.png'),
-(6, 14, 6, 6, '2', '098712345', 'default.png'),
-(7, 16, 7, 7, 'Tidak ada', '08123456789', 'default.png'),
-(8, 17, NULL, NULL, NULL, NULL, 'default.png'),
-(9, 19, NULL, NULL, NULL, NULL, 'default.png');
+(11, 22, 11, 11, '9', '08123456789', 'download_(1).jpg');
 
 -- --------------------------------------------------------
 
@@ -189,21 +169,16 @@ CREATE TABLE `mahasiswa_pengajuan` (
   `id_mahasiswa_biodata` int(11) NOT NULL,
   `id_mahasiswa_prestasi` int(11) NOT NULL,
   `id_mahasiswa_keluarga` int(11) NOT NULL,
-  `status_pengajuan` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `status_pengajuan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tanggal_pengajuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data untuk tabel `mahasiswa_pengajuan`
 --
 
-INSERT INTO `mahasiswa_pengajuan` (`id`, `id_user`, `id_mahasiswa_biodata`, `id_mahasiswa_prestasi`, `id_mahasiswa_keluarga`, `status_pengajuan`) VALUES
-(1, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(2, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(3, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(4, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(5, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(6, 13, 39, 2, 1, 'Menunggu Pengecekan'),
-(7, 13, 39, 2, 1, 'Menunggu Pengecekan');
+INSERT INTO `mahasiswa_pengajuan` (`id`, `id_user`, `id_mahasiswa_biodata`, `id_mahasiswa_prestasi`, `id_mahasiswa_keluarga`, `status_pengajuan`, `tanggal_pengajuan`) VALUES
+(10, 22, 45, 9, 11, 'Dokumen Diterima', 1688820054);
 
 -- --------------------------------------------------------
 
@@ -227,12 +202,29 @@ CREATE TABLE `mahasiswa_prestasi` (
 --
 
 INSERT INTO `mahasiswa_prestasi` (`id`, `id_user`, `nama_kegiatan`, `jenis_kegiatan`, `tingkat`, `tahun`, `pencapaian`, `scan_sertifikat`) VALUES
-(2, 13, 'Praktek Kerja Industri', 'Individual', 'Kabupaten/Kota', '2020', 'Juara 1', 'photo_2021-08-03_19-45-21.jpg'),
-(3, 14, 'Ini Test Ke 3', 'Kelompok/Tim', 'Nasional', '2023', 'Juara 1', 'default.png'),
-(4, 12, NULL, NULL, NULL, NULL, NULL, 'default.png'),
-(5, 16, 'Hackathon 2023', 'Kelompok/Tim', 'Internasional', '2023', 'Finalis', 'default.png'),
-(6, 17, NULL, NULL, NULL, NULL, NULL, 'default.png'),
-(7, 19, NULL, NULL, NULL, NULL, NULL, 'default.png');
+(9, 22, 'ngoding', 'Individual', 'Internasional', '2023', 'Juara 1', '1_(1).jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `review_pengajuan`
+--
+
+CREATE TABLE `review_pengajuan` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_mahasiswa_pengajuan` int(11) NOT NULL,
+  `tanggal_review` int(11) NOT NULL,
+  `alasan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data untuk tabel `review_pengajuan`
+--
+
+INSERT INTO `review_pengajuan` (`id`, `id_user`, `id_mahasiswa_pengajuan`, `tanggal_review`, `alasan`, `status`) VALUES
+(3, 23, 10, 1688820194, 'bapa mu menakutkan nak takut di bantai', 'diterima');
 
 -- --------------------------------------------------------
 
@@ -350,7 +342,6 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (16, 9, 2),
 (17, 9, 3),
 (18, 9, 4),
-(19, 1, 20),
 (20, 2, 21),
 (21, 1, 22),
 (22, 1, 24),
@@ -379,14 +370,9 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`id`, `nama`, `email`, `image`, `password`, `role_id`, `date_created`) VALUES
-(7, 'Admin', 'admin@admin.com', 'photo_2021-04-15_00-04-43.jpg', '$2y$10$94RAzKMBzc6OUull8bZ2leTmCAyUvWpuMJ3h/YuPhFC9ZXfgnHD2O', 1, 1687161877),
-(12, 'Arman Dwi Pangestu', 'arman@gmail.com', 'photo_2021-04-15_00-04-40-modified.png', '$2y$10$QYWGnH6Tx9m8CH9hu1pLG.6Kh0l7WUgpbpbCoja1m3VOJi0nL1NYu', 2, 1687356267),
-(13, 'User', 'user@user.com', 'photo_2021-04-15_00-04-40-modified1.png', '$2y$10$h9tfIXfLLx8ZSpvY7KuQq.SMtbPF2hm1JDpeauTPq1orGJtNVTvYO', 2, 1687402958),
-(14, 'Test', 'test@test.com', 'default.png', '$2y$10$1a7/SbfjKD.lpnxxfu5Da.cJxkFUabVwIfYKcMr/0UDop5Pwx/msC', 2, 1687526388),
-(15, 'master', 'master@master.com', 'default.png', '$2y$10$Kp38OeTKTr6VZUHZIEKzRuz4YuMlT2UqodcHigPOiI0CYgqJAPioO', 3, 1687601987),
-(16, 'test2', 'test2@gmail.com', 'default.png', '$2y$10$Ud/9hz5pGWVm.5domEP59OofzdFDa8OYpbmEiA/3GMVjuWUt0AU4W', 2, 1687619232),
-(17, 'Android', 'android@android.com', 'default.png', '$2y$10$9wddmdD78B9lulczvMG36.Fc5hlLU4qWWvruxVkbiSnJxFk.3ldty', 2, 1687626529),
-(19, 'tast', 'tast@tast.com', 'default.png', '$2y$10$UKquQ3gBeWiH6QL9K5SWAezp3rOlyXsUaWWcW85um2.E49.WzOD6q', 2, 1687779311);
+(21, 'admin', 'admin@admin.id', 'default.png', '$2y$10$n/n2Vg7Yglnl4ti7ApEoX.mpG3yEizav10s6sZ2bJxn6/GrEg2CCm', 1, 1688819713),
+(22, 'user', 'user@user.id', '1dcf5af5-fb9e-43a4-8956-f2c9cc1933c3.jpg', '$2y$10$Fbma0KYHvADaQHckU/s/geE1KzciRA.qmPjRZt1kwN5P3G6Ubx51.', 2, 1688819768),
+(23, 'master', 'master@master.id', 'default.png', '$2y$10$vWcLjFbs9vPsi4eieYesEOZZZtX5oDZF1.5a9/M1wyYT.3NJkmSr6', 3, 1688820079);
 
 -- --------------------------------------------------------
 
@@ -408,7 +394,6 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (2, 'User'),
 (3, 'Menu'),
 (4, 'Submenu'),
-(20, 'Beasiswa'),
 (21, 'Dashboard'),
 (22, 'Kampus'),
 (25, 'Status'),
@@ -524,6 +509,12 @@ ALTER TABLE `mahasiswa_prestasi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `review_pengajuan`
+--
+ALTER TABLE `review_pengajuan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `status_hidup`
 --
 ALTER TABLE `status_hidup`
@@ -585,73 +576,79 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT untuk tabel `kampus_jurusan`
 --
 ALTER TABLE `kampus_jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `kampus_kelas_program`
 --
 ALTER TABLE `kampus_kelas_program`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_ayah`
 --
 ALTER TABLE `mahasiswa_ayah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_biodata`
 --
 ALTER TABLE `mahasiswa_biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_ibu`
 --
 ALTER TABLE `mahasiswa_ibu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_keluarga`
 --
 ALTER TABLE `mahasiswa_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_pengajuan`
 --
 ALTER TABLE `mahasiswa_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswa_prestasi`
 --
 ALTER TABLE `mahasiswa_prestasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `review_pengajuan`
+--
+ALTER TABLE `review_pengajuan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_hidup`
 --
 ALTER TABLE `status_hidup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_hubungan`
 --
 ALTER TABLE `status_hubungan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_pekerjaan`
 --
 ALTER TABLE `status_pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_pendidikan`
 --
 ALTER TABLE `status_pendidikan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
@@ -663,7 +660,7 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT untuk tabel `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
@@ -675,7 +672,7 @@ ALTER TABLE `user_menu`
 -- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_sub_menu`

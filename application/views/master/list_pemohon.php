@@ -6,7 +6,14 @@
         </div>
 
         <?= $this->session->flashdata('message') ?>
-        <?= form_error('role', '<div class="alert alert-danger neu-brutalism mb-4">', '</div>') ?>
+        <div class="d-flex">
+            <div class="p-2">
+                <a href="<?= base_url(); ?>" class="btn btn-icon icon-left btn-primary mb-4 neu-brutalism"><i class="fas fa-arrow-left"></i> Kembali</a>
+            </div>
+            <div class="ml-auto p-2">
+                <a href="<?= base_url('master/pdf') ?>" class="btn btn-warning neu-brutalism"><i class="fas fa-fw fa-file"></i> Export to PDF</a>
+            </div>
+        </div>
 
         <div class="table-responsive rounded">
             <table class="table table-hover table-bordered neu-brutalism-border display" id="myTable">
@@ -14,37 +21,42 @@
                     <tr>
                         <th scope="col" class="text-dark">#</th>
                         <th scope="col" class="text-dark">Nama Mahasiswa</th>
-                        <th scope="col" class="text-dark">Tangal Pengajuan</th>
+                        <th scope="col" class="text-dark">Tanggal Pengajuan</th>
                         <th scope="col" class="text-dark">Status</th>
+                        <th scope="col" class="text-dark">Alasan</th>
                         <th scope="col" class="text-dark">Dokumen</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1 ?>
-                    <?php foreach ($pengajuan as $p) : ?>
+                    <?php foreach ($nama_pengajuan as $np) : ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
-                            <td><?= $p['nama'] ?></td>
-                            <td> <?= hari_indonesia ($p {'tanggal_pengajuan'}) ?></td>
-                            <?php if ($p['status_pengajuan'] == 'Menunggu Pengecekan'): ?>
-                                <td><span class="badge badge-danger neu-brutalism"><?= $p['status_pengajuan'] ?></span></td>
-                                <?php elseif($p['status_pengajuan'] == 'Dalam Pengecekan'):  ?>
-                                <td><span class="badge badge-warning neu-brutalism"><?= $p['status_pengajuan'] ?></span></td>
-                                <?php elseif($p['status_pengajuan'] == 'Dokumen Diterima'):  ?>
-                                <td><span class="badge badge-success neu-brutalism"><?= $p['status_pengajuan'] ?></span></td>
-                                <?php endif ;?>
+                            <td><?= $np['nama'] ?></td>
+                            <td><?= hari_indonesia($np['tanggal_pengajuan']) ?></td>
+                            <?php if ($np['status_pengajuan'] == "Menunggu Pengecekan") : ?>
+                                <td><span class="badge badge-danger neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php elseif ($np['status_pengajuan'] == "Dalam Pengecekan") : ?>
+                                <td><span class="badge badge-warning neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php elseif ($np['status_pengajuan'] == "Dokumen Diterima") : ?>
+                                <td><span class="badge badge-success neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
+                            <?php endif; ?>
                             <td>
-                                          <a href="#" onClick="lihat('<?= $p['id'] ?>', '<?= $p['id_user'] ?>'  )" class="btn btn-primary neu-brutalism">
-                            <i class="fas fa-fw fa-search mr-1"></i> Lihat </a></td>
-                            
+                                <?= $this->master->getAlasan($np['id'])['alasan']; ?>
+                            </td>
+                            <td>
+                                <a href="#" onclick="lihat('<?= $np['id'] ?>', '<?= $np['id_user'] ?>')" class="btn btn-primary neu-brutalism">
+                                    <i class="fas fa-fw fa-search mr-1"></i>
+                                    Lihat
+                                </a>
+                            </td>
                         </tr>
                         <?php $i++ ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-</div>
-</section>
+    </section>
 </div>
 
 <!-- Modal -->
@@ -288,8 +300,8 @@
 
 
             <div class="modal-footer">
-                <button onclick="review()" class="btn btn-danger neu-brutalism" id="tolak"><i class="fas fa-fw fa-times"></i> Tolak</button>
-                <button onclick="review()" class="btn btn-success neu-brutalism" id="terima"><i class="fas fa-fw fa-check"></i> Terima</button>
+                <button onclick="ditolak()" class="btn btn-danger neu-brutalism" id="tolak"><i class="fas fa-fw fa-times"></i> Tolak</button>
+                <button onclick="diterima()" class="btn btn-success neu-brutalism" id="terima"><i class="fas fa-fw fa-check"></i> Terima</button>
             </div>
             <!-- </form> -->
         </div>
@@ -307,6 +319,7 @@
                 </div>
                 <form action="<?= base_url('master/review') ?>" method="POST">
                     <input type="hidden" class="form-control" id="id_mahasiswa_pengajuan" name="id_mahasiswa_pengajuan">
+                    <input type="hidden" clsas="form-control" id="status_button" name="status_button">
 
                     <div class="modal-body">
                         <div class="form-group">
@@ -335,6 +348,15 @@
         $.get(`${baseUrl}master/get_dokumen/${id_pengajuan}/${id_user_pengaju}`, (data) => {
             const dokumen = $.parseJSON(data)
             console.log(dokumen)
+            $.get(`${baseUrl}master/get_review/${id_pengajuan}`, (data) => {
+                if (data != '[]') {
+                    $('#tolak').css('display', 'none');
+                    $('#terima').css('display', 'none');
+                } else {
+                    $('#tolak').css('display', 'block');
+                    $('#terima').css('display', 'block');
+                }
+            })
 
             // Biodata
             const timestamp = dokumen.tanggal_pengajuan
@@ -387,9 +409,15 @@
         })
     }
 
-    const review = () => {
+    const diterima = () => {
         $('#id_mahasiswa_pengajuan').val(id_pengajuan)
+        $('#status_button').val('diterima');
         $('#modalAlasan').modal('show');
-        console.log(id_pengajuan, id_user_pengaju)
+    }
+
+    const ditolak = () => {
+        $('#id_mahasiswa_pengajuan').val(id_pengajuan)
+        $('#status_button').val('ditolak');
+        $('#modalAlasan').modal('show');
     }
 </script>

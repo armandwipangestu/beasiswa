@@ -107,7 +107,7 @@ class Dashboard extends CI_Controller
 
         $data['check_berkas_biodata'] = $this->biodata->checkFieldsFilled($this->session->userdata('id_user'));
         $data['check_berkas_prestasi'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
-        $data['check_berkas_keluarga'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_keluarga'] = $this->keluarga->checkFieldsFilled($this->session->userdata('id_user'));
         $data['status_kelengkapan_berkas'] = null;
         $data['list_berkas'] = [];
 
@@ -162,6 +162,19 @@ class Dashboard extends CI_Controller
             $data['status_kelengkapan_berkas'] = true;
         }
 
+        $data['pengajuan'] = $this->db->get_where('mahasiswa_pengajuan', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        if ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Menunggu Pengecekan") {
+            $data['state_pengajuan'] = "<span class='badge badge-danger neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+        } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dalam Pengecekan") {
+            $data['state_pengajuan'] = "<span class='badge badge-warning neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+        } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dokumen Diterima") {
+            $data['state_pengajuan'] = "
+            <span class='badge badge-success neu-brutalism mr-2'>" . $data['pengajuan']['status_pengajuan'] . "</span>" .
+                "<a href='" . base_url('dashboard/lihat_hasil') . "'><span class='badge badge-primary neu-brutalism'>" . "Lihat" . "</span></a>";
+        }
+        // var_dump($data['status_pengajuan']);
+        // die;
+
         // var_dump($data['status_kelengkapan_berkas']);
         // var_dump($data['list_berkas']);
         // die;
@@ -170,6 +183,21 @@ class Dashboard extends CI_Controller
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');
         $this->load->view('dashboard/dokumen_beasiswa');
+        $this->load->view('layout/footer');
+    }
+
+    public function lihat_hasil()
+    {
+        $data['title'] = "Lihat Hasil";
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['id_mahasiswa_pengajuan'] = $this->db->get_where('mahasiswa_pengajuan', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $data['hasil'] = $this->db->get_where('review_pengajuan', ['id_mahasiswa_pengajuan' => $data['id_mahasiswa_pengajuan']['id']])->row_array();
+        // var_dump($data['hasil']);
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/topbar');
+        $this->load->view('layout/sidebar');
+        $this->load->view('dashboard/lihat_hasil');
         $this->load->view('layout/footer');
     }
 
@@ -441,7 +469,7 @@ class Dashboard extends CI_Controller
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png|svg';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png|svg';
                 $config['max_size'] = '2048';
                 $config['upload_path'] = './assets/img/foto_bersama_keluarga/';
 
@@ -475,19 +503,23 @@ class Dashboard extends CI_Controller
             redirect("dashboard");
         }
     }
-    public function ajukan_beasiswa(){
+
+    public function ajukan_beasiswa()
+    {
+
         $data = [
             "id_user" => $this->session->userdata('id_user'),
-            "id_mahasiswa_biodata" => $this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user'). '')->row_array()['id'],
-            "id_mahasiswa_prestasi" => $this->db->query('SELECT id FROM mahasiswa_prestasi WHERE id_user = ' . $this->session->userdata('id_user'). '')->row_array()['id'],
-            "id_mahasiswa_keluarga" => $this->db->query('SELECT id FROM mahasiswa_keluarga WHERE id_user = ' . $this->session->userdata('id_user'). '')->row_array()['id'],
-            "status_pengajuan" => "Menunggu Pengecekan"
+            "id_mahasiswa_biodata" => $this->db->query('SELECT id FROM mahasiswa_biodata WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "id_mahasiswa_prestasi" => $this->db->query('SELECT id FROM mahasiswa_prestasi WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "id_mahasiswa_keluarga" => $this->db->query('SELECT id FROM mahasiswa_keluarga WHERE id_user = ' . $this->session->userdata('id_user') . '')->row_array()['id'],
+            "status_pengajuan" => "Menunggu Pengecekan",
+            "tanggal_pengajuan" => time()
         ];
 
         $this->db->insert('mahasiswa_pengajuan', $data);
         $this->session->set_flashdata(
             'message',
-            '<div class="alert alert-success neu-brutalism mb-4">Data Berhasil Diajukan</div>'
+            '<div class="alert alert-success neu-brutalism mb-4">Pengajuan beasiswa berhasil!</div>'
         );
         redirect("dashboard");
     }

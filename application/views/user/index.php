@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?= $user['nama'] ?></h5>
                         <p class="card-text"><?= $user['email'] ?></p>
-                        <p class="card-text"><small class="text-muted">Bergabung dari <?= $tanggal_bergabung ?></small></p>
+                        <p class="card-text"><small class="text-muted">Bergabung dari <?= bulan_indonesia($tanggal_bergabung ) ?></small></p>
                     </div>
                 </div>
             </div>

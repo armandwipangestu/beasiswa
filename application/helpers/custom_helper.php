@@ -40,3 +40,89 @@ function cek_akses($role_id, $menu_id)
         return "checked='checked'";
     }
 }
+
+function hari_indonesia($timestamp)
+{
+    $day = date('l', $timestamp);
+
+    if ($day == "Sunday") {
+        return "Minggu, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Monday") {
+        return "Senin, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Tuesday") {
+        return "Selasa, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Wednesday") {
+        return "Rabu, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Thursday") {
+        return "Kamis, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Friday") {
+        return "Jumat, " . date('d/m/Y', $timestamp);
+    }
+
+    if ($day == "Saturday") {
+        return "Sabtu, " . date('d/m/Y', $timestamp);
+    }
+}
+
+function bulan_indonesia($timestamp)
+{
+    $month = date('m', $timestamp);
+
+    if ($month == "01") {
+        return date('d', $timestamp) . " Januari " . date("Y", $timestamp);
+    }
+
+    if ($month == "02") {
+        return date('d', $timestamp) . " Februari " . date("Y", $timestamp);
+    }
+
+    if ($month == "03") {
+        return date('d', $timestamp) . " Maret " . date("Y", $timestamp);
+    }
+
+    if ($month == "04") {
+        return date('d', $timestamp) . " April " . date("Y", $timestamp);
+    }
+
+    if ($month == "05") {
+        return date('d', $timestamp) . " Mei " . date("Y", $timestamp);
+    }
+
+    if ($month == "06") {
+        return date('d', $timestamp) . " Juni " . date("Y", $timestamp);
+    }
+
+    if ($month == "07") {
+        return date('d', $timestamp) . " Juli " . date("Y", $timestamp);
+    }
+
+    if ($month == "08") {
+        return date('d', $timestamp) . " Agustus " . date("Y", $timestamp);
+    }
+
+    if ($month == "09") {
+        return date('d', $timestamp) . " September " . date("Y", $timestamp);
+    }
+
+    if ($month == "10") {
+        return date('d', $timestamp) . " Oktober " . date("Y", $timestamp);
+    }
+
+    if ($month == "11") {
+        return date('d', $timestamp) . " November " . date("Y", $timestamp);
+    }
+
+    if ($month == "12") {
+        return date('d', $timestamp) . " Desember " . date("Y", $timestamp);
+    }
+}
