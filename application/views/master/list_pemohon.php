@@ -289,12 +289,41 @@
 
 
             <div class="modal-footer">
-                <button onclick="tolak()" class="btn btn-danger neu-brutalism" id="tolak"><i class="fas fa-fw fa-times"></i> Tolak</button>
-                <button onclick="terima()" class="btn btn-success neu-brutalism" id="terima"><i class="fas fa-fw fa-check"></i> Terima</button>
+                <button onclick="review()" class="btn btn-danger neu-brutalism" id="tolak"><i class="fas fa-fw fa-times"></i> Tolak</button>
+                <button onclick="review()" class="btn btn-success neu-brutalism" id="terima"><i class="fas fa-fw fa-check"></i> Terima</button>
             </div>
             <!-- </form> -->
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAlasan" tabindex="-1" role="dialog" aria-labelledby="modalAlasanLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content neu-brutalism-border">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-ubah text-dark" id="newModalAlasan">Alasan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('master/review') ?>" method="POST">
+                    <input type="hidden" class="form-control" id="id_mahasiswa_pengajuan" name="id_mahasiswa_pengajuan">
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="alasan" name="alasan">
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning neu-brutalism" id="submit">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -359,7 +388,9 @@
         })
     }
 
-    const terima = () => {
+    const review = () => {
+        $('.id_mahasiswa_pengajuan').val(id_pengajuan)
+        $('#modalAlasan').modal('show');
         console.log(id_pengajuan, id_user_pengaju)
     }
 </script>
