@@ -5,7 +5,13 @@ class Master_model extends CI_Model
 {
     public function getAllNamaPengajuan()
     {
-        $query = $this->db->query("SELECT `ud`.`nama`, `mp`.`id`, `mp`.`id_user`, `mp`.`status_pengajuan`, `mp`.`tanggal_pengajuan` FROM mahasiswa_pengajuan AS mp JOIN user_data AS ud ON `ud`.`id` = `mp`.`id_user`");
+        $query = $this->db->query("SELECT 
+                `ud`.`nama`, `mp`.`id`, 
+                `mp`.`id_user`, `mp`.`status_pengajuan`, 
+                `mp`.`tanggal_pengajuan`
+            FROM mahasiswa_pengajuan AS mp 
+            JOIN user_data AS ud ON `ud`.`id` = `mp`.`id_user`
+        ");
         return $query->result_array();
     }
 
@@ -73,5 +79,27 @@ class Master_model extends CI_Model
         )->row_array();
 
         return $query;
+    }
+
+    public function getReview($id_mahasiswa_pengajuan)
+    {
+        $query = $this->db->query("SELECT id_mahasiswa_pengajuan FROM review_pengajuan WHERE id_mahasiswa_pengajuan = $id_mahasiswa_pengajuan")->row_array();
+        return $query;
+    }
+
+    public function getAlasan($id_mahasiswa_pengajuan)
+    {
+        $query = $this->db->query(
+            "SELECT 
+                `rp`.`alasan`, `rp`.`status`
+            FROM review_pengajuan AS rp
+            JOIN user_data AS ud
+            JOIN mahasiswa_pengajuan AS mp ON ud.id = mp.id_user
+            WHERE rp.id_mahasiswa_pengajuan = $id_mahasiswa_pengajuan
+        "
+        )->row_array();
+
+        return $query;
+        // var_dump($query);
     }
 }

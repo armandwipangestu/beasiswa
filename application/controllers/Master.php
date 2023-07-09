@@ -24,6 +24,26 @@ class Master extends CI_Controller
         $this->load->view('layout/footer');
     }
 
+    public function review()
+    {
+        $data = [
+            "id_user" => $this->session->userdata('id_user'),
+            "id_mahasiswa_pengajuan" => $this->input->post('id_mahasiswa_pengajuan'),
+            'tanggal_review' => time(),
+            'alasan' => $this->input->post('alasan'),
+            'status' => $this->input->post('status_button')
+        ];
+
+        $this->db->insert('review_pengajuan', $data);
+        $this->db->where('id', $this->input->post('id_mahasiswa_pengajuan'));
+        $this->db->update('mahasiswa_pengajuan', ['status_pengajuan' => "Dokumen Diterima"]);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success neu-brutalism mb-4">Dokumen berhasil dikirim!</div>'
+        );
+        redirect("master");
+    }
+
     public function get_dokumen($id, $id_user)
     {
         $this->load->model('Master_model', 'master');
@@ -35,5 +55,26 @@ class Master extends CI_Controller
         $dokumen = $this->master->getDokumenById($id);
 
         exit(json_encode((array)$dokumen));
+    }
+
+    public function pdf()
+    {
+        $this->load->model('Master_model', 'master');
+        $data['nama_pengajuan'] = $this->master->getAllNamaPengajuan();
+        $data['title'] = 'Laporan Dokumen Pengajuan';
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "Laporan Dokumen Pengajuan.pdf";
+        $this->pdf->load_view('master/laporan_pdf', $data);
+    }
+
+    public function get_review($id)
+    {
+        $this->load->model('Master_model', 'master');
+        $cek = $this->master->getReview($id);
+
+        exit(json_encode((array)$cek));
     }
 }

@@ -107,7 +107,7 @@ class Dashboard extends CI_Controller
 
         $data['check_berkas_biodata'] = $this->biodata->checkFieldsFilled($this->session->userdata('id_user'));
         $data['check_berkas_prestasi'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
-        $data['check_berkas_keluarga'] = $this->prestasi->checkFieldsFilled($this->session->userdata('id_user'));
+        $data['check_berkas_keluarga'] = $this->keluarga->checkFieldsFilled($this->session->userdata('id_user'));
         $data['status_kelengkapan_berkas'] = null;
         $data['list_berkas'] = [];
 
@@ -168,7 +168,9 @@ class Dashboard extends CI_Controller
         } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dalam Pengecekan") {
             $data['state_pengajuan'] = "<span class='badge badge-warning neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
         } elseif ($data['pengajuan'] != null && $data['pengajuan']['status_pengajuan'] == "Dokumen Diterima") {
-            $data['state_pengajuan'] = "<span class='badge badge-success neu-brutalism'>" . $data['pengajuan']['status_pengajuan'] . "</span>";
+            $data['state_pengajuan'] = "
+            <span class='badge badge-success neu-brutalism mr-2'>" . $data['pengajuan']['status_pengajuan'] . "</span>" .
+                "<a href='" . base_url('dashboard/lihat_hasil') . "'><span class='badge badge-primary neu-brutalism'>" . "Lihat" . "</span></a>";
         }
         // var_dump($data['status_pengajuan']);
         // die;
@@ -181,6 +183,21 @@ class Dashboard extends CI_Controller
         $this->load->view('layout/topbar');
         $this->load->view('layout/sidebar');
         $this->load->view('dashboard/dokumen_beasiswa');
+        $this->load->view('layout/footer');
+    }
+
+    public function lihat_hasil()
+    {
+        $data['title'] = "Lihat Hasil";
+        $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+        $data['id_mahasiswa_pengajuan'] = $this->db->get_where('mahasiswa_pengajuan', ['id_user' => $this->session->userdata('id_user')])->row_array();
+        $data['hasil'] = $this->db->get_where('review_pengajuan', ['id_mahasiswa_pengajuan' => $data['id_mahasiswa_pengajuan']['id']])->row_array();
+        // var_dump($data['hasil']);
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/topbar');
+        $this->load->view('layout/sidebar');
+        $this->load->view('dashboard/lihat_hasil');
         $this->load->view('layout/footer');
     }
 

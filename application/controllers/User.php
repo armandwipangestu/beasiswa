@@ -52,7 +52,7 @@ class User extends CI_Controller
                 // $path_file = base_url('assets/img/profile/') . $data['user']['image'];
                 // unlink($path_file);
                 $config['allowed_types'] = 'gif|jpg|png|svg';
-                $config['max_size'] = '2048';
+                $config['max_size'] = '10000';
                 $config['upload_path'] = './assets/img/profile/';
 
                 $this->load->library('upload', $config);

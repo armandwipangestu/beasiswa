@@ -18,29 +18,26 @@
         <div class="card card-primary neu-brutalism">
 
             <div class="card-header d-flex">
-                <div class="row">
-                    <div class="col-sm-6 col-md-8">
-                        <h4>Status Kelengkapan Berkas</h4>
-                    </div>
-                    <div class="col-sm-4">
-                        <?php if ($status_kelengkapan_berkas) : ?>
-                            <span class='badge badge-success neu-brutalism'>Sudah Lengkap</span>
-                        <?php else : ?>
-                            <span class='badge badge-warning neu-brutalism'>Belum Lengkap</span>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="ml-auto">
+                <h4>Status Kelengkapan Berkas</h4>
+                <div class="ml-auto mt-2">
+
+                    <?php if ($status_kelengkapan_berkas) : ?>
+                        <span class='badge badge-success neu-brutalism mr-2'>Sudah Lengkap</span>
+                    <?php else : ?>
+                        <span class='badge badge-warning neu-brutalism mr-2'>Belum Lengkap</span>
+                    <?php endif; ?>
+
                     <?php if ($pengajuan != null) : ?>
-                        <!-- <span class='badge badge-warning neu-brutalism'><?= $pengajuan['status_pengajuan']; ?></span> -->
                         <?= $state_pengajuan; ?>
                     <?php elseif ($status_kelengkapan_berkas) : ?>
-                        <a onclick="ajukan()" class="btn btn-success btn-block neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></a>
+                        <a onclick="ajukan()" class="btn btn-success neu-brutalism">Ajukan <i class="fas fa-fw fa-upload ml-1"></i></a>
                     <?php else : ?>
-                        <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary btn-block neu-brutalism" tabindex="4">
+                        <a data-toggle="collapse" href="#collapseBerkas" role="button" aria-expanded="false" aria-controls="collapseBerkas" class="btn btn-primary neu-brutalism" tabindex="4">
                             Detail <i class="fas fa-fw fa-arrow-down ml-1"></i>
                         </a>
                     <?php endif; ?>
+
+
                 </div>
             </div>
 
