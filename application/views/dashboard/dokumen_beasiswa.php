@@ -105,7 +105,8 @@
 
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
+                            <textarea class="form-control neu-brutalism-border" style="height: 72px !important;" disabled><?= $biodata['alamat'] ? $biodata['alamat'] : "" ?></textarea>
+                            <!-- <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>"> -->
                         </div>
 
                         <div class="form-group">
@@ -238,7 +239,8 @@
 
                         <div class="form-group">
                             <label>Detail Ayah</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?>">
+                            <textarea name="detail_ayah" class="form-control neu-brutalism-border" style="height: 72px !important;" disabled><?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?></textarea>
+                            <!-- <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ayah'] ? $keluarga['detail_ayah'] : "" ?>"> -->
                         </div>
 
                         <div class="form-group">
@@ -263,7 +265,8 @@
 
                         <div class="form-group">
                             <label>Detail Ibu</label>
-                            <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?>">
+                            <textarea name="detail_ibu" class="form-control neu-brutalism-border" style="height: 72px !important;" disabled><?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?></textarea>
+                            <!-- <input type="text" class="form-control neu-brutalism-border" disabled value="<?= $keluarga['detail_ibu'] ? $keluarga['detail_ibu'] : "" ?>"> -->
                         </div>
 
                         <div class="form-group">

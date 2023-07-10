@@ -327,7 +327,8 @@
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="alasan" name="alasan">
+                            <!-- <input type="text" class="form-control" id="alasan" name="alasan"> -->
+                            <textarea class="form-control neu-brutalism-border" id="alasan" name="alasan" style="height: 72px !important;"></textarea>
                         </div>
                     </div>
 
@@ -351,7 +352,7 @@
         id_user_pengaju = id_user
         $.get(`${baseUrl}master/get_dokumen/${id_pengajuan}/${id_user_pengaju}`, (data) => {
             const dokumen = $.parseJSON(data)
-            console.log(dokumen)
+            // console.log(dokumen)
             $.get(`${baseUrl}master/get_review/${id_pengajuan}`, (data) => {
                 if (data != '[]') {
                     $('#tolak').css('display', 'none');

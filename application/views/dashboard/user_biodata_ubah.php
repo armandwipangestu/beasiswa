@@ -45,7 +45,8 @@
                         <div class="form-group col-md-6">
                             <label>Alamat</label>
                             <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
-                            <input type="text" class="form-control neu-brutalism-border" name="alamat" value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>">
+                            <textarea name="alamat" class="form-control neu-brutalism-border" style="height: 72px !important;"><?= $biodata['alamat'] ? $biodata['alamat'] : "" ?></textarea>
+                            <!-- <input type="text" class="form-control neu-brutalism-border" name="alamat" value="<?= $biodata['alamat'] ? $biodata['alamat'] : "" ?>"> -->
                         </div>
 
                         <div class="form-group col-md-6">
