@@ -1,9 +1,21 @@
-### Dependency
+## Dependency
 
--   yarn
--   php
--   mysql
--   git
+> **Catatan**:
+>
+> -   `Composer` disini berfungsi sebagai package manager untuk mendownload dependency dari `dompdf`.
+>
+> -   `Yarn` disini berfungsi sebagai package manager untuk mendownload dependency dari template `Stisla`.
+>
+> -   Untuk PHP, MySQL dan Apache bisa di install dengan bundle seperti `XAMPP` / `MAMP` / `LAMP`
+>
+> -   `Git` berfungsi untuk melakukan clone atau mendownload repository ini
+
+-   [Composer](https://getcomposer.org/download/)
+-   [Yarn](https://yarnpkg.com/)
+-   [PHP 5 ~ 8.0](https://www.php.net/releases/8.0/en.php)
+-   [MySQL 5.1+](https://downloads.mysql.com/archives/community/)
+-   [Apache](https://httpd.apache.org/)
+-   [Git](https://git-scm.com/downloads)
 
 ### Cara install
 
@@ -23,12 +35,14 @@ cd beasiswa
 cp .env.example .env.development
 ```
 
-```sh
-mkdir assets/img/profile
-```
-
 > **NOTE**:
 > Sesuaikan isian .env.development dengan konfigurasi anda (seperti nama database dll)
+
+-   Install dependencies dompdf
+
+```sh
+composer update
+```
 
 -   Install dependencies template stisla
 
