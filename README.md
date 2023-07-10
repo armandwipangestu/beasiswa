@@ -1,3 +1,38 @@
+<h1 align="center">Mini Project 2 - Beasiswa</h1>
+<img src="https://github.com/armandwipangestu/beasiswa/assets/64394320/fd4b4eb8-953e-4abf-850d-e30c7b690411" alt="Homepage">
+
+## Daftar Isi
+
+
+## Pendahuluan
+
+Repository ini merupakan tugas dari mata kuliah Mini Project 2, pada tugas kali ini saya [Arman Dwi Pangestu](https://github.com/armandwipangestu/) dengan [Azizan Artiandi Akbar Fauzi](https://github.com/Jijan5) mendapatkan tugas dengan judul `Aplikasi pencatatan pengajuan penerima beasiswa Yayasan stmik bandung` yang dimana aplikasi tersebut harus memiliki fitur berikut ini:
+
+- Proses Registrasi
+- Proses Report Pemohon
+- Filter Pemohon
+- Seleksi Penerima Beasiswa
+- Report Hasil Penerimaan
+
+## Teknologi Yang Digunakan
+
+Aplikasi ini dibuat menggunakan beberapa teknologi, diantaranya adalah:
+
+> **Catatan**:
+>
+> -   `Codeigniter` disini berfungsi sebagai framework backend
+>
+> -   `Stisla` berfungsi sebagai template dari framework frontend yaitu `Bootstrap`
+
+-   [Codeigniter Versi 3.1.13](https://codeigniter.com/userguide3/installation/downloads.html)
+-   [Stisla Versi 2.2.0](https://github.com/stisla/stisla/releases/tag/v2.2.0)
+-   [Bootstrap Versi 4.2.1](https://blog.getbootstrap.com/2018/12/21/bootstrap-4-2-1/)
+-   [jQuery Versi 3.3.1](https://blog.jquery.com/2018/01/20/jquery-3-3-1-fixed-dependencies-in-release-tag/)
+-   [Datatables Versi 1.13.4](https://cdn.datatables.net/1.13.4/)
+-   [Sweetalert Versi 11.7.12](https://github.com/sweetalert2/sweetalert2/releases/tag/v11.7.12)
+-   [PHP Dotenv for Codeigniter](https://github.com/agungjk/phpdotenv-for-codeigniter)
+-   [Dompdf](https://github.com/dompdf/dompdf/)
+
 ## Dependency
 
 > **Catatan**:
@@ -17,15 +52,19 @@
 -   [Apache](https://httpd.apache.org/)
 -   [Git](https://git-scm.com/downloads)
 
-### Cara install
+## Cara install
 
--   Clone atau download repository ini:
+<details open>
+<summary><strong>Clone atau Download Repository ini</strong></summary>
 
 ```sh
 git clone https://github.com/armandwipangestu/beasiswa.git
 ```
 
--   Membuat file `.env.development` dan foler `img/profile`
+</details>
+
+<details>
+<summary><strong>Membuat file <code>.env.development</code></strong></summary>
 
 ```sh
 cd beasiswa
@@ -46,13 +85,20 @@ cp .env.example .env.development
 > DB_PASSWORD=
 > DB_NAME=beasiswa
 > ```
--   Install dependencies dompdf
+
+</details>
+
+<details>
+<summary><strong>Install dependencies dompdf</strong></summary>
 
 ```sh
 composer update
 ```
 
--   Install dependencies template stisla
+</details>
+
+<details>
+<summary><strong>Install dependencies template stisla</strong></summary>
 
 ```sh
 cd template/stisla
@@ -66,25 +112,32 @@ yarn
 yarn dist
 ```
 
--   Import Database
+</details>
 
-    -   Membuat database baru dengan nama `beasiswa`
+<details>
+<summary><strong>Import Database</strong></summary>
 
-        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/1d206dfe-72ca-41c9-86be-370f5bb82ac4)
+-   Membuat database baru dengan nama `beasiswa`
 
-    -   Import `beasiswa/database/beasiswa.sql` ke dalam database melalui phpmyamdin
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/1d206dfe-72ca-41c9-86be-370f5bb82ac4)
 
-        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/b24c8e8c-18b1-41a5-a73d-f54024346b1d)
-        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/704ca427-bd6d-4f23-93e9-0767b3b11868)
-        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/22947ae4-b346-45a5-bd38-cbea86c21c31)
+-   Import `beasiswa/database/beasiswa.sql` ke dalam database melalui phpmyamdin
 
--   Membuka program
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/b24c8e8c-18b1-41a5-a73d-f54024346b1d)
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/704ca427-bd6d-4f23-93e9-0767b3b11868)
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/22947ae4-b346-45a5-bd38-cbea86c21c31)
+
+</details>
+
+## Membuka program
 
 Buka url `localhost/beasiswa` maka program akan muncul seperti berikut ini
 
 ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/f8bf341d-5db4-4320-8acc-4b04d4fa7f0f)
 
 Untuk login dapat membuat akun sendiri atau menggunakan akun berikut ini:
+
+### List User
 
 -   Role Admin
 
@@ -110,13 +163,13 @@ Untuk login dapat membuat akun sendiri atau menggunakan akun berikut ini:
 
     ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/da64be8e-3fcf-406d-8717-03878956d292)
 
-### ERD (Entity Relationship Diagram)
+## ERD (Entity Relationship Diagram)
 
 ![image](erd/tabel_keseluruhan.png)
 
 Untuk melihat ERD dari program ini, kunjungi halaman berikut ini [whimsical.com/tabel-keseluruhan](https://whimsical.com/tabel-keseluruhan-UbTUmg9vvBiZaeJ61G8pQR)
 
-### Penjelasan Role
+## Penjelasan Role
 
 - `Admin`
 
