@@ -22,8 +22,9 @@
                         <th scope="col" class="text-dark">#</th>
                         <th scope="col" class="text-dark">Nama Mahasiswa</th>
                         <th scope="col" class="text-dark">Tanggal Pengajuan</th>
-                        <th scope="col" class="text-dark">Status</th>
+                        <th scope="col" class="text-dark">Status Pengecekan</th>
                         <th scope="col" class="text-dark">Alasan</th>
+                        <th scope="col" class="text-dark">Status</th>
                         <th scope="col" class="text-dark">Dokumen</th>
                     </tr>
                 </thead>
@@ -42,7 +43,10 @@
                                 <td><span class="badge badge-success neu-brutalism"><?= $np['status_pengajuan'] ?></span></td>
                             <?php endif; ?>
                             <td>
-                                <?= $this->master->getAlasan($np['id'])['alasan']; ?>
+                                <?= $this->master->getAlasan($np['id']) ? $this->master->getAlasan($np['id'])['alasan'] : "" ?>
+                            </td>
+                            <td>
+                                <?= $this->master->getAlasan($np['id']) ? $this->master->getAlasan($np['id'])['status'] : "" ?>
                             </td>
                             <td>
                                 <a href="#" onclick="lihat('<?= $np['id'] ?>', '<?= $np['id_user'] ?>')" class="btn btn-primary neu-brutalism">
@@ -411,13 +415,13 @@
 
     const diterima = () => {
         $('#id_mahasiswa_pengajuan').val(id_pengajuan)
-        $('#status_button').val('diterima');
+        $('#status_button').val('Diterima');
         $('#modalAlasan').modal('show');
     }
 
     const ditolak = () => {
         $('#id_mahasiswa_pengajuan').val(id_pengajuan)
-        $('#status_button').val('ditolak');
+        $('#status_button').val('Ditolak');
         $('#modalAlasan').modal('show');
     }
 </script>

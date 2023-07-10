@@ -57,9 +57,9 @@
                     <td scope="row"><?= $i ?></td>
                     <td><?= $np['nama'] ?></td>
                     <td><?= hari_indonesia($np['tanggal_pengajuan']) ?></td>
-                    <td><?= $this->master->getAlasan($np['id'])['status']; ?></td>
+                    <td><?= $this->master->getAlasan($np['id']) ? $this->master->getAlasan($np['id'])['status'] : ""; ?></td>
                     <td>
-                        <?= $this->master->getAlasan($np['id'])['alasan']; ?>
+                        <?= $this->master->getAlasan($np['id']) ? $this->master->getAlasan($np['id'])['alasan'] : ""; ?>
                     </td>
                 </tr>
                 <?php $i++ ?>
