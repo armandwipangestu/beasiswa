@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title; ?></title>
     <style>
+        div {
+            font-family: "Arial", Arial, Helvetica, sans-serif;
+        }
+
         #table {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+            font-family: "Arial", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
@@ -30,7 +35,7 @@
             padding-top: 10px;
             padding-bottom: 10px;
             text-align: left;
-            background-color: #4CAF50;
+            background-color: #6777ef;
             color: white;
         }
     </style>
@@ -39,6 +44,7 @@
 <body>
     <div style="text-align:center">
         <h3> <?= $title ?></h3>
+        <span>Hari/Tanggal: <?= hari_indonesia(time()) ?></span>
     </div>
     <table id="table">
         <thead>

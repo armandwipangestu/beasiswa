@@ -61,12 +61,12 @@ class Master extends CI_Controller
     {
         $this->load->model('Master_model', 'master');
         $data['nama_pengajuan'] = $this->master->getAllNamaPengajuan();
-        $data['title'] = 'Laporan Dokumen Pengajuan';
+        $data['title'] = 'Laporan Dokumen Pengajuan Penerima Beasiswa Yayasan STMIK Bandung';
 
         $this->load->library('pdf');
 
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "Laporan Dokumen Pengajuan.pdf";
+        $this->pdf->filename = "Laporan-Dokumen-Pengajuan-Penerima-Beasiswa-Yayasan-STMIK-Bandung_" . bulan_indonesia(time()) . ".pdf";
         $this->pdf->load_view('master/laporan_pdf', $data);
     }
 
