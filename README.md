@@ -115,3 +115,21 @@ Untuk login dapat membuat akun sendiri atau menggunakan akun berikut ini:
 ![image](erd/tabel_keseluruhan.png)
 
 Untuk melihat ERD dari program ini, kunjungi halaman berikut ini [whimsical.com/tabel-keseluruhan](https://whimsical.com/tabel-keseluruhan-UbTUmg9vvBiZaeJ61G8pQR)
+
+### Penjelasan Role
+
+- `Admin`
+
+    Role ini dapat mengatur (menambah, menghapus, mengubah) role akses, role user, jurusan, kelas program, menu management, submenu management, status hidup, status hubungan, status pendidikan, status pekerjaan.
+
+    Singkatnya role ini yang bertanggung jawab untuk data data yang mempunyai relasi.
+
+- `User`
+
+    Role ini hanya dapat mengisikan dokumen beasiswa sebagai syarat untuk mengajukan beasiswa, dokumen beasiswa ini mencakup dokumen biodata user, prestasi, data keluarga.
+
+    Dokumen - dokumen tersebut akan menjadi bahan penilaian dalam pengecekan dokumen untuk diterima atau ditolak nya beasiswa oleh role `Master`.
+
+- `Master`
+
+    Role ini dapat mem-filter dokumen beasiswa yang diajukan, di role inilah dokumen beasiswa akan dicek. Kemudian nantinya dokumen tersebut akan dikembalikan ke role `User` dengan status diterima atau ditolak.
