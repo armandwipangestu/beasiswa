@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-muted text-center simple-footer">
-                        Belum mempunyai akun? <a href="<?= base_url() ?>/auth/daftar">Daftar</a>
+                        Belum mempunyai akun? <a href="<?= base_url() ?>auth/daftar">Daftar</a>
                     </div>
                     <!-- <div class="simple-footer">
                         Copyright &copy; Beasiswa STMIK Bandung 2023
