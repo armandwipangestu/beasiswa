@@ -65,6 +65,10 @@ Aplikasi ini dibuat menggunakan beberapa teknologi, diantaranya adalah:
 <details open>
 <summary><strong>Clone atau Download Repository ini</strong></summary>
 
+> **Catatan**:
+>
+> Simpan folder beasiswa di lokasi `xampp/htdocs`
+
 ```sh
 git clone https://github.com/armandwipangestu/beasiswa.git
 ```
