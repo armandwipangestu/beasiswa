@@ -35,9 +35,17 @@ cd beasiswa
 cp .env.example .env.development
 ```
 
-> **NOTE**:
+> **Catatan**:
+>
 > Sesuaikan isian .env.development dengan konfigurasi anda (seperti nama database dll)
-
+>
+> Default yang saya gunakan:
+> ```
+> DB_HOSTNAME=localhost
+> DB_USERNAME=root
+> DB_PASSWORD=
+> DB_NAME=beasiswa
+> ```
 -   Install dependencies dompdf
 
 ```sh
@@ -62,19 +70,19 @@ yarn dist
 
     -   Membuat database baru dengan nama `beasiswa`
 
-        ![image](https://github.com/armandwipangestu/image/assets/64394320/57db8f23-0f82-4018-9b02-2e95bceaa437)
+        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/1d206dfe-72ca-41c9-86be-370f5bb82ac4)
 
     -   Import `beasiswa/database/beasiswa.sql` ke dalam database melalui phpmyamdin
 
-        ![image](https://github.com/armandwipangestu/image/assets/64394320/269ea39d-1495-43fe-8507-2a5f7a86d843)
-        ![image](https://github.com/armandwipangestu/image/assets/64394320/2a4c1832-c9fc-4b98-80b0-36a5a14fb810)
-        ![image](https://github.com/armandwipangestu/image/assets/64394320/b6401b1c-da21-4435-bbbc-08995aff35d4)
+        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/b24c8e8c-18b1-41a5-a73d-f54024346b1d)
+        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/704ca427-bd6d-4f23-93e9-0767b3b11868)
+        ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/22947ae4-b346-45a5-bd38-cbea86c21c31)
 
 -   Membuka program
 
 Buka url `localhost/beasiswa` maka program akan muncul seperti berikut ini
 
-![image](https://github.com/armandwipangestu/image/assets/64394320/59403093-9a0f-4810-a8fb-100d90385f71)
+![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/f8bf341d-5db4-4320-8acc-4b04d4fa7f0f)
 
 Untuk login dapat membuat akun sendiri atau menggunakan akun berikut ini:
 
@@ -83,37 +91,27 @@ Untuk login dapat membuat akun sendiri atau menggunakan akun berikut ini:
     -   Email: admin@admin.com
     -   Password: 123
 
-    ![image](https://github.com/armandwipangestu/image/assets/64394320/a50ec89e-7724-4449-9367-b031fe0d44cb)
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/ef82c78c-2fff-410a-949d-a66670a2641d)
 
 -   Role User
 
     -   Email: user@user.com
     -   Password: 123
 
-    ![image](https://github.com/armandwipangestu/image/assets/64394320/c87c2fd2-1d31-4a5a-9835-ce3d7e5510d6)
+    -   Email: user2@user2.com
+    -   Password: 123
+
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/90203ade-ac40-4fb2-90d7-e4e09a2d34f8)
+
+- Role Master
+
+    -   Email: master@master.com
+    -   Password: 123
+
+    ![image](https://github.com/armandwipangestu/beasiswa/assets/64394320/da64be8e-3fcf-406d-8717-03878956d292)
 
 ### ERD (Entity Relationship Diagram)
 
-![image](erd/tabel_user.png)
+![image](erd/tabel_keseluruhan.png)
 
-Penjelasan:
-
--   Tabel `user` dan tabel `user_role`:
-
-    -   Jenis relasi: Many-to-One (Banyak-ke-Satu)
-    -   Penjelasan: Setiap user hanya memiliki satu role, tetapi satu role dapat dimiliki oleh banyak user
-
--   Tabel `user_access_menu` dan tabel `user_role`:
-
-    -   Jenis Relasi: Many-to-One (Banyak-ke-Satu)
-    -   Penjelasan: Setiap entri dalam tabel `user_access_menu` terkait dengan satu role, tetapi satu role dapat memiliki banyak entri dalam tabel `user_access_menu`
-
--   Tabel `user_access_menu` dan tabel `user_menu`:
-
-    -   Jenis relasi: Many-to-Many (Banyak-ke-Banyak)
-    -   Penjelasan: Satu entri dalam tabel `user_access_menu` dapat terkait dengan banyak menu, sebaliknya satu menu dapat terkait dengan banyak entri dalam tabel `user_access_menu`
-
--   Tabel `user_sub_menu` dan tabel `user_menu` :
-
-    -   Jenis relasi: Many-to-One (Banyak-ke-Satu)
-    -   Penjelasan: Setiap submenu terkait dengan satu menu, tetapi satu menu dapat memiliki banyak submenu.
+Untuk melihat ERD dari program ini, kunjungi halaman berikut ini [whimsical.com/tabel-keseluruhan](https://whimsical.com/tabel-keseluruhan-UbTUmg9vvBiZaeJ61G8pQR)
