@@ -3,6 +3,14 @@
 
 ## Daftar Isi
 
+- [Pendahuluan](#pendahuluan)
+- [Teknologi Yang Digunakan](#teknologi-yang-digunakan)
+- [Dependency](#dependency)
+- [Cara Install](#cara-install)
+- [Membuka Program](#membuka-program)
+    - [List User](#list-user)
+- [ERD (Entity Relationship Diagram)](#erd-entity-relationship-diagram)
+- [Penjelasan Role](#penjelasan-role)
 
 ## Pendahuluan
 
@@ -52,7 +60,7 @@ Aplikasi ini dibuat menggunakan beberapa teknologi, diantaranya adalah:
 -   [Apache](https://httpd.apache.org/)
 -   [Git](https://git-scm.com/downloads)
 
-## Cara install
+## Cara Install
 
 <details open>
 <summary><strong>Clone atau Download Repository ini</strong></summary>
